@@ -8,7 +8,7 @@
 	$f = $_POST['agree'];
 
 	if( empty($name) | empty($last) | empty($pass) | empty($mail) | empty($f) ) {
-		header('Location: http://localhost:8080/projekt/main.html');	
+		header('Location: http://localhost:8080/projekt/main.php');	
 	}else{
 		$db = new mysqli('localhost', 'root', '', 'player_stats');
 

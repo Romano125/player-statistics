@@ -3,7 +3,7 @@
 	$mail = $_POST['mail'];
 
 	if(empty($pass) | empty($mail)) {
-		
+		header('Location: http://localhost:8080/projekt/main.php');
 	}else{
 		$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
