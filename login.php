@@ -17,12 +17,14 @@
 				$f = 1;
 				$name = $r['name'];
 				$gen = $r['gender'];
+				$id = $r['ID'];
 			}
 		}
 
 		if( $f == 1 ) {
 			$time = time();
 			session_start();
+			$_SESSION['id'] = $id;
 			$_SESSION['user'] = $name;
 			$_SESSION['time'] = $time;
 			$_SESSION['gen'] = $gen;
