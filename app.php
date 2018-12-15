@@ -100,7 +100,6 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
-                                        <!-- Browse gumb za ucitat sliku -->
                                     </div>
                                     <div class="col-md-8">
                                         <button type="button" class="btn btn-outline-warning" style="float: right;">Favourites</button>
@@ -457,20 +456,6 @@
 
 
         <script type="text/javascript">
-            var btns = document.getElementsByClassName('info');
-
-            for( let i = 0; i < btns.length; i++ ) {
-                btns[i].addEventListener( 'click', e => {
-                    e.preventDefault();
-                    document.getElementById('home').classList.add('switch');
-                    document.getElementById('forward').classList.add('switch');
-                    document.getElementById('defense').classList.add('switch');
-                    document.getElementById('goalkeepers').classList.add('switch');
-                    document.getElementById('middle').classList.add('switch');
-                    document.getElementById('player').classList.remove('switch');
-                });
-            }
-
             document.querySelector('.home-btn').addEventListener( 'click', e => {
                 e.preventDefault();
                 document.getElementById('home').classList.remove('switch');
