@@ -79,12 +79,12 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#" id="fwd">Forward</a></li>
-                    <li><a href="#" id="mid">Middle</a></li>
-                    <li><a href="#" id="def">Defense</a></li>
-                    <li><a href="#" id="gk">Goalkeeper</a></li>
-                    <li><a href="#" id="fav">Favourites</a></li>
-                    <li><a href="#" id="set">Settings</a></li>
+                    <li><a href="" id="fwd">Forward</a></li>
+                    <li><a href="" id="mid">Middle</a></li>
+                    <li><a href="" id="def">Defense</a></li>
+                    <li><a href="" id="gk">Goalkeeper</a></li>
+                    <li><a href="" id="fav">Favourites</a></li>
+                    <li><a href="" id="set">Settings</a></li>
                 </ul> 
             </div>
 
@@ -106,9 +106,11 @@
                                         <button type="button" class="btn btn-outline-warning" style="float: right;">Favourites</button>
                                         <?php
 
+                                            $id = $_GET['id'];
+
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija";
+                                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
 
                                             $res = $db->query($q);
 
@@ -174,7 +176,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark info'>More info</button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -222,7 +224,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
+                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
 
                             $res = $db->query($q);
 
@@ -230,7 +232,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark info'>More info</button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -278,7 +280,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='DEF'";
+                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='DEF'";
 
                             $res = $db->query($q);
 
@@ -286,7 +288,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark info'>More info</button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -342,7 +344,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark info'>More info</button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -435,6 +437,22 @@
             </div>
 
         </div>
+
+        <?php
+            $id = $_GET['id'];
+
+            if( isset($id) ) {
+                echo $id;
+                echo "<script>
+                    document.getElementById('home').classList.add('switch');
+                    document.getElementById('forward').classList.add('switch');
+                    document.getElementById('defense').classList.add('switch');
+                    document.getElementById('goalkeepers').classList.add('switch');
+                    document.getElementById('middle').classList.add('switch');
+                    document.getElementById('player').classList.remove('switch');
+                </script>";
+            }
+        ?>
 
 
 
