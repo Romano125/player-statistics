@@ -1,14 +1,6 @@
 /*Rest css - pisite komentare*/
-#forward {
+.switch {
 	display: none;
-}
-
-#home {
-	display: none;
-}
-
-.active {
-	display: block;
 }
 
 /*Side bar css*/
