@@ -55,7 +55,7 @@
 				<form action="signup.php" method="POST" name="signUp" class="signUp needs-validation" novalidate>
 					<div class="row">
 						<table>
-							<tr> <td>Name: </td> <td><input onfocus="reset()" id="invalidCheck" class="text form-control" type="text" name="name" placeholder="Enter your name" required><div class="invalid-feedback">
+							<tr> <td>Name: </td> <td><input onfocus="reset()" class="text form-control" type="text" name="name" placeholder="Enter your name" required><div class="invalid-feedback">
 					      Please enter your name.
 						</div></td> </tr>
 						</table>
@@ -77,11 +77,22 @@
 						</div>
 					</div>
 					<div class="col-xs-3">
-						Choose age: <select name="age" class="form-control" required>
-							<option value="">Choose age</option>
-							<option value="18">18</option>
-							<option value="20">20</option>
-						</select>
+						<?php
+							$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+							$q = "SELECT age FROM ages";
+
+							$res = $db->query($q);
+
+							echo "Choose age: <select name='age' class='form-control' required>
+													<option value=''>Choose age</option>";
+							while( $r = $res->fetch_assoc() ) {
+								echo "<option value='" . $r['age'] . "'>". $r['age'] . "</option>";
+							}
+							echo "</select>";
+
+							mysqli_close($db);
+						?>
 					    <div class="invalid-feedback">
 					      Please select age.
 						</div>
