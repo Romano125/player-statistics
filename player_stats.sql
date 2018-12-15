@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2018 at 03:25 PM
+-- Generation Time: Dec 15, 2018 at 03:34 PM
 -- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,123 @@ SET time_zone = "+00:00";
 --
 -- Database: `player_stats`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ages`
+--
+
+CREATE TABLE `ages` (
+  `ID` int(11) NOT NULL,
+  `age` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
+
+--
+-- Dumping data for table `ages`
+--
+
+INSERT INTO `ages` (`ID`, `age`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10),
+(11, 11),
+(12, 12),
+(13, 13),
+(14, 14),
+(15, 15),
+(16, 16),
+(17, 17),
+(18, 18),
+(19, 19),
+(20, 20),
+(21, 21),
+(22, 22),
+(23, 23),
+(24, 24),
+(25, 25),
+(26, 26),
+(27, 27),
+(28, 28),
+(29, 29),
+(30, 30),
+(31, 31),
+(32, 32),
+(33, 33),
+(34, 34),
+(35, 35),
+(36, 36),
+(37, 37),
+(38, 38),
+(39, 39),
+(40, 40),
+(41, 41),
+(42, 42),
+(43, 43),
+(44, 44),
+(45, 45),
+(46, 46),
+(47, 47),
+(48, 48),
+(49, 49),
+(50, 50),
+(51, 51),
+(52, 52),
+(53, 53),
+(54, 54),
+(55, 55),
+(56, 56),
+(57, 57),
+(58, 58),
+(59, 59),
+(60, 60),
+(61, 61),
+(62, 62),
+(63, 63),
+(64, 64),
+(65, 65),
+(66, 66),
+(67, 67),
+(68, 68),
+(69, 69),
+(70, 70),
+(71, 71),
+(72, 72),
+(73, 73),
+(74, 74),
+(75, 75),
+(76, 76),
+(77, 77),
+(78, 78),
+(79, 79),
+(80, 80),
+(81, 81),
+(82, 82),
+(83, 83),
+(84, 84),
+(85, 85),
+(86, 86),
+(87, 87),
+(88, 88),
+(89, 89),
+(90, 90),
+(91, 91),
+(92, 92),
+(93, 93),
+(94, 94),
+(95, 95),
+(96, 96),
+(97, 97),
+(98, 98),
+(99, 99),
+(100, 100);
 
 -- --------------------------------------------------------
 
@@ -261,99 +378,35 @@ INSERT INTO `statistika_utakmice` (`stat_uta_id`, `utak_id`, `domaci_gol`, `doma
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  `surname` varchar(40) NOT NULL,
-  `gender` varchar(2) NOT NULL,
+  `name` varchar(15) COLLATE utf8_croatian_ci NOT NULL,
+  `last_name` varchar(15) COLLATE utf8_croatian_ci NOT NULL,
+  `gender` varchar(1) COLLATE utf8_croatian_ci NOT NULL,
   `age` int(11) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `email` varchar(55) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+  `password` varchar(18) COLLATE utf8_croatian_ci NOT NULL,
+  `e_mail` varchar(18) COLLATE utf8_croatian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
 --
--- Table structure for table `users_igrac`
+-- Dumping data for table `users`
 --
 
-CREATE TABLE `users_igrac` (
-  `ID` int(11) NOT NULL,
-  `reg_br_igr` varchar(20) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `utakmica`
---
-
-CREATE TABLE `utakmica` (
-  `utak_id` varchar(10) NOT NULL,
-  `domaci` varchar(25) NOT NULL,
-  `gosti` varchar(25) NOT NULL,
-  `natj_id` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `utakmica`
---
-
-INSERT INTO `utakmica` (`utak_id`, `domaci`, `gosti`, `natj_id`) VALUES
-('UTA1', 'Real Madrid', 'Barcelona', 'LaLiga'),
-('UTA2', 'Barcelona', 'Real Madrid', 'LP'),
-('UTA3', 'Rijeka', 'Dinamo Zagreb', 'HNL');
+INSERT INTO `users` (`ID`, `name`, `last_name`, `gender`, `age`, `password`, `e_mail`) VALUES
+(5, 'ana', 'anic', 'F', 20, 'hello', 'ana@ccc.com'),
+(6, 'a', 'd', 'M', 18, 'k', 'k'),
+(7, 'a', 'a', 'M', 18, 'a', 'a'),
+(8, 'Iva', 'Polic', 'F', 18, 'iva', 'poli.iva@gmail.com'),
+(9, 'p', 'p', 'M', 18, 'p', 'p'),
+(10, 'Nikola', 'Samardzic', 'M', 20, 't', 'nikola@gmail.com');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `igrac`
+-- Indexes for table `ages`
 --
-ALTER TABLE `igrac`
-  ADD PRIMARY KEY (`reg_br_igr`),
-  ADD KEY `fk_Igrac_Pozicija1_idx` (`pozicija_id`),
-  ADD KEY `fk_Igrac_Klub1_idx` (`klub_id`);
-
---
--- Indexes for table `klub`
---
-ALTER TABLE `klub`
-  ADD PRIMARY KEY (`klub_id`);
-
---
--- Indexes for table `natjecanja_kluba`
---
-ALTER TABLE `natjecanja_kluba`
-  ADD PRIMARY KEY (`klub_id`,`natj_id`),
-  ADD KEY `fk_Klub_has_Natjecanje_Natjecanje1_idx` (`natj_id`),
-  ADD KEY `fk_Klub_has_Natjecanje_Klub1_idx` (`klub_id`);
-
---
--- Indexes for table `natjecanje`
---
-ALTER TABLE `natjecanje`
-  ADD PRIMARY KEY (`natj_id`);
-
---
--- Indexes for table `pozicija`
---
-ALTER TABLE `pozicija`
-  ADD PRIMARY KEY (`pozicija_id`);
-
---
--- Indexes for table `statistika_igraca`
---
-ALTER TABLE `statistika_igraca`
-  ADD PRIMARY KEY (`reg_br_igr`,`stat_uta_id`),
-  ADD KEY `fk_Statistika_igraca_statistika_utakmice1_idx` (`stat_uta_id`),
-  ADD KEY `fk_Statistika_igraca_igrac1_idx` (`reg_br_igr`);
-
---
--- Indexes for table `statistika_utakmice`
---
-ALTER TABLE `statistika_utakmice`
-  ADD PRIMARY KEY (`stat_uta_id`),
-  ADD KEY `fk_Statistika_utakmice_Utakmica1_idx` (`utak_id`);
+ALTER TABLE `ages`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `users`
@@ -362,72 +415,20 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `users_igrac`
---
-ALTER TABLE `users_igrac`
-  ADD PRIMARY KEY (`ID`,`reg_br_igr`) USING BTREE,
-  ADD KEY `reg_br_igr` (`reg_br_igr`);
-
---
--- Indexes for table `utakmica`
---
-ALTER TABLE `utakmica`
-  ADD PRIMARY KEY (`utak_id`),
-  ADD KEY `fk_Utakmica_Natjecanje1_idx` (`natj_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `ages`
+--
+ALTER TABLE `ages`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `igrac`
---
-ALTER TABLE `igrac`
-  ADD CONSTRAINT `fk_Igrac_Klub1` FOREIGN KEY (`klub_id`) REFERENCES `klub` (`klub_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Igrac_Pozicija1` FOREIGN KEY (`pozicija_id`) REFERENCES `pozicija` (`pozicija_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `natjecanja_kluba`
---
-ALTER TABLE `natjecanja_kluba`
-  ADD CONSTRAINT `fk_Klub_has_Natjecanje_Klub1` FOREIGN KEY (`klub_id`) REFERENCES `klub` (`klub_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Klub_has_Natjecanje_Natjecanje1` FOREIGN KEY (`natj_id`) REFERENCES `natjecanje` (`natj_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `statistika_igraca`
---
-ALTER TABLE `statistika_igraca`
-  ADD CONSTRAINT `fk_Statistika_igraca_igrac1` FOREIGN KEY (`reg_br_igr`) REFERENCES `igrac` (`reg_br_igr`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_Statistika_igraca_statistika_utakmice1` FOREIGN KEY (`stat_uta_id`) REFERENCES `statistika_utakmice` (`stat_uta_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `statistika_utakmice`
---
-ALTER TABLE `statistika_utakmice`
-  ADD CONSTRAINT `fk_Statistika_utakmice_Utakmica1` FOREIGN KEY (`utak_id`) REFERENCES `utakmica` (`utak_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `users_igrac`
---
-ALTER TABLE `users_igrac`
-  ADD CONSTRAINT `users_igrac_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_igrac_ibfk_2` FOREIGN KEY (`reg_br_igr`) REFERENCES `igrac` (`reg_br_igr`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `utakmica`
---
-ALTER TABLE `utakmica`
-  ADD CONSTRAINT `fk_Utakmica_Natjecanje1` FOREIGN KEY (`natj_id`) REFERENCES `natjecanje` (`natj_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

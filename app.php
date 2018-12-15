@@ -22,20 +22,28 @@
         <?php 
             if( $_SESSION['gen'] == 'M' ) echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
                     <table>
-                        <tr> <td width='25%'><a href='#' class='btn btn-success' id='menu-toggle'>Klikni</a></td>
+                        <tr> <td width='25%'>
+                                <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
+                                <div class='menu-icon'></div>
+                                <div class='menu-icon'></div></a>
+                                <button type='button' class='btn btn-dark home-btn'>Home</button>
+                            </td>
                             <td style='text-align: center; padding: 20px'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'><p>Dobrodosao " . $_SESSION['user'] . "!  <button type='button' class='btn btn-primary btn-sm'><a href='logout.php' style='text-decoration: none;color: black'>LogOut</a></button></p>
-                            <button type='button' class='btn btn-dark home-btn'>Home</button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
                             </td> 
                         </tr>
                     </table>
                 </div>"; 
             else echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
                     <table>
-                        <tr> <td width='25%'><a href='#' class='btn btn-success' id='menu-toggle'>Klikni</a></td>
+                        <tr> <td width='25%'>
+                                <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
+                                <div class='menu-icon'></div>
+                                <div class='menu-icon'></div></a>
+                                <button type='button' class='btn btn-dark home-btn'>Home</button>
+                            </td>
                             <td style='text-align: center; padding: 20px'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'><p>Dobrodosla " . $_SESSION['user'] . "!  <button type='button' class='btn btn-primary btn-sm'><a href='logout.php' style='text-decoration: none;color: black'>LogOut</a></button></p>
-                            <button type='button' class='btn btn-dark home-btn'>Home</button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
                             </td> 
                         </tr>
                     </table>
@@ -48,14 +56,34 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li>
-                        <div id="wrapper">
-                            <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="125px" width="180px">
+                        <div id="wrapper" class="images">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="#" id="set"><img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" alt="Avatar" class="avatar"></a>
+                                </div>
+                                <div class="col-md-8">
+                                    <?php 
+                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                            $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "<p><span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span></p>";
+                                                echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
+                                            }
+
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li><a href="#" id="fwd">Forward</a></li>
                     <li><a href="#" id="mid">Middle</a></li>
                     <li><a href="#" id="def">Defense</a></li>
                     <li><a href="#" id="gk">Goalkeeper</a></li>
+                    <li><a href="#" id="fav">Favourites</a></li>
                     <li><a href="#" id="set">Settings</a></li>
                 </ul> 
             </div>
@@ -75,6 +103,7 @@
                                         <!-- Browse gumb za ucitat sliku -->
                                     </div>
                                     <div class="col-md-8">
+                                        <button type="button" class="btn btn-outline-warning" style="float: right;">Favourites</button>
                                         <?php
 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
@@ -484,6 +513,17 @@
             });
 
             document.getElementById('set').addEventListener( 'click', e => {
+                e.preventDefault();
+                document.getElementById('home').classList.add('switch');
+                document.getElementById('forward').classList.add('switch');
+                document.getElementById('defense').classList.add('switch');
+                document.getElementById('goalkeepers').classList.add('switch');
+                document.getElementById('middle').classList.add('switch');
+                document.getElementById('player').classList.add('switch');
+                document.getElementById('wrapper').classList.toggle('menuDisplayed');
+            });
+
+            document.getElementById('fav').addEventListener( 'click', e => {
                 e.preventDefault();
                 document.getElementById('home').classList.add('switch');
                 document.getElementById('forward').classList.add('switch');

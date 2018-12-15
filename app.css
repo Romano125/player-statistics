@@ -1,4 +1,30 @@
 /*Rest css - pisite komentare*/
+/*Menu icon*/
+.menu-icon {
+	width: 25px;
+    height: 2px;
+    background-color: white;
+    margin: 6px 0;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 155px;
+  margin-right: 145px;
+}
+
+.images {
+	height: 225px;
+	background-image: url('https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png');
+}
+
+.sidebar-name {
+	color: white;
+}
+
 .switch {
 	display: none;
 }
