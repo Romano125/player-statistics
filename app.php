@@ -370,24 +370,7 @@
 
                 <!-- Klik na settings u sidebaru -->  
                 <div class="container-fluid switch" id="settings">
-                    <div class="row align-items-center">
-
-                        <div class="col-md-8">
-
-                            <div class="container">
-
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <?php
-
-                                        ?>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <p>aaa</p>
                 </div> 
 
                 <!-- Klik na favourites u sidebaru -->  
