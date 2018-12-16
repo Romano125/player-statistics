@@ -28,7 +28,7 @@
 			$_SESSION['user'] = $name;
 			$_SESSION['time'] = $time;
 			$_SESSION['gen'] = $gen;
-			header('Location: http://localhost:8080/projekt/app.php');
+			header('Location: http://localhost:8080/projekt/app.php?id=0');
 		}else {
 			header('Location: http://localhost:8080/projekt/logfal.html');
 		}
