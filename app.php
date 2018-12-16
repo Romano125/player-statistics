@@ -20,21 +20,7 @@
     </head>
     <body style="background-color: #e6ffff">
         <?php 
-            if( $_SESSION['gen'] == 'M' ) echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
-                    <table>
-                        <tr> <td width='25%'>
-                                <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
-                                <div class='menu-icon'></div>
-                                <div class='menu-icon'></div></a>
-                                <button type='button' class='btn btn-dark home-btn'>Home</button>
-                            </td>
-                            <td style='text-align: center; padding: 20px'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
-                            </td> 
-                        </tr>
-                    </table>
-                </div>"; 
-            else echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
+            echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
@@ -59,7 +45,7 @@
                         <div id="wrapper" class="images">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="#" id="set"><img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" alt="Avatar" class="avatar"></a>
+                                    <a href="#" id="post"><img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" alt="Avatar" class="avatar"></a>
                                 </div>
                                 <div class="col-md-8">
                                     <?php 
@@ -79,12 +65,12 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="" id="fwd">Forward</a></li>
-                    <li><a href="" id="mid">Middle</a></li>
-                    <li><a href="" id="def">Defense</a></li>
-                    <li><a href="" id="gk">Goalkeeper</a></li>
-                    <li><a href="" id="fav">Favourites</a></li>
-                    <li><a href="" id="set">Settings</a></li>
+                    <li><a href="#" id="fwd">Forward</a></li>
+                    <li><a href="#" id="mid">Middle</a></li>
+                    <li><a href="#" id="def">Defense</a></li>
+                    <li><a href="#" id="gk">Goalkeeper</a></li>
+                    <li><a href="#" id="fav">Favourites</a></li>
+                    <li><a href="#" id="pos">Settings</a></li>
                 </ul> 
             </div>
 
@@ -380,7 +366,34 @@
                         </div>
 
                     </div>
-                </div>           
+                </div>  
+
+                <!-- Klik na settings u sidebaru -->  
+                <div class="container-fluid switch" id="settings">
+                    <div class="row align-items-center">
+
+                        <div class="col-md-8">
+
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <?php
+
+                                        ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                </div> 
+
+                <!-- Klik na favourites u sidebaru -->  
+                <div class="container-fluid switch" id="favour">
+                    <p>aaa</p>
+                </div>       
 
                 <!-- On load izgled stranice -->
                 <div class="container-fluid" id="home">
@@ -441,7 +454,6 @@
             $id = $_GET['id'];
 
             if( isset($id) ) {
-                echo $id;
                 echo "<script>
                     document.getElementById('home').classList.add('switch');
                     document.getElementById('forward').classList.add('switch');
@@ -449,6 +461,8 @@
                     document.getElementById('goalkeepers').classList.add('switch');
                     document.getElementById('middle').classList.add('switch');
                     document.getElementById('player').classList.remove('switch');
+                    document.getElementById('settings').classList.add('switch');
+                    document.getElementById('favour').classList.add('switch');
                 </script>";
             }
         ?>
@@ -464,6 +478,8 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.add('switch');
+                document.getElementById('favour').classList.add('switch');
             });
 
             document.getElementById('menu-toggle').addEventListener( 'click', e => {
@@ -479,6 +495,8 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.add('switch');
+                document.getElementById('favour').classList.add('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
 
@@ -490,6 +508,8 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.remove('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.add('switch');
+                document.getElementById('favour').classList.add('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
 
@@ -501,6 +521,8 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.add('switch');
+                document.getElementById('favour').classList.add('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
 
@@ -512,10 +534,11 @@
                 document.getElementById('goalkeepers').classList.remove('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('favour').classList.add('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
 
-            document.getElementById('set').addEventListener( 'click', e => {
+            document.getElementById('pos').addEventListener( 'click', e => {
                 e.preventDefault();
                 document.getElementById('home').classList.add('switch');
                 document.getElementById('forward').classList.add('switch');
@@ -523,6 +546,21 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.remove('switch');
+                document.getElementById('favour').classList.add('switch');
+                document.getElementById('wrapper').classList.toggle('menuDisplayed');
+            });
+
+            document.getElementById('post').addEventListener( 'click', e => {
+                e.preventDefault();
+                document.getElementById('home').classList.add('switch');
+                document.getElementById('forward').classList.add('switch');
+                document.getElementById('defense').classList.add('switch');
+                document.getElementById('goalkeepers').classList.add('switch');
+                document.getElementById('middle').classList.add('switch');
+                document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.remove('switch');
+                document.getElementById('favour').classList.add('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
 
@@ -534,6 +572,8 @@
                 document.getElementById('goalkeepers').classList.add('switch');
                 document.getElementById('middle').classList.add('switch');
                 document.getElementById('player').classList.add('switch');
+                document.getElementById('settings').classList.add('switch');
+                document.getElementById('favour').classList.remove('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
         </script>

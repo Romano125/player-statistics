@@ -29,7 +29,7 @@
 	display: none;
 }
 
-/*Side bar css*/
+/*Side bar*/
 #sidebar-wrapper {
 	z-index: 1;
 	position: absolute;
@@ -72,7 +72,7 @@
 	color: #ddd;
 }
 
-a::hover {
+a:hover {
 	text-decoration: none;
 	background-color: #808080;
 }
