@@ -371,7 +371,56 @@
 
                 <!-- Klik na settings u sidebaru -->  
                 <div class="container-fluid switch" id="settings">
-                    <p>aaa</p>
+                     <div class="row align-items-center">
+
+                        <div class="col-md-8">
+
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <?php
+                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                $pic = $r['user_photo'];
+                                            }
+
+                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'>
+                                                    <img src='" . $pic . "' style='text-align: center;' height='75px' width='75px'>
+                                                    <input type='file' name='profile'>
+                                                    <button type='submit' class='btn btn-success'>Upload</button>
+                                                </form>";
+                                        ?>
+                                    </div>
+                                    <div class="col-md-8 user_info">
+                                        <?php
+                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                            $q = "SELECT name, last_name, gender, age, password, e_mail FROM users WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "Name: <input class='form-control' type='text' placeholder='" . $r['name'] . "' readonly>
+                                                    Last name: <input class='form-control' type='text' placeholder='" . $r['last_name'] . "' readonly>
+                                                    Gender: <input class='form-control' type='text' placeholder='" . $r['gender'] . "' readonly>
+                                                    Age: <input class='form-control' type='text' placeholder='" . $r['age'] . "' readonly>
+                                                    Password: <input class='form-control' type='text' placeholder='" . $r['password'] . "' readonly>
+                                                    E-mail: <input class='form-control' type='text' placeholder='" . $r['e_mail'] . "' readonly>
+                                                    <button type='button' class='btn btn-outline-dark'><a href='app.php?id='>Modify</a></button>";
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div> 
 
                 <!-- Klik na favourites u sidebaru -->  
