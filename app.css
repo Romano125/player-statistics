@@ -81,3 +81,9 @@ a:hover {
 	position: sticky;
 	top: 0;
 }
+
+#right-sidebar {
+	position: fixed;
+	right: 0;
+	top: 100px;
+}

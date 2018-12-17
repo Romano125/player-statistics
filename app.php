@@ -178,10 +178,10 @@
                           ?>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="right-sidebar">
                           <div class="container">
                                 <h3>Top 5 scores</h3>
-                                <div class="container">
+                                <div class="container ">
                                     <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
                                     Ime igraca<br>
                                     Golovi: 12<br>
@@ -234,7 +234,7 @@
                           ?>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="right-sidebar">
                           <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
@@ -290,7 +290,7 @@
                           ?>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="right-sidebar">
                           <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
@@ -346,7 +346,7 @@
                           ?>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="right-sidebar">
                           <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
