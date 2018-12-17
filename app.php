@@ -19,6 +19,9 @@
         <link rel="stylesheet" type="text/css" href="app.css">
     </head>
     <body style="background-color: #e6ffff">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <?php 
             echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center; top:0; position:sticky; position: -webkit-sticky; z-index:1'>
                     <table>
@@ -347,25 +350,56 @@
                         </div>
 
                         <div class="col-md-4" id="right-sidebar">
-                          <div class="container">
-                                <h3>Top 5 scores</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn1()" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Results:
+                                        </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            a
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr width="100%">
-                            <div class="container">
-                                <h3>Top 5 saves</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn2()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Filter By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aaa
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button onclick = "btn3()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sort By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aa
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>  
 
@@ -562,5 +596,6 @@
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
         </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
