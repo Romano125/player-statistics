@@ -20,7 +20,7 @@
     </head>
     <body style="background-color: #e6ffff">
         <?php 
-            echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center'>
+            echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center; top:0; position:sticky; position: -webkit-sticky; z-index:1'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
@@ -73,7 +73,7 @@
                     <li><a href="#" id="pos">Settings</a></li>
                 </ul> 
             </div>
-
+                                                
             <div id="page-content-wrapper" style="background-color: white;">
                 <!-- Prikaz detalja o igracu -->
                 <div class="container-fluid switch" id="player">
@@ -85,6 +85,7 @@
 
                                 <div class="row">
                                     <div class="col-md-3">
+                                        
                                         <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
                                     </div>
                                     <div class="col-md-8">
@@ -96,7 +97,7 @@
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
                                             $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
-
+                                            
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
@@ -255,7 +256,7 @@
 
                     </div>
                 </div>  
-
+        
                 <!-- Klik na defense u sidebaru -->
                 <div class="container-fluid switch" id="defense">
                     <div class="row align-items-center">
@@ -430,9 +431,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
+        
         <?php
             $id = $_GET['id'];
 
