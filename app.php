@@ -17,11 +17,10 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
-    </head>
-    <body style="background-color: #e6ffff">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body style="background-color: #e6ffff">
         <?php 
             echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center; top:0; position:sticky; position: -webkit-sticky; z-index:1'>
                     <table>
@@ -114,6 +113,7 @@
                                                 echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                 echo "Total red cards: " . $r['br_ckarton'] . "<br>";
                                                 echo "Market value: " . 5550055 . "$<br>";
+                                                break;
                                             }
 
                                             mysqli_free_result($res);
