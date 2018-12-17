@@ -557,10 +557,11 @@
                                                 echo "Name: <input class='form-control' type='text' placeholder='" . $r['name'] . "' readonly>
                                                     Last name: <input class='form-control' type='text' placeholder='" . $r['last_name'] . "' readonly>
                                                     Gender: <input class='form-control' type='text' placeholder='" . $r['gender'] . "' readonly>
-                                                    Age: <input class='form-control' type='text' placeholder='" . $r['age'] . "' readonly>
+                                                    Age: <input class='form-control' type='text' placeholder='" . $r['age'] . "' id='user' readonly>
                                                     Password: <input class='form-control' type='text' placeholder='" . $r['password'] . "' readonly>
                                                     E-mail: <input class='form-control' type='text' placeholder='" . $r['e_mail'] . "' readonly>
-                                                    <button type='button' class='btn btn-outline-dark'><a href='app.php?id='>Modify</a></button>";
+                                                    <button type='button' class='btn btn-outline-dark' id='mod-btn'><a href='app.php?id='>Modify</a></button>
+                                                    <button type='button' class='btn btn-outline-dark' id='sav-btn'><a href='app.php?id='>Save</a></button>";
                                             }
                                         ?>
                                     </div>
@@ -757,6 +758,16 @@
                 document.getElementById('settings').classList.add('switch');
                 document.getElementById('favour').classList.remove('switch');
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
+            });
+
+            document.getElementById('mod-btn').addEventListener( 'click', e => {
+                e.preventDefault();
+                document.getElementById('user').readOnly = false;
+            });
+
+            document.getElementById('sav-btn').addEventListener( 'click', e => {
+                e.preventDefault();
+                document.getElementById('user').readOnly = true;
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
