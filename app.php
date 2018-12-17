@@ -47,7 +47,19 @@
                         <div id="wrapper" class="images">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="#" id="post"><img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" alt="Avatar" class="avatar"></a>
+                                    <?php
+                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                        $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
+
+                                        $res = $db->query($q);
+
+                                        while( $r = $res->fetch_assoc() ) {
+                                            $pic = $r['user_photo'];
+                                        }
+
+                                        echo "<a href='#' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                    ?>
                                 </div>
                                 <div class="col-md-8">
                                     <?php 
@@ -182,21 +194,53 @@
                         </div>
 
                         <div class="col-md-4" id="right-sidebar">
-                          <div class="container">
-                                <h3>Top 5 scores</h3>
-                                <div class="container ">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn1()" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Results:
+                                        </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            a
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr width="100%">
-                            <div class="container">
-                                <h3>Top 5 saves</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn2()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Filter By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aaa
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button onclick = "btn3()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sort By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aa
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,21 +282,53 @@
                         </div>
 
                         <div class="col-md-4" id="right-sidebar">
-                          <div class="container">
-                                <h3>Top 5 scores</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn1()" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Results:
+                                        </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            a
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr width="100%">
-                            <div class="container">
-                                <h3>Top 5 saves</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn2()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Filter By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aaa
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button onclick = "btn3()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sort By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aa
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -294,21 +370,53 @@
                         </div>
 
                         <div class="col-md-4" id="right-sidebar">
-                          <div class="container">
-                                <h3>Top 5 scores</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn1()" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Results:
+                                        </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            a
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr width="100%">
-                            <div class="container">
-                                <h3>Top 5 saves</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button onclick= "btn2()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Filter By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aaa
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button onclick = "btn3()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sort By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aa
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -424,11 +532,17 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='GET'>
-                                                    <img src='" . $pic . "' style='text-align: center;' height='75px' width='75px'>
+                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'  enctype='multipart/form-data'>
+                                                    <img src=" . $pic . " style='text-align: center;' height='75px' width='75px'>
                                                     <input type='file' name='profile'>
                                                     <button type='submit' class='btn btn-success'>Upload</button>
                                                 </form>";
+
+                                            if( isset($_SESSION['to_big']) ) {
+                                                if( $_SESSION['to_big'] == 1 ) {
+                                                    echo "<p>Sorry your picture is to big</p>";
+                                                }
+                                            }
                                         ?>
                                     </div>
                                     <div class="col-md-8 user_info">
