@@ -424,7 +424,7 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'>
+                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='GET'>
                                                     <img src='" . $pic . "' style='text-align: center;' height='75px' width='75px'>
                                                     <input type='file' name='profile'>
                                                     <button type='submit' class='btn btn-success'>Upload</button>
