@@ -437,16 +437,18 @@
             $id = $_GET['id'];
 
             if( isset($id) ) {
-                echo "<script>
-                    document.getElementById('home').classList.add('switch');
-                    document.getElementById('forward').classList.add('switch');
-                    document.getElementById('defense').classList.add('switch');
-                    document.getElementById('goalkeepers').classList.add('switch');
-                    document.getElementById('middle').classList.add('switch');
-                    document.getElementById('player').classList.remove('switch');
-                    document.getElementById('settings').classList.add('switch');
-                    document.getElementById('favour').classList.add('switch');
-                </script>";
+                if( $id != '0' ) {
+                    echo "<script>
+                            document.getElementById('home').classList.add('switch');
+                            document.getElementById('forward').classList.add('switch');
+                            document.getElementById('defense').classList.add('switch');
+                            document.getElementById('goalkeepers').classList.add('switch');
+                            document.getElementById('middle').classList.add('switch');
+                            document.getElementById('player').classList.remove('switch');
+                            document.getElementById('settings').classList.add('switch');
+                            document.getElementById('favour').classList.add('switch');
+                        </script>";
+                }
             }
         ?>
 
