@@ -79,12 +79,12 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#" id="fwd">Forward</a></li>
-                    <li><a href="#" id="mid">Middle</a></li>
-                    <li><a href="#" id="def">Defense</a></li>
-                    <li><a href="#" id="gk">Goalkeeper</a></li>
-                    <li><a href="#" id="fav">Favourites</a></li>
-                    <li><a href="#" id="pos">Settings</a></li>
+                    <li><a href="app.php?fwd" id="fwd">Forward</a></li>
+                    <li><a href="app.php?mid" id="mid">Middle</a></li>
+                    <li><a href="app.php?def" id="def">Defense</a></li>
+                    <li><a href="app.php?gk" id="gk">Goalkeeper</a></li>
+                    <li><a href="app.php?fav" id="fav">Favourites</a></li>
+                    <li><a href="app.php?pos" id="pos">Settings</a></li>
                 </ul> 
             </div>
                                                 
@@ -554,14 +554,16 @@
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "Name: <input class='form-control' type='text' placeholder='" . $r['name'] . "' readonly>
-                                                    Last name: <input class='form-control' type='text' placeholder='" . $r['last_name'] . "' readonly>
-                                                    Gender: <input class='form-control' type='text' placeholder='" . $r['gender'] . "' readonly>
-                                                    Age: <input class='form-control' type='text' placeholder='" . $r['age'] . "' id='user' readonly>
-                                                    Password: <input class='form-control' type='text' placeholder='" . $r['password'] . "' readonly>
-                                                    E-mail: <input class='form-control' type='text' placeholder='" . $r['e_mail'] . "' readonly>
-                                                    <button type='button' class='btn btn-outline-dark' id='mod-btn'><a href='app.php?id='>Modify</a></button>
-                                                    <button type='button' class='btn btn-outline-dark' id='sav-btn'><a href='app.php?id='>Save</a></button>";
+                                                echo "<form action='update_user.php' method='POST'>
+                                                        Name: <input class='form-control user' type='text' value='" . $r['name'] . "' name='n' readonly>
+                                                        Last name: <input class='form-control user' type='text' value='" . $r['last_name'] . "' name='l' readonly>
+                                                        Gender: <input class='form-control user' type='text' value='" . $r['gender'] . "' name='g' readonly>
+                                                        Age: <input class='form-control user' type='text' value='" . $r['age'] . "' name='a' readonly>
+                                                        Password: <input class='form-control user' type='text' value='" . $r['password'] . "' name='p' readonly>
+                                                        E-mail: <input class='form-control user' type='text' value='" . $r['e_mail'] . "' name='e' readonly>
+                                                        <button type='button' class='btn btn-outline-dark' id='mod-btn'>Modify</button>
+                                                        <button type='submit' class='btn btn-outline-dark' id='sav-btn'>Save</button>
+                                                    </form>";
                                             }
                                         ?>
                                     </div>
@@ -632,20 +634,23 @@
         </div>
         
         <?php
-            $id = $_GET['id'];
 
-            if( isset($id) ) {
-                if( $id != '0' ) {
-                    echo "<script>
-                            document.getElementById('home').classList.add('switch');
-                            document.getElementById('forward').classList.add('switch');
-                            document.getElementById('defense').classList.add('switch');
-                            document.getElementById('goalkeepers').classList.add('switch');
-                            document.getElementById('middle').classList.add('switch');
-                            document.getElementById('player').classList.remove('switch');
-                            document.getElementById('settings').classList.add('switch');
-                            document.getElementById('favour').classList.add('switch');
-                        </script>";
+            if( isset($_GET['id']) ) {
+                $id = $_GET['id'];
+
+                if( isset($id) ) {
+                    if( $id != '0' ) {
+                        echo "<script>
+                                document.getElementById('home').classList.add('switch');
+                                document.getElementById('forward').classList.add('switch');
+                                document.getElementById('defense').classList.add('switch');
+                                document.getElementById('goalkeepers').classList.add('switch');
+                                document.getElementById('middle').classList.add('switch');
+                                document.getElementById('player').classList.remove('switch');
+                                document.getElementById('settings').classList.add('switch');
+                                document.getElementById('favour').classList.add('switch');
+                            </script>";
+                    }
                 }
             }
         ?>
@@ -762,12 +767,20 @@
 
             document.getElementById('mod-btn').addEventListener( 'click', e => {
                 e.preventDefault();
-                document.getElementById('user').readOnly = false;
+                var el = document.getElementsByClassName('user');
+
+                for( let i = 0; i < el.length; i++ ) {
+                    el[i].readOnly = false;
+                }
             });
 
             document.getElementById('sav-btn').addEventListener( 'click', e => {
-                e.preventDefault();
-                document.getElementById('user').readOnly = true;
+                //e.preventDefault();
+                var el = document.getElementsByClassName('user');
+
+                for( let i = 0; i < el.length; i++ ) {
+                    el[i].readOnly = true;
+                }
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
