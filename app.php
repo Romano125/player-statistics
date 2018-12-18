@@ -44,40 +44,40 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li>
-                        <div id="wrapper" class="images">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <?php
-                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+                        <?php
+                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                        $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
+                            //to-do background image upload
 
-                                        $res = $db->query($q);
+                            echo '<div id="wrapper" class="images" style="background-image: url(https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png);">
+                                <div class="row">
+                                    <div class="col-md-3">';
 
-                                        while( $r = $res->fetch_assoc() ) {
-                                            $pic = $r['user_photo'];
-                                        }
-
-                                        echo "<a href='#' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
-                                    ?>
-                                </div>
-                                <div class="col-md-8">
-                                    <?php 
-                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-
-                                            $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
+                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "<p><span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span></p>";
-                                                echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
+                                                $pic = $r['user_photo'];
                                             }
 
-                                    ?>
+                                            echo "<a href='#' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                    echo '</div>
+                                    <div class="col-md-8">';
+
+                                                $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
+
+                                                $res = $db->query($q);
+
+                                                while( $r = $res->fetch_assoc() ) {
+                                                    echo "<p><span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span></p>";
+                                                    echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
+                                                }
+
+                                   echo '</div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>';
+                        ?>
                     </li>
                     <li><a href="app.php?fwd" id="fwd">Forward</a></li>
                     <li><a href="app.php?mid" id="mid">Middle</a></li>
