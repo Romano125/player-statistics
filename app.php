@@ -18,7 +18,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         
     </head>
     <body style="background-color: #e6ffff">
@@ -192,14 +193,15 @@
                                         Goals: " . $r['br_gol'] . "<br>
                                         Asists: " . $r['br_asist'] . "<br>
                                         Club: " . $r['klub_ime'] . "<br>
-                                    </div>
-                                </div><br><hr>";
-                            }
-
-                            mysqli_free_result($res);
-                          ?>
+                                        </div>
+                                        </div><br><hr>";
+                                    }
+                                    
+                                    mysqli_free_result($res);
+                                    ?>
                         </div>
 
+                        <!-- Desni meni -->
                         <div class="col-md-4" id="right-sidebar">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
@@ -212,8 +214,30 @@
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            a
+                                        <div class="card-body"> <!-- Prikaz radio buttona -->
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -228,13 +252,12 @@
                                     </div>
                                     
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            aaa
+                                        <div class="card-body"> <!-- Filer -->
+                                            Name: <input type="text" class="form-control" id="usr" name="name">
+                                            Last Name: <input type="text" class="form-control" id="usr" name="lastname">
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Desni meni -->
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
@@ -302,8 +325,30 @@
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            a
+                                        <div class="card-body"> <!-- Prikaz radio buttona -->
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -391,8 +436,30 @@
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            a
+                                        <div class="card-body"> <!-- Prikaz radio buttona -->
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -480,8 +547,30 @@
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            a
+                                        <div class="card-body"> <!-- Prikaz radio buttona -->
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
