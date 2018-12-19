@@ -46,10 +46,16 @@
                     <li>
                         <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+                            
+                            $q = "SELECT back_photo FROM users WHERE ID=" . $_SESSION['id'];
 
-                            //to-do background image upload
+                            $res = $db->query($q);
 
-                            echo '<div id="wrapper" class="images" style="background-image: url(https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png);">
+                            while( $r = $res->fetch_assoc() ) {
+                                $pic = $r['back_photo'];
+                            }
+
+                            echo '<div id="wrapper" class="images" style="background-image: url(' . $pic . ');">
                                 <div class="row">
                                     <div class="col-md-3">';
 
