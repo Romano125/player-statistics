@@ -11,9 +11,8 @@ h3 {
 	color: white;
 	font-style: oblique;
 	padding: 5px;
-	margin: 0;
 	font-weight: 500;
-	align-items: center;
+	align-items: center;	
 }
 
 .slides {
@@ -166,7 +165,7 @@ h3 {
 	color: red;
 }
 
-/*fading animation*/
+fading animation
 .fade {
 	-webkit-animation-name: fade;
 	-webkit-animation-duration: 2s;
