@@ -20,6 +20,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src = ./app.js> </script>
         
     </head>
     <body style="background-color: #e6ffff">
@@ -258,6 +259,34 @@
                                         <div class="card-body"> <!-- Filer -->
                                             Name: <input type="text" class="form-control" id="usr" name="name">
                                             Last Name: <input type="text" class="form-control" id="usr" name="lastname">
+                                            <!-- Lige i klubovi-->
+                                            <?php
+                                                $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                                $q = "SELECT ime_natj FROM natjecanje";
+
+                                                $res = $db->query($q);
+
+                                                echo "Select league: <select onchange='findLeague()' name='league' class='form-control' id = 'liga' required>
+                                                                     <option value=''>Choose league</option>";
+                                                while( $r = $res->fetch_assoc() ) {
+                                                    echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                /*
+                                                $q2 = "SELECT klub_ime FROM klub NATURAL JOIN natjecanje_kluba NATURAL JOIN natjecanje WHERE ime_natj =" .$r['ime_natj'];
+
+                                                $res2 = $db->query($q2);
+
+                                                echo "Select league: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
+                                                                     <option value=''>Choose league</option>";
+                                                while( $r2 = $res2->fetch_assoc() ) {
+                                                    echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                */
+                                                mysqli_close($db);
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
