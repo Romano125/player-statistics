@@ -87,10 +87,10 @@
                             </div>';
                         ?>
                     </li>
-                    <li><a href="app.php?fwd" id="fwd">Forward</a></li>
-                    <li><a href="app.php?mid" id="mid">Middle</a></li>
-                    <li><a href="app.php?def" id="def">Defense</a></li>
-                    <li><a href="app.php?gk" id="gk">Goalkeeper</a></li>
+                    <li><a href="app.php?fwd" id="fwd">Forwards</a></li>
+                    <li><a href="app.php?mid" id="mid">Midfielders</a></li>
+                    <li><a href="app.php?def" id="def">Defenders</a></li>
+                    <li><a href="app.php?gk" id="gk">Goalkeepers</a></li>
                     <li><a href="app.php?fav" id="fav">Favourites</a></li>
                     <li><a href="app.php?pos" id="pos">Settings</a></li>
                 </ul> 
@@ -111,10 +111,13 @@
                                         <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
                                     </div>
                                     <div class="col-md-8">
-                                        <button type="button" class="btn btn-outline-warning" style="float: right;">Favourites</button>
                                         <?php
 
                                             $id = $_GET['id'];
+
+                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                  </form>";
 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
@@ -177,7 +180,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='FWD'";
+                            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='FWD'";
 
                             $res = $db->query($q);
 
@@ -288,7 +291,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
+                            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
 
                             $res = $db->query($q);
 
@@ -399,7 +402,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='DEF'";
+                            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='DEF'";
 
                             $res = $db->query($q);
 
@@ -510,7 +513,7 @@
                           <?php
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                            $q = "SELECT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='GK'";
+                            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='GK'";
 
                             $res = $db->query($q);
 
@@ -676,7 +679,113 @@
 
                 <!-- Klik na favourites u sidebaru -->  
                 <div class="container-fluid switch" id="favour">
-                    <p>aaa</p>
+                    <div class="row align-items-center">
+
+                        <div class="col-md-8">
+                          <h2 style="text-align: center;">Favorites</h2><br>
+                            <?php
+                                $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                $res = $db->query($q);
+
+                                while( $r = $res->fetch_assoc() ) {
+                                    echo "<div class='row'>
+                                        <div class='col-md-3'>
+                                            <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
+                                            <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                        </div>
+                                        <div class='col-md-3'>
+                                        Name: " . $r['ime'] . "<br>
+                                        Last name: " . $r['prezime'] . "<br>
+                                        Goals: " . $r['br_gol'] . "<br>
+                                        Asists: " . $r['br_asist'] . "<br>
+                                        Club: " . $r['klub_ime'] . "<br>
+                                        </div>
+                                        </div><br><hr>";
+                                }
+                                    
+                                mysqli_free_result($res);
+                            ?>
+                        </div>
+
+                        <!-- Desni meni -->
+                        <div class="col-md-4" id="right-sidebar">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Results:
+                                        </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body"> <!-- Prikaz radio buttona -->
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                            </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Filter By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body"> <!-- Filer -->
+                                            Name: <input type="text" class="form-control" id="usr" name="name">
+                                            Last Name: <input type="text" class="form-control" id="usr" name="lastname">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sort By:
+                                        </button>
+                                        </h5>
+                                    </div>
+                                    
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            aa
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>       
 
                 <!-- On load izgled stranice -->
@@ -881,6 +990,15 @@
 
                 for( let i = 0; i < el.length; i++ ) {
                     el[i].readOnly = true;
+                }
+            });
+
+            document.getElementById('fav-btn').addEventListener( 'click', e => {
+                //e.preventDefault();
+                if( document.getElementById('fav-btn').style.backgroundColor == 'yellow' ){
+                    document.getElementById('fav-btn').style.backgroundColor = 'white';
+                }else{
+                    document.getElementById('fav-btn').style.backgroundColor = 'yellow';
                 }
             });
         </script>
