@@ -187,7 +187,7 @@
 
                             while( $r = $res->fetch_assoc() ) {
                                 echo "<div class='row'>
-                                    <div class='col-md-3'>
+                                    <div class='col-md-3 tekst'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
                                         <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
@@ -301,7 +301,29 @@
                                     
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            aa
+                                        <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio1">
+                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio" value="goal" checked>Goals
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label" for="radio2">
+                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio" value="assist">Assists
+                                                </label>
+                                            </div>
+                                                
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio" value="saves">Saves
+                                            </label>
+                                            </div>
+
+                                            <div class="form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio" value="age">Age
+                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
