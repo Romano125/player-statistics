@@ -87,3 +87,8 @@ a:hover {
 	right: 0;
 	top: 100px;
 }
+
+.table td{
+	padding: 0.40rem;
+}
+

@@ -861,32 +861,55 @@
                             <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
-                                </div>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
-                                </div>
+                                    
+                                    <?php 
+                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                         $q = "SELECT ime, prezime, br_gol FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                         $res = $db->query($q);
+                                         echo "<table class = 'table' border = 1> 
+                                                <tr><th></th><th> Igrač</th> <th>Golovi</th>";
+                                         while($row = $res->fetch_assoc()){
+                                             echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                             echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_gol'] . "</td>";
+                                         }
+                                         echo "</table>";                                                                            
+                                    ?>
+                                </div>                               
                             </div>
-                            <hr width="100%">
+                            <hr width = "100%">
                             <div class="container">
                                 <h3>Top 5 saves</h3>
                                 <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
+                                <?php 
+                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                        $q = "SELECT ime, prezime, br_obrane FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                        $res = $db->query($q);
+                                        echo "<table class = 'table' border = 1> 
+                                               <tr><th></th><th> Igrač</th> <th>Obrane</th>";
+                                        while($row = $res->fetch_assoc()){
+                                            echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                            echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_obrane'] . "</td>";
+                                        }
+                                        echo "</table>";                                                                    
+                                ?>
                                 </div>
                             </div>
                             <hr width="100%">
                             <div class="container">
                                 <h3>Top 5 assists</h3>
                                 <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Asistencije: 55<br>
+                                    <?php 
+                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                            $q = "SELECT ime, prezime, br_asist FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                            $res = $db->query($q);
+                                            echo "<table class = 'table' border = 1> 
+                                                   <tr><th></th><th> Igrač</th> <th>Asistencije</th>";
+                                            while($row = $res->fetch_assoc()){
+                                                echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                                echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_asist'] . "</td>";
+                                            }
+                                            echo "</table>";                                                                     
+                                    ?>
                                 </div>
                             </div>
                       </div>
