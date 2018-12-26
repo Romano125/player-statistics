@@ -116,20 +116,29 @@
 
                                             $id = $_GET['id'];
 
-                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                  </form>";
-
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
                                             $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
 
-                                            while( $r = $res->fetch_assoc() ) {
-                                                if( $r['reg_br_igr'] == $id ) {
-                                                    echo "<script>document.getElementById('fav-btn').classList.add('paint');</script>";
-                                                      break;
+                                            if( $res->num_rows == 0 ) {
+                                                echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                    </form>";
+                                            }else{
+                                                while( $r = $res->fetch_assoc() ) {
+                                                    if( $r['reg_br_igr'] == $id ) {
+                                                        echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                        <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                        </form>";
+                                                          break;
+                                                    }else{
+                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                        <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                        </form>";
+                                                        break;
+                                                    }
                                                 }
                                             }
 
@@ -1082,8 +1091,10 @@
             });
 
             document.getElementById('fav-btn').addEventListener( 'click', e => {
-                e.preventDefault();
-                document.getElementById('fav-btn').classList.toggle('paint');
+                //e.preventDefault();
+                
+
+                //document.getElementById('fav-btn').classList.toggle('paint');
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

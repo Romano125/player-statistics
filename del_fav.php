@@ -5,11 +5,9 @@
 
 	$q = "SELECT * FROM users_igrac WHERE reg_br_igr=" . $_GET['id'];
 
-	if( $db->num_rows == 0 ) {
-		$q = "INSERT INTO users_igrac (ID, reg_br_igr) VALUES (" . $_SESSION['id'] . ", '" . $_GET['id'] . "')";
+	$q = "DELETE FROM users_igrac WHERE ID=" . $_SESSION['id'] . " AND reg_br_igr='" . $_GET['id'] . "'";
 
-		$db->query($q);
-	}
+	$db->query($q);
 
 	header('Location: app.php');
 ?>
