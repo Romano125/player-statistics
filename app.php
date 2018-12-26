@@ -122,6 +122,18 @@
 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
+                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                if( $r['reg_br_igr'] == $id ) {
+                                                    echo "<script>document.getElementById('fav-btn').classList.add('paint');</script>";
+                                                      break;
+                                                }
+                                            }
+
+
                                             $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
                                             
                                             $res = $db->query($q);
@@ -703,7 +715,7 @@
                                         <?php
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                            $q = "SELECT name, last_name, gender, age, password, e_mail FROM users WHERE ID=" . $_SESSION['id'];
+                                            $q = "SELECT name, last_name, gender, age, password, e_mail, back_photo FROM users WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
 
@@ -715,6 +727,7 @@
                                                         Age: <input class='form-control user' type='text' value='" . $r['age'] . "' name='a' readonly>
                                                         Password: <input class='form-control user' type='text' value='" . $r['password'] . "' name='p' readonly>
                                                         E-mail: <input class='form-control user' type='text' value='" . $r['e_mail'] . "' name='e' readonly>
+                                                        Backround photo(link): <input class='form-control user' type='text' value='" . $r['back_photo'] . "' name='b' readonly>
                                                         <button type='button' class='btn btn-outline-dark' id='mod-btn'>Modify</button>
                                                         <button type='submit' class='btn btn-outline-dark' id='sav-btn'>Save</button>
                                                     </form>";
@@ -1069,12 +1082,8 @@
             });
 
             document.getElementById('fav-btn').addEventListener( 'click', e => {
-                //e.preventDefault();
-                if( document.getElementById('fav-btn').style.backgroundColor == 'yellow' ){
-                    document.getElementById('fav-btn').style.backgroundColor = 'white';
-                }else{
-                    document.getElementById('fav-btn').style.backgroundColor = 'yellow';
-                }
+                e.preventDefault();
+                document.getElementById('fav-btn').classList.toggle('paint');
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
