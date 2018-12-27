@@ -25,7 +25,7 @@
     </head>
     <body style="background-color: #e6ffff">
         <?php 
-            echo "<div class='container-fluid' style='background-color: #33ccff; height:100px; align-items:center; top:0; position:sticky; position: -webkit-sticky; z-index:1'>
+            echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
@@ -879,7 +879,7 @@
                         </div>
 
                         <!-- Desni meni -->
-                        <div class="col-sm-4" style="border-style: groove;">
+                        <div class="col-sm-4 right-menu-onload" style="border-style: groove;">
                             <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
