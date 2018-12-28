@@ -9,5 +9,5 @@
 
 	$db->query($q);
 
-	header('Location: app.php');
+	header('Location: player.php?id=' . $_GET['id']);
 ?>

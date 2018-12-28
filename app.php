@@ -210,7 +210,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3 tekst'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -371,7 +371,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -482,7 +482,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -593,7 +593,7 @@
                                 echo "<div class='row'>
                                     <div class='col-md-3'>
                                         <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                        <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                        <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                     </div>
                                     <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
@@ -767,7 +767,7 @@
                                     echo "<div class='row'>
                                         <div class='col-md-3'>
                                             <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                            <button type='button' class='btn btn-outline-dark'><a href='app.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
+                                            <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
                                         </div>
                                         <div class='col-md-3'>
                                         Name: " . $r['ime'] . "<br>
