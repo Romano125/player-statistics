@@ -15,5 +15,5 @@
 
 	$db->query($q);
 
-	header('Location: app.php');
+	header('Location: settings.php');
 ?>

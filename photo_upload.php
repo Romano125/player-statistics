@@ -7,7 +7,7 @@
 
     if ( $_FILES['profile']['size'] > 500000 ) {
         $_SESSION['to_big'] = 1;
-        header('Location: app.php?id=0');
+        header('Location: settings.php');
     }
 
     $filename = $base.$_FILES['profile']['name'];
@@ -56,5 +56,5 @@
         $db->query($q);
     }*/
 
-    header('Location: app.php?id=0');
+    header('Location: settings.php');
 ?>

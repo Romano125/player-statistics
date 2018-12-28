@@ -98,9 +98,8 @@
             </div>
                                                 
             <div id="page-content-wrapper" style="background-color: white;">
-                
-                <div class="container-fluid switch" id="player">
-                    <div class="row align-items-center">
+
+                <div class="row align-items-center">
 
                         <div class="col-md-8">
 
@@ -108,115 +107,88 @@
 
                                 <div class="row">
                                     <div class="col-md-3">
-                                        
-                                        <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
-                                    </div>
-                                    <div class="col-md-8">
                                         <?php
-
-                                            if( isset($_GET['id']) ) $id = $_GET['id'];
-
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
 
-                                            $res = $db->query($q);
-
-                                            if( $res->num_rows == 0 ) {
-                                                echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                    </form>";
-                                            }else{
-                                                while( $r = $res->fetch_assoc() ) {
-                                                    if( $r['reg_br_igr'] == $id ) {
-                                                        echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                        <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
-                                                        </form>";
-                                                          break;
-                                                    }else{
-                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                        <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                        </form>";
-                                                        break;
-                                                    }
-                                                }
-                                            }
-
-
-                                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
-                                            
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "Name: " . $r['ime'] . "<br>";
-                                                echo "Last name: " . $r['prezime'] . "<br>";
-                                                echo "Club: " . $r['klub_ime'] . "<br>";
-                                                echo "Jersy number: " . $r['br_dres'] . "<br>";
-                                                echo "Field position: " . $r['ime_poz'] . "<br>";
-                                                echo "Total goals: " . $r['br_gol'] . "<br>";
-                                                echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                echo "Market value: " . 5550055 . "$<br>";
-                                                break;
+                                                $pic = $r['user_photo'];
                                             }
 
-                                            mysqli_free_result($res);
+                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'  enctype='multipart/form-data'>
+                                                    <img src=" . $pic . " style='text-align: center;' height='75px' width='75px'>
+                                                    <input type='file' name='profile'>
+                                                    <button type='submit' class='btn btn-success'>Upload</button>
+                                                </form>";
+
+                                            if( isset($_SESSION['to_big']) ) {
+                                                if( $_SESSION['to_big'] == 1 ) {
+                                                    echo "<p>Sorry your picture is to big</p>";
+                                                }
+                                            }
+                                        ?>
+                                    </div>
+                                    <div class="col-md-8 user_info">
+                                        <?php
+                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                            $q = "SELECT name, last_name, gender, age, password, e_mail, back_photo FROM users WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "<form action='update_user.php' method='POST'>
+                                                        Name: <input class='form-control user' type='text' value='" . $r['name'] . "' name='n' readonly>
+                                                        Last name: <input class='form-control user' type='text' value='" . $r['last_name'] . "' name='l' readonly>
+                                                        Gender: <input class='form-control user' type='text' value='" . $r['gender'] . "' name='g' readonly>
+                                                        Age: <input class='form-control user' type='text' value='" . $r['age'] . "' name='a' readonly>
+                                                        Password: <input class='form-control user' type='text' value='" . $r['password'] . "' name='p' readonly>
+                                                        E-mail: <input class='form-control user' type='text' value='" . $r['e_mail'] . "' name='e' readonly>
+                                                        Backround photo(link): <input class='form-control user' type='text' value='" . $r['back_photo'] . "' name='b' readonly>
+                                                        <button type='button' class='btn btn-outline-dark' id='mod-btn'>Modify</button>
+                                                        <button type='submit' class='btn btn-outline-dark' id='sav-btn'>Save</button>
+                                                    </form>";
+                                            }
                                         ?>
                                     </div>
                                 </div>
 
                             </div>
-
                         </div>
-
-                        <div class="col-md-4">
-                          <div class="container">
-                                <h3>Graf</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
-                                </div>
-                            </div>
-                            <hr width="100%">
-                            <div class="container">
-                                <h3>Nesto</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
+                
             </div>
         </div>
-        
-        <?php
-
-            if( isset($_GET['id']) ) {
-                $id = $_GET['id'];
-
-                if( isset($id) ) {
-                    if( $id != '0' ) {
-                        echo "<script>
-                                document.getElementById('player').classList.remove('switch');
-                            </script>";
-                    }
-                }
-            }
-        ?>
-
 
 
         <script type="text/javascript">
             document.getElementById('menu-toggle').addEventListener( 'click', e => {
                 e.preventDefault();
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
+            });
+            
+
+            document.getElementById('mod-btn').addEventListener( 'click', e => {
+                e.preventDefault();
+                var el = document.getElementsByClassName('user');
+
+                for( let i = 0; i < el.length; i++ ) {
+                    el[i].readOnly = false;
+                }
+            });
+
+            document.getElementById('sav-btn').addEventListener( 'click', e => {
+                //e.preventDefault();
+                var el = document.getElementsByClassName('user');
+
+                for( let i = 0; i < el.length; i++ ) {
+                    el[i].readOnly = true;
+                }
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
