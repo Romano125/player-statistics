@@ -31,7 +31,7 @@
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>
-                                <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
+                                <a href='app.php' style='text-decoration: none;color: white'><button type='button' class='btn btn-dark home-btn'>Home</button></a>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
                             <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
@@ -255,13 +255,13 @@
                                     
                                     <?php 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                         $q = "SELECT ime, prezime, br_gol FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                         $q = "SELECT reg_br_igr, ime, prezime, br_gol FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                          //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
                                          $res = $db->query($q);
                                          echo "<table class = 'table' border = 1> 
                                                 <tr><th></th><th> Igrač</th> <th>Golovi</th>";
                                          while($row = $res->fetch_assoc()){
-                                             echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a></td>";
                                              echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_gol'] . "</td>";
                                          }
                                          echo "</table>";                                                                            
@@ -274,12 +274,12 @@
                                 <div class="container">
                                 <?php 
                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                        $q = "SELECT ime, prezime, br_obrane FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                        $q = "SELECT reg_br_igr, ime, prezime, br_obrane FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                         $res = $db->query($q);
                                         echo "<table class = 'table' border = 1> 
                                                <tr><th></th><th> Igrač</th> <th>Obrane</th>";
                                         while($row = $res->fetch_assoc()){
-                                            echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                            echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a> </td>";
                                             echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_obrane'] . "</td>";
                                         }
                                         echo "</table>";                                                                    
@@ -292,12 +292,12 @@
                                 <div class="container">
                                     <?php 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                            $q = "SELECT ime, prezime, br_asist FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                            $q = "SELECT reg_br_igr, ime, prezime, br_asist FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                             $res = $db->query($q);
                                             echo "<table class = 'table' border = 1> 
                                                    <tr><th></th><th> Igrač</th> <th>Asistencije</th>";
                                             while($row = $res->fetch_assoc()){
-                                                echo "<tr><td><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'> </td>";
+                                                echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a> </td>";
                                                 echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_asist'] . "</td>";
                                             }
                                             echo "</table>";                                                                     
