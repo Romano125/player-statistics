@@ -127,18 +127,18 @@
                                                     <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
                                                     </form>";
                                             }else{
+                                                $f = 0;
                                                 while( $r = $res->fetch_assoc() ) {
-                                                    if( $r['reg_br_igr'] == $id ) {
-                                                        echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                        <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
-                                                        </form>";
-                                                          break;
-                                                    }else{
-                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                        <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                        </form>";
-                                                        break;
-                                                    }
+                                                    if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                }
+                                                if( $f == 1 ) {
+                                                    echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                    <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                    </form>";
+                                                }else{
+                                                    echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                    </form>";
                                                 }
                                             }
 
