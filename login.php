@@ -16,8 +16,8 @@
 			if( !strcmp($pass, $r['password']) && !strcmp($mail, $r['e_mail']) ) {
 				$f = 1;
 				$name = $r['name'];
-				$gen = $r['gender'];
 				$id = $r['ID'];
+				$priv = $r['privilage'];
 			}
 		}
 
@@ -27,7 +27,7 @@
 			$_SESSION['id'] = $id;
 			$_SESSION['user'] = $name;
 			$_SESSION['time'] = $time;
-			$_SESSION['gen'] = $gen;
+			$_SESSION['priv'] = $priv;
 			header('Location: http://localhost:8080/projekt/app.php');
 		}else {
 			header('Location: http://localhost:8080/projekt/logfal.html');

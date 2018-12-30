@@ -25,6 +25,10 @@
     </head>
     <body style="background-color: #e6ffff">
         <?php 
+            $s = '';
+            if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+            }
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
@@ -34,7 +38,7 @@
                                 <a href='app.php' style='text-decoration: none;color: white'><button type='button' class='btn btn-dark home-btn'>Home</button></a>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "   <button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
                             </td> 
                         </tr>
                     </table>
@@ -106,9 +110,28 @@
                         <div class="col-sm-8">
                             <div class="container" align="center">
                                 <h3>Goal of the week</h3>
-                                <iframe  width = 70% height="400" src="https://www.youtube.com/embed/SjTnbN3_r38" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                    <!-- za autoplay na videu dodat tocno poslje linka   "?autoplay=1" -->
-                                </div>
+                                <?php
+                                    $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                    $q = "SELECT link FROM goal_of_the_week";
+
+                                    $res = $db->query($q);
+
+                                    while( $r = $res->fetch_assoc() ) $link = $r['link'];
+
+                                    echo "<iframe  id='frame' width = 70% height='400' src=" . $link . " frameborder='1' allow='autoplay; encrypted-media' allowfullscreen></iframe>";
+                                    //za autoplay na videu dodat tocno poslje linka   "?autoplay=1"
+                                ?>
+                            </div>
+                            <?php
+                                if( isset($_SESSION['priv']) ) {
+                                    if( $_SESSION['priv'] == 1 ) {
+                                        echo "<div id='goal'>
+                                                <button type='button' class='btn btn-dark' id='goalBtn' style='margin-left: 350px'>Change link</button>
+                                                </div>";
+                                    }
+                                }
+                            ?>
                             <hr width="100%">
                             <div class="container" align="center">
                                 <h3>Team of the week</h3>
@@ -314,6 +337,15 @@
             document.getElementById('menu-toggle').addEventListener( 'click', e => {
                 e.preventDefault();
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
+            });
+
+            document.getElementById('goalBtn').addEventListener('click', e => {
+                e.preventDefault();
+                document.getElementById('goal').innerHTML = `
+                    <form action='goal.php' method='POST'>
+                        <input type='text' name='link' size=50 placeholder='Enter new link for goal of the week' style='margin-left: 250px'>
+                        <button type='submit' class='btn btn-dark'>Change</button>
+                    </form>`;
             });
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
