@@ -21,6 +21,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src = ./app.js> </script>
+        <script> function load_data(){}</script>
         
     </head>
     <body style="background-color: #e6ffff">
@@ -103,7 +104,31 @@
 
                     <div class="col-md-8">
                       <h2 style="text-align: center;">Middle players</h2><br>
-                      <?php
+                      <div  id = "pagination_data"> <!--class = "table-responsive"-->
+
+                      </div>
+
+                      <script>
+                            $(document).ready(function(){
+                                load_data(1);
+                                function load_data(page){
+                                    $.ajax({
+                                        url:"pagination.php",
+                                        method: "POST",
+                                        data:{page:page},
+                                        success:function(data){
+                                            $('#pagination_data').html(data);
+                                        }
+                                    })
+                                }
+                                $(document).on('click', '.pagination_link',function(){
+                                    var page = $(this).attr("id");
+                                    load_data(page);
+                                })
+                            });
+                      </script>
+
+                      <?php     /*
                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
                         $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
@@ -126,8 +151,8 @@
                             </div><br><hr>";
                         }
 
-                        mysqli_free_result($res);
-                      ?>
+                        mysqli_free_result($res);  */
+                      ?>    
                     </div>
 
                     <!-- Desni meni -->
@@ -166,6 +191,33 @@
                                                 <label class="form-check-label">
                                                     <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
                                             </label>
+                                            <script>
+                                                $(document).ready(function(){
+                                                    $('input[type = "radio"]').click(function(){
+                                                        var no_in = $(this).val();
+                                                        $.ajax({
+                                                            url:"insert_pagination.php",
+                                                            method:"POST",
+                                                            data:{optradio:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                             </div>
                                         </div>
                                     </div>
