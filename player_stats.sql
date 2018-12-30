@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2018 at 11:57 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Dec 30, 2018 at 10:58 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -337,6 +337,24 @@ INSERT INTO `pozicija` (`pozicija_id`, `ime_poz`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `service_table`
+--
+
+CREATE TABLE `service_table` (
+  `idService` int(11) NOT NULL,
+  `pagination` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `service_table`
+--
+
+INSERT INTO `service_table` (`idService`, `pagination`) VALUES
+(1, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `statistika_igraca`
 --
 
@@ -540,6 +558,12 @@ ALTER TABLE `igrac`
   ADD PRIMARY KEY (`reg_br_igr`),
   ADD KEY `fk_Igrac_Pozicija1_idx` (`pozicija_id`),
   ADD KEY `fk_Igrac_Klub1_idx` (`klub_id`);
+
+--
+-- Indexes for table `service_table`
+--
+ALTER TABLE `service_table`
+  ADD PRIMARY KEY (`idService`);
 
 --
 -- Indexes for table `statistika_utakmice`
