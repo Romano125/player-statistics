@@ -20,10 +20,13 @@
 
     $start_from = ($page - 1) * $record_per_page;
 
-    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'
+    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?
           LIMIT $start_from, $record_per_page";
 
-    $res = $db->query($q);
+    $sql_query = $db->prepare($q);
+    $sql_query->bind_param('s', $_POST['pos']);
+    $sql_query->execute();
+    $res = $sql_query->get_result();
 
         while($row = $res->fetch_assoc()) {
             $output .= "
@@ -42,8 +45,11 @@
                             </div><br><hr>";
         }
         $output .= "<br/><div align 'center'>";
-        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
-        $page_result = mysqli_query($db, $q);
+        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?";
+        $sql_query = $db->prepare($q);
+        $sql_query->bind_param('s', $_POST['pos']);
+        $sql_query->execute();
+        $page_result = $sql_query->get_result();
         $total_records = mysqli_num_rows($page_result);
         $total_pages = ceil ($total_records/$record_per_page);
         for($i = 1; $i <= $total_pages; $i++) {

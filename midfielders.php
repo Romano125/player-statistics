@@ -109,13 +109,15 @@
                       </div>
 
                       <script>
+                            var pos = 'MID';
                             $(document).ready(function(){
                                 load_data(1);
                                 function load_data(page){
                                     $.ajax({
                                         url:"pagination.php",
                                         method: "POST",
-                                        data:{page:page},
+                                        data:{page:page,
+                                              pos:pos},
                                         success:function(data){
                                             $('#pagination_data').html(data);
                                         }
@@ -127,32 +129,6 @@
                                 })
                             });
                       </script>
-
-                      <?php     /*
-                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-
-                        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='MID'";
-
-                        $res = $db->query($q);
-
-                        while( $r = $res->fetch_assoc() ) {
-                            echo "<div class='row'>
-                                <div class='col-md-3'>
-                                    <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                    <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
-                                </div>
-                                <div class='col-md-3'>
-                                    Name: " . $r['ime'] . "<br>
-                                    Last name: " . $r['prezime'] . "<br>
-                                    Goals: " . $r['br_gol'] . "<br>
-                                    Asists: " . $r['br_asist'] . "<br>
-                                    Club: " . $r['klub_ime'] . "<br>
-                                </div>
-                            </div><br><hr>";
-                        }
-
-                        mysqli_free_result($res);  */
-                      ?>    
                     </div>
 
                     <!-- Desni meni -->
@@ -189,9 +165,10 @@
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="100000">All
                                             </label>
                                             <script>
+                                                var pos = 'MID';
                                                 $(document).ready(function(){
                                                     $('input[type = "radio"]').click(function(){
                                                         var no_in = $(this).val();
@@ -209,7 +186,8 @@
                                                             $.ajax({
                                                                 url:"pagination.php",
                                                                 method: "POST",
-                                                                data:{page:page},
+                                                                data:{page:page,
+                                                                      pos:pos},
                                                                 success:function(data){
                                                                     $('#pagination_data').html(data);
                                                                  }
