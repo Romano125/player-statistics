@@ -122,7 +122,7 @@
                                             echo "<div class='card'>
                                                   <form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'  enctype='multipart/form-data'>
                                                     <img src=" . $pic . " style='text-align: center; width:100%'>
-                                                    <input type='file' name='profile'>
+                                                    <input type='file' name='profile' style='width:100px;'>
                                                     <button type='submit' class='btn btn-success'>Upload</button>
                                                     </form>
                                                   <h3>" . $_SESSION['user'] . " " . $_SESSION['last'] . "</h3>
