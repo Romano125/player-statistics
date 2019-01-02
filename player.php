@@ -147,17 +147,50 @@
                                             
                                             $res = $db->query($q);
 
+                                            $f = 0;
+                                            if( isset($_SESSION['priv']) ) {
+                                                if( $_SESSION['priv'] == 1 ) $f = 1;
+                                            }
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "Name: " . $r['ime'] . "<br>";
-                                                echo "Last name: " . $r['prezime'] . "<br>";
-                                                echo "Club: " . $r['klub_ime'] . "<br>";
-                                                echo "Jersy number: " . $r['br_dres'] . "<br>";
-                                                echo "Field position: " . $r['ime_poz'] . "<br>";
-                                                echo "Total goals: " . $r['br_gol'] . "<br>";
-                                                echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                echo "Market value: " . 5550055 . "$<br>";
+                                                if( $f == 1 ) {
+                                                    echo "Name: " . $r['ime'] . "<br>";
+                                                    echo "Last name: " . $r['prezime'] . "<br>";
+                                                    echo "Club: " . $r['klub_ime'] . "<br>";
+                                                    echo "Jersy number: " . $r['br_dres'] . "<br>";
+                                                    echo "Field position: " . $r['ime_poz'] . "<br>";
+                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
+                                                            Total goals: " . $r['br_gol'] . "
+                                                            <button name='goal+'>+</button>
+                                                            <button name='goal-'>-</button>
+                                                            </form>";
+                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
+                                                            Total assists: " . $r['br_asist'] . "
+                                                            <button name='ass+'>+</button>
+                                                            <button name='ass-'>-</button>
+                                                            </form>";
+                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
+                                                            Total yellow cards: " . $r['br_zkarton'] . "
+                                                            <button name='yell+'>+</button>
+                                                            <button name='yell-'>-</button>
+                                                            </form>";
+                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
+                                                            Total red cards: " . $r['br_ckarton'] . "
+                                                            <button name='red+'>+</button>
+                                                            <button name='red-'>-</button>
+                                                            </form>";
+                                                    echo "Market value: " . 5550055 . "$<br>";
+                                                }else{
+                                                    echo "Name: " . $r['ime'] . "<br>";
+                                                    echo "Last name: " . $r['prezime'] . "<br>";
+                                                    echo "Club: " . $r['klub_ime'] . "<br>";
+                                                    echo "Jersy number: " . $r['br_dres'] . "<br>";
+                                                    echo "Field position: " . $r['ime_poz'] . "<br>";
+                                                    echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                    echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                    echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
+                                                    echo "Total red cards: " . $r['br_ckarton'] . "<br>";
+                                                    echo "Market value: " . 5550055 . "$<br>";
+                                                }
                                                 break;
                                             }
 
