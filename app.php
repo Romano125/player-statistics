@@ -273,6 +273,26 @@
                         <!-- Desni meni -->
                         <div class="col-sm-4 right-menu-onload" style="border-style: groove;">
                             <div class="container">
+                                <h3>Current top 5 votes</h3>
+                                <div class="container">
+                                    
+                                    <?php 
+                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                         $q = "SELECT reg_br_igr, ime, prezime, votes FROM igrac ORDER BY votes desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                         //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
+                                         $res = $db->query($q);
+                                         echo "<table class = 'table' border = 1> 
+                                                <tr><th></th><th> Igrač</th> <th>Votes</th>";
+                                         while($row = $res->fetch_assoc()){
+                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a></td>";
+                                             echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['votes'] . "</td>";
+                                         }
+                                         echo "</table>";                                                                            
+                                    ?>
+                                </div>                               
+                            </div>
+                            <hr width = "100%">
+                            <div class="container">
                                 <h3>Top 5 scores</h3>
                                 <div class="container">
                                     
