@@ -17,6 +17,7 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" type="text/css" href="settings.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -118,11 +119,16 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'  enctype='multipart/form-data'>
-                                                    <img src=" . $pic . " style='text-align: center;' height='75px' width='75px'>
+                                            echo "<div class='card'>
+                                                  <form action='photo_upload.php?id=" . $_SESSION['id'] . "' method='POST'  enctype='multipart/form-data'>
+                                                    <img src=" . $pic . " style='text-align: center; width:100%'>
                                                     <input type='file' name='profile'>
                                                     <button type='submit' class='btn btn-success'>Upload</button>
-                                                </form>";
+                                                    </form>
+                                                  <h3>" . $_SESSION['user'] . " " . $_SESSION['last'] . "</h3>
+                                                  <p class='title'>" . $_SESSION['mail'] . "</p>
+                                                  <p><button>Contact</button></p>
+                                                </div>";
 
                                             if( isset($_SESSION['to_big']) ) {
                                                 if( $_SESSION['to_big'] == 1 ) {

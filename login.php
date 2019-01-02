@@ -18,6 +18,8 @@
 				$name = $r['name'];
 				$id = $r['ID'];
 				$priv = $r['privilage'];
+				$last = $r['last_name'];
+				$mail = $r['e_mail'];
 			}
 		}
 
@@ -26,8 +28,10 @@
 			session_start();
 			$_SESSION['id'] = $id;
 			$_SESSION['user'] = $name;
+			$_SESSION['last'] = $last;
 			$_SESSION['time'] = $time;
 			$_SESSION['priv'] = $priv;
+			$_SESSION['mail'] = $mail;
 			header('Location: http://localhost:8080/projekt/app.php');
 		}else {
 			header('Location: http://localhost:8080/projekt/logfal.html');

@@ -59,6 +59,14 @@
 
         }
         echo $output;
-                        
-
+          /*mozda za prikz igraca
+          <div class='card' style='width: 18rem;'>
+                                      <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' class='card-img-top' alt='...'>
+                                      <div class='card-body'>
+                                        <h5 class='card-title'>Card title</h5>
+                                        <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' class='btn btn-primary'>Go somewhere</a>
+                                      </div>
+                                    </div>*/          
 ?>
+
