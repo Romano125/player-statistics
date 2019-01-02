@@ -22,11 +22,11 @@
 
     $start_from = ($page - 1) * $record_per_page;
 
-    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?
+    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=?
           LIMIT $start_from, $record_per_page";
 
     $sql_query = $db->prepare($q);
-    $sql_query->bind_param('s', $_POST['pos']);
+    $sql_query->bind_param('i', $_POST['id_usr']);
     $sql_query->execute();
     $res = $sql_query->get_result();
 

@@ -51,7 +51,7 @@
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
                             
                             $q = "SELECT back_photo FROM users WHERE ID=" . $_SESSION['id'];
-
+                            $usr = $_SESSION['id'];
                             $res = $db->query($q);
 
                             while( $r = $res->fetch_assoc() ) {
@@ -103,7 +103,36 @@
 
                     <div class="col-md-8">
                       <h2 style="text-align: center;">Favorites</h2><br>
+                       
+                      <div  id = "pagination_data"> <!--class = "table-responsive"-->
+
+                      </div>
+
+                        <script>
+                            var id_usr = "<?php echo $usr; ?>";
+                            id_usr = parseInt(id_usr);
+                            $(document).ready(function(){
+                                load_data(1);
+                                function load_data(page){
+                                    $.ajax({
+                                        url:"pagination_fav.php",
+                                        method: "POST",
+                                        data:{page:page,
+                                                id_usr: id_usr},
+                                        success:function(data){
+                                            $('#pagination_data').html(data);
+                                        }
+                                    })
+                                }
+                                $(document).on('click', '.pagination_link',function(){
+                                    var page = $(this).attr("id");
+                                    load_data(page);
+                                })
+                            });
+                        </script>
+                       
                         <?php
+                            /*
                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
                             $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
@@ -127,6 +156,7 @@
                             }
                                 
                             mysqli_free_result($res);
+                            */
                         ?>
                     </div>
 
@@ -164,8 +194,39 @@
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="10000">All
                                             </label>
+
+                                            <script>
+                                                var id_usr = "<?php echo $usr; ?>";
+                                                $(document).ready(function(){
+                                                    $('input[type = "radio"]').click(function(){
+                                                        var no_in = $(this).val();
+                                                        $.ajax({
+                                                            url:"insert_pagination.php",
+                                                            method:"POST",
+                                                            data:{optradio:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination_fav.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      id_usr:id_usr},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+
                                             </div>
                                         </div>
                                     </div>

@@ -103,31 +103,33 @@
 
                     <div class="col-md-8">
                       <h2 style="text-align: center;">Forward players</h2><br>
-                      <?php
-                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+                      
+                      <div  id = "pagination_data"> <!--class = "table-responsive"-->
 
-                            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id='FWD'";
+                      </div>
 
-                            $res = $db->query($q);
+                      <script>
+                            var pos = 'FWD';
+                            $(document).ready(function(){
+                                load_data(1);
+                                function load_data(page){
+                                    $.ajax({
+                                        url:"pagination.php",
+                                        method: "POST",
+                                        data:{page:page,
+                                              pos:pos},
+                                        success:function(data){
+                                            $('#pagination_data').html(data);
+                                        }
+                                    })
+                                }
+                                $(document).on('click', '.pagination_link',function(){
+                                    var page = $(this).attr("id");
+                                    load_data(page);
+                                })
+                            });
+                      </script>
 
-                            while( $r = $res->fetch_assoc() ) {
-                                echo "<div class='row'>
-                                <div class='col-md-3 tekst'>
-                                    <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
-                                    <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $r['reg_br_igr'] . "'>More info</a></button>
-                                </div>
-                                <div class='col-md-3'>
-                                    Name: " . $r['ime'] . "<br>
-                                    Last name: " . $r['prezime'] . "<br>
-                                    Goals: " . $r['br_gol'] . "<br>
-                                    Asists: " . $r['br_asist'] . "<br>
-                                    Club: " . $r['klub_ime'] . "<br>
-                                    </div>
-                                </div><br><hr>";
-                            }
-                            
-                            mysqli_free_result($res);
-                        ?>
                     </div>
 
                     <!-- Desni meni -->
@@ -164,8 +166,39 @@
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="all">All
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="10000">All
                                             </label>
+                                            
+                                            <script>
+                                                var pos = 'FWD';
+                                                $(document).ready(function(){
+                                                    $('input[type = "radio"]').click(function(){
+                                                        var no_in = $(this).val();
+                                                        $.ajax({
+                                                            url:"insert_pagination.php",
+                                                            method:"POST",
+                                                            data:{optradio:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                            </script>
+                                            
                                             </div>
                                         </div>
                                     </div>
