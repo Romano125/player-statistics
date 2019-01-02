@@ -195,10 +195,12 @@
                                             }
 
                                             if( isset($_GET['voted']) ) {
-                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>
-                                                        <span style='color:red'>Vas glas je vec zaprimljen</span>";
+                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
+                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Show voters</a>
+                                                    <span style='color:red'>Vas glas je vec zaprimljen</span>";
                                             }else{
-                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>";
+                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
+                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Show voters</a>";
                                             }
 
                                             mysqli_free_result($res);
