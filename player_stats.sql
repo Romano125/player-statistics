@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2019 at 04:37 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Jan 03, 2019 at 11:05 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -360,15 +360,15 @@ INSERT INTO `pozicija` (`pozicija_id`, `ime_poz`) VALUES
 
 CREATE TABLE `service_table` (
   `idService` int(11) NOT NULL,
-  `pagination` int(11) NOT NULL
+  `val` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service_table`
 --
 
-INSERT INTO `service_table` (`idService`, `pagination`) VALUES
-(1, 10);
+INSERT INTO `service_table` (`idService`, `val`) VALUES
+(1, 100000);
 
 -- --------------------------------------------------------
 

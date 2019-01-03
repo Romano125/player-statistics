@@ -5,7 +5,7 @@
     }
 
     if (isset($_POST["optradio"])){
-        $query = "UPDATE service_table SET pagination = ?";
+        $query = "UPDATE service_table SET val = ? WHERE idService = 1";
         $sql_query = $conn->prepare($query);
         $sql_query->bind_param("i", $_POST["optradio"]);
         $sql_query->execute();
