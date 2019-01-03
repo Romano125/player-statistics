@@ -3,13 +3,13 @@
 
     $record_per_page = 10;
     
-    $q = "SELECT pagination from service_table where idService = 1";
+    $q = "SELECT val from service_table where idService = 1";
     $sql_query = $db->prepare($q);
     $sql_query->execute();
     $result = $sql_query->get_result();
     $res = $result->fetch_array();
 
-    $record_per_page = $res['pagination'];
+    $record_per_page = $res['val'];
 
     $page = '';
     $output = '';

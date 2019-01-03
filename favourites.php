@@ -200,7 +200,7 @@
                                             <script>
                                                 var id_usr = "<?php echo $usr; ?>";
                                                 $(document).ready(function(){
-                                                    $('input[type = "radio"]').click(function(){
+                                                    $('input[name = "optradio"]').click(function(){
                                                         var no_in = $(this).val();
                                                         $.ajax({
                                                             url:"insert_pagination.php",
@@ -244,7 +244,6 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body"> <!-- Filer -->
                                             Name: <input type="text" class="form-control" id="usr" name="name">
-                                            Last Name: <input type="text" class="form-control" id="usr" name="lastname">
                                             <!-- Lige i klubovi-->
                                             <?php
                                                 $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
@@ -259,18 +258,17 @@
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                /*
-                                                $q2 = "SELECT klub_ime FROM klub NATURAL JOIN natjecanje_kluba NATURAL JOIN natjecanje WHERE ime_natj =" .$r['ime_natj'];
+                                                
+                                                $q2 = "SELECT klub_ime FROM klub";
 
                                                 $res2 = $db->query($q2);
 
-                                                echo "Select league: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
+                                                echo "Select club: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
                                                                      <option value=''>Choose league</option>";
                                                 while( $r2 = $res2->fetch_assoc() ) {
                                                     echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                */
                                                 mysqli_close($db);
                                             ?>
                                         </div>
@@ -289,26 +287,55 @@
                                         <div class="card-body">
                                         <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio1">
-                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio" value="goal" checked>Goals
+                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio2" value="1" checked>Goals
                                                 </label>
                                             </div>
                                             
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio2">
-                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio" value="assist">Assists
+                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio2" value="2">Assists
                                                 </label>
                                             </div>
                                                 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio" value="saves">Saves
+                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio2" value="3">Saves
                                             </label>
                                             </div>
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio" value="age">Age
+                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Age
                                             </label>
+                                            <script>
+                                                var pos = 'MID';
+                                                $(document).ready(function(){
+                                                    $('input[name = "optradio2"]').click(function(){
+                                                        var no_in = $(this).val();
+                                                        $.ajax({
+                                                            url:"insert_sortby.php",
+                                                            method:"POST",
+                                                            data:{optradio:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })/*
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }*/
+                                                    });
+                                                });
+                                            </script>
                                             </div>
                                         </div>
                                     </div>

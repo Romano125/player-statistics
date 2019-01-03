@@ -227,7 +227,6 @@
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                echo "</select>";
                                                 
                                                 $q2 = "SELECT klub_ime FROM klub";
 

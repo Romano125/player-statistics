@@ -172,7 +172,7 @@
                                             <script>
                                                 var pos = 'FWD';
                                                 $(document).ready(function(){
-                                                    $('input[type = "radio"]').click(function(){
+                                                    $('input[name = "optradio"]').click(function(){
                                                         var no_in = $(this).val();
                                                         $.ajax({
                                                             url:"insert_pagination.php",
@@ -260,26 +260,55 @@
                                         <div class="card-body">
                                         <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio1">
-                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio" value="goal" checked>Goals
+                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio2" value="1" checked>Goals
                                                 </label>
                                             </div>
                                             
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio2">
-                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio" value="assist">Assists
-                                                </label>
+                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio2" value="2">Assists
+                                                </label>    
                                             </div>
                                                 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio" value="saves">Saves
+                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio2" value="3">Saves
                                             </label>
                                             </div>
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio" value="age">Age
+                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Age
                                             </label>
+                                            <script>
+                                                var pos = 'FWD';
+                                                $(document).ready(function(){
+                                                    $('input[name = "optradio2"]').click(function(){
+                                                        var no_in = $(this).val();
+                                                        $.ajax({
+                                                            url:"insert_sortby.php",
+                                                            method:"POST",
+                                                            data:{optradio:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })/*
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }*/
+                                                    });
+                                                });
+                                            </script>
                                             </div>
                                         </div>
                                     </div>
