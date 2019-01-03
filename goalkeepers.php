@@ -216,7 +216,6 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body"> <!-- Filer -->
                                             Name: <input type="text" class="form-control" id="usr" name="name">
-                                            Last Name: <input type="text" class="form-control" id="usr" name="lastname">
                                             <!-- Lige i klubovi-->
                                             <?php
                                                 $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
@@ -231,18 +230,18 @@
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                /*
-                                                $q2 = "SELECT klub_ime FROM klub NATURAL JOIN natjecanje_kluba NATURAL JOIN natjecanje WHERE ime_natj =" .$r['ime_natj'];
+                                                echo "</select>";
+                                                
+                                                $q2 = "SELECT klub_ime FROM klub";
 
                                                 $res2 = $db->query($q2);
 
-                                                echo "Select league: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
+                                                echo "Select club: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
                                                                      <option value=''>Choose league</option>";
                                                 while( $r2 = $res2->fetch_assoc() ) {
                                                     echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                */
                                                 mysqli_close($db);
                                             ?>
                                         </div>
