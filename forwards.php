@@ -216,6 +216,38 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body"> <!-- Filer -->
                                             Name: <input type="text" class="form-control" id="usr" name="name">
+                                            <script>
+                                                var pos = 'FWD';
+                                                $(document).ready(function(){
+                                                    $('input[name = "name"]').keyup(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:"insert_pagination.php",
+                                                            method:"POST",
+                                                            data:{name:3, text:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            var no_in = $(this).val();
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      pos:pos,
+                                                                      text: no_in},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                             <!-- Lige i klubovi-->
                                             <?php
                                                 $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
