@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2019 at 11:05 AM
+-- Generation Time: Jan 03, 2019 at 11:50 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -368,7 +368,8 @@ CREATE TABLE `service_table` (
 --
 
 INSERT INTO `service_table` (`idService`, `val`) VALUES
-(1, 100000);
+(1, 15),
+(2, 1);
 
 -- --------------------------------------------------------
 
