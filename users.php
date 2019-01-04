@@ -111,13 +111,37 @@
                 <div class="row align-items-center">
 
                     <div class="col-md-8">
-                      <h2 style="text-align: center;">Goalkeepers</h2><br>
+                      <h2 style="text-align: center;">Users</h2><br>
                       
                       <div  id = "pagination_data"> <!--class = "table-responsive"-->
 
                       </div>
 
-                      <script>
+                      <?php
+                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users";
+
+                        $res = $db->query($q);
+
+                        while( $r = $res->fetch_assoc() ) {
+                            echo "<div class='row'>
+                                <div class='col-md-3'>
+                                    <img src='" . $r['user_photo'] . "' height='55px' width='55px'><br>
+                                    <form action='users_info.php' method='GET'>
+                                        <button type='submit' name='a' class='btn btn-outline-dark'>User info</button>
+                                    </form>
+                                </div>
+                                <div class='col-md-3'>
+                                    Name: " . $r['name'] . "<br>
+                                    Last name: " . $r['last_name'] . "<br>
+                                    E-mail: " . $r['e_mail'] . "<br>
+                                </div>
+                            </div><br><hr>";
+                        }
+                      ?>
+
+                      <!--<script>
                             var pos = 'GK';
                             $(document).ready(function(){
                                 load_data(1);
@@ -137,7 +161,7 @@
                                     load_data(page);
                                 })
                             });
-                      </script>
+                      </script>-->
 
                     </div>
 

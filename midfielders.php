@@ -26,6 +26,10 @@
     </head>
     <body style="background-color: #e6ffff">
         <?php 
+            $s = '';
+            if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+            }
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
@@ -95,6 +99,11 @@
                     <li><a href="goalkeepers.php" id="gk">Goalkeepers</a></li>
                     <li><a href="favourites.php" id="fav">Favourites</a></li>
                     <li><a href="settings.php" id="pos">Settings</a></li>
+                    <?php
+                        if( isset($_SESSION['priv']) ) {
+                            if( $_SESSION['priv'] == 1 ) echo "<li><a href='users.php' id='pos'>Users</a></li>";
+                        }
+                    ?>
                 </ul> 
             </div>
                                                 
