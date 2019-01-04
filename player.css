@@ -16,16 +16,17 @@
 	border-radius: 4px;
 	text-align: left;
 	padding: 20px;
+	position: relative;
 }
 
 .close {
-	color: red;
 	position: absolute;
 	top: 0;
 	right: 14px;
 	font-size: 42px;
 	transform: rotate(45deg);
 	cursor: pointer;
+	color: red;
 }
 
 #av {

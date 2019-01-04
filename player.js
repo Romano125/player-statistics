@@ -11,6 +11,6 @@ document.querySelector('.bg-modal').addEventListener( 'click', () => {
 	document.querySelector('.bg-modal').style.display = 'none';
 });
 
-document.querySelector('.close').addEventListener( 'click', () => {
+document.addEventListener('.close').addEventListener( 'click', () => {
 	document.querySelector('.bg-modal').style.display = 'none';
 });

@@ -136,6 +136,39 @@
 
                             <div class="container">
 
+                                <!-- Back button-->
+                                <?php
+                                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                    $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                    $q = "SELECT pozicija_id FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                    $res = $db->query($q);
+
+                                    while( $r = $res->fetch_assoc() ) {
+                                        if( !strcmp($r['pozicija_id'], "GK") ) {
+                                            echo "<form action='goalkeepers.php'>
+                                                    <button type='submit' class='btn btn-dark btn-sm'><-</button>
+                                                </form>";
+                                        }else if( !strcmp($r['pozicija_id'], "FWD") ) {
+                                            echo "<form action='forwards.php'>
+                                                    <button type='submit' class='btn btn-dark btn-sm'><-</button>
+                                                </form>";
+                                        }else if( !strcmp($r['pozicija_id'], "DEF") ) {
+                                            echo "<form action='defenders.php'>
+                                                    <button type='submit' class='btn btn-dark btn-sm'><-</button>
+                                                </form>";
+                                        }else if( !strcmp($r['pozicija_id'], "MID") ) {
+                                            echo "<form action='midfielders.php'>
+                                                    <button type='submit' class='btn btn-dark btn-sm'><-</button>
+                                                </form>";
+                                        }
+                                        break;
+                                    }
+
+                                ?>
+
                                 <div class="row">
                                     <div class="col-md-3">
                                         
@@ -173,7 +206,7 @@
                                             }
 
 
-                                            $q = "SELECT ime, prezime, br_gol, br_asist, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
+                                            $q = "SELECT ime, prezime, br_gol, br_asist, br_obrane, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz, pozicija_id FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
                                             
                                             $res = $db->query($q);
 
@@ -198,6 +231,13 @@
                                                             <button name='ass+'>+</button>
                                                             <button name='ass-'>-</button>
                                                             </form>";
+                                                    if( !strcmp($r['pozicija_id'], "GK") ) {
+                                                        echo "<form action='update_player.php?id=" . $id . "' method='POST'>
+                                                            Total saves: " . $r['br_obrane'] . "
+                                                            <button name='sav+'>+</button>
+                                                            <button name='sav-'>-</button>
+                                                            </form>";
+                                                    }
                                                     echo "<form action='update_player.php?id=" . $id . "' method='POST'>
                                                             Total yellow cards: " . $r['br_zkarton'] . "
                                                             <button name='yell+'>+</button>
@@ -217,6 +257,7 @@
                                                     echo "Field position: " . $r['ime_poz'] . "<br>";
                                                     echo "Total goals: " . $r['br_gol'] . "<br>";
                                                     echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                    if( !strcmp($r['pozicija_id'], "GK") ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                     echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                     echo "Total red cards: " . $r['br_ckarton'] . "<br>";
                                                     echo "Market value: " . 5550055 . "$<br>";

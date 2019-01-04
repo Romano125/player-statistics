@@ -268,6 +268,9 @@
                                     }
                                     echo "</tr>";
                                     echo "</table>
+                                    <form action='restart_votes.php'>
+                                        <button type='submit' class='btn btn-dark btn-sm'>Start new week</button>
+                                    </form>
                                     </div>";
                                 ?>
                             </div>

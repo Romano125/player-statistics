@@ -48,9 +48,17 @@
 		$res = $sql_query->get_result()->fetch_assoc();
 		echo $res['br_ckarton'];
 		if ($res['br_ckarton'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_ckarton=br_ckarton-1 WHERE reg_br_igr='" . $_GET['id'] . "'";
-
-		
+		$q = "UPDATE igrac SET br_ckarton=br_ckarton-1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
+	}else if( isset($_POST['sav+']) ) {
+		$q = "UPDATE igrac SET br_obrane=br_obrane+1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
+	}else if( isset($_POST['sav-']) ) {
+		$tmp = "SELECT br_obrane FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
+		$sql_query = $db->prepare($tmp);
+		$sql_query->execute();
+		$res = $sql_query->get_result()->fetch_assoc();
+		echo $res['br_obrane'];
+		if ($res['br_obrane'] < 1) goto flag;
+		$q = "UPDATE igrac SET br_obrane=br_obrane-1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
 	}
 
 	$db->query($q);
