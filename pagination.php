@@ -11,6 +11,66 @@
 
     $record_per_page = $res['val'];
 
+    $q = "SELECT val from service_table where idService = 2";  //sortby
+    $sql_query = $db->prepare($q);
+    $sql_query->execute();
+    $result = $sql_query->get_result();
+    $res = $result->fetch_array();
+
+    $sort_db = $res['val'];
+
+    $q = "SELECT val from service_table where idService = 3"; //name
+    $sql_query = $db->prepare($q);
+    $sql_query->execute();
+    $result = $sql_query->get_result();
+    $res = $result->fetch_array();
+
+    $nameBool = $res['val'];
+
+
+    $q = "SELECT val from service_table where idService = 4";
+    $sql_query = $db->prepare($q);
+    $sql_query->execute();
+    $result = $sql_query->get_result();
+    $res = $result->fetch_array();
+
+    $leagueBool = $res['val'];
+
+    $q = "SELECT val from service_table where idService = 5";
+    $sql_query = $db->prepare($q);
+    $sql_query->execute();
+    $result = $sql_query->get_result();
+    $res = $result->fetch_array();
+
+    $clubBool = $res['val'];
+
+
+    $sort_by = "prezime";
+    $ascdesc = "ASC";
+    switch($sort_db){
+        case(1):
+             $sort_by = "br_gol";
+             $ascdesc = "DESC";
+        break;
+    
+        case(2):
+             $sort_by = "br_asist";
+             $ascdesc = "DESC";
+        break;
+
+        case(3):
+             $sort_by = "br_obrane";
+             $ascdesc = "DESC";
+        break;
+
+        case(4):
+             $sort_by = "votes";
+             $ascdesc = "DESC";
+        break;
+
+
+
+    }
     $page = '';
     $output = '';
 
@@ -22,7 +82,7 @@
 
     $start_from = ($page - 1) * $record_per_page;
 
-    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?
+    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=? ORDER BY $sort_by $ascdesc
           LIMIT $start_from, $record_per_page";
 
     $sql_query = $db->prepare($q);
