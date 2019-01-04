@@ -5,5 +5,5 @@
 
 function findLeague() {
     var lea = document.getElementById('liga').value;
-    console.log(lea);
+    //console.log(lea);
 }

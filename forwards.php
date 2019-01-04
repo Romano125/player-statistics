@@ -233,13 +233,11 @@
                                                         })
                                                         load_data(1);
                                                         function load_data(page){
-                                                            var no_in = $(this).val();
                                                             $.ajax({
                                                                 url:"pagination.php",
                                                                 method: "POST",
                                                                 data:{page:page,
-                                                                      pos:pos,
-                                                                      text: no_in},
+                                                                      pos:pos},
                                                                 success:function(data){
                                                                     $('#pagination_data').html(data);
                                                                  }
@@ -256,24 +254,88 @@
 
                                                 $res = $db->query($q);
 
-                                                echo "Select league: <select onchange='findLeague()' name='league' class='form-control' id = 'liga' required>
+                                                echo "Select league: <select name='league' class='form-control' id = 'liga' required>
                                                                      <option value=''>Choose league</option>";
                                                 while( $r = $res->fetch_assoc() ) {
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                
+                                                echo "
+                                                <script>
+                                                var pos = 'FWD';
+                                                $(document).ready(function() {
+                                                    var type = 'league';
+                                                    $('#liga').change(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:'insert_pagination.php',
+                                                            method:'POST',
+                                                            data:{name:4, text:no_in},
+                                                            success:function(data){
+                                                                   // alert('uspjesno');
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:'pagination.php',
+                                                                method: 'POST',
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                                </script>";
+
                                                 $q2 = "SELECT klub_ime FROM klub";
 
                                                 $res2 = $db->query($q2);
 
-                                                echo "Select club: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
-                                                                     <option value=''>Choose league</option>";
+                                                echo "Select club: <select name='club' id = 'club' class='form-control' required>
+                                                                     <option value=''>Choose club</option>";
                                                 while( $r2 = $res2->fetch_assoc() ) {
                                                     echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                
+                                                echo "
+                                                <script>
+                                                var pos = 'FWD';
+                                                $(document).ready(function(){
+                                                    $('#club').change(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:'insert_pagination.php',
+                                                            method:'POST',
+                                                            data:{name:5, text:no_in},
+                                                            success:function(data){
+                                                                   // alert('uspjesno');
+                                                            }
+
+                                                        })
+                                                        
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:'pagination.php',
+                                                                method: 'POST',
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                        
+                                                    });
+                                                });
+                                                </script>";
                                                 mysqli_close($db);
                                             ?>
                                         </div>

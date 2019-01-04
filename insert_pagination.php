@@ -12,13 +12,36 @@
     }
     
     if (isset($_POST["name"])) {
-        if(!isset($_POST["text"])) {
-            $query = "UPDATE service_table SET val = 0 WHERE idService = 3";
-        } else {
-            $query = "UPDATE service_table SET val = 1 WHERE idService = 3";
+        $retval = $_POST["name"];
+        $txt = $_POST["text"];
+        echo $txt;
+        echo $retval;
+        switch($retval) {
+            case 3:
+                if($txt == '') {
+                    $query = "UPDATE service_table SET val = 0 WHERE idService = 3";
+                } else {
+                    $query = "UPDATE service_table SET val = 1 WHERE idService = 3";
+                }
+                break;
+            case 4:
+                if($txt == '') {
+                    $query = "UPDATE service_table SET val = 0 WHERE idService = 4";
+                } else {
+                    $query = "UPDATE service_table SET val = 1 WHERE idService = 4";
+                }
+                break;
+            case 5:
+                if($txt == 'Choose club' || $txt == '') {
+                    $query = "UPDATE service_table SET val = 0 WHERE idService = 5";
+                } else {
+                    $query = "UPDATE service_table SET val = 1 WHERE idService = 5";
+                }
+                break;
         }
+
         $sql_query = $conn->prepare($query);
-        $sql_query->bind_param("i", $_POST["name"]);
+        $sql_query->bind_param('i', $_POST["name"]);
         $sql_query->execute();
     }
 ?>
