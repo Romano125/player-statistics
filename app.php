@@ -139,7 +139,7 @@
                                 <?php
                                     $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac ORDER BY br_gol desc LIMIT 3 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'FWD' ORDER BY votes desc LIMIT 3 ";
 
                                     $res = $db->query($q);
 
@@ -177,7 +177,7 @@
                                         }
                                     }
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'MID' ORDER BY br_asist desc LIMIT 3 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'MID' ORDER BY votes desc LIMIT 3 ";
 
                                     $res = $db->query($q);
 
@@ -211,7 +211,7 @@
                                     }
                                     echo "</tr>";
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'DEF' ORDER BY br_zkarton desc LIMIT 4 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'DEF' ORDER BY votes desc LIMIT 4 ";
 
                                     $res = $db->query($q);
 
@@ -253,7 +253,7 @@
                                     }
                                     echo "</tr>";
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 1 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'GK' ORDER BY votes desc LIMIT 1 ";
 
                                     $res = $db->query($q);
 
