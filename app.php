@@ -75,7 +75,7 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<a href='settings.php' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                            echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
                                     echo '</div>
                                     <div class="col-md-8">';
 

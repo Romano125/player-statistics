@@ -36,6 +36,7 @@
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>
+                                <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Notifications</a></button>
                                 <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
@@ -75,7 +76,7 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<a href='settings.php' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                            echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
                                     echo '</div>
                                     <div class="col-md-8">';
 
@@ -128,22 +129,51 @@
 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_GET['a'];
+                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_GET['id'];
 
-                                            echo  $_GET['a'];
+                                            $res = $db->query($q);
+
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "<img src='" . $r['user_photo'] ."' style='text-align: center;' height='75px' width='75px'>";
+                                                break;
+                                            }
+
+                                            echo "<div class='row'>
+		                                        	FOLLOWERS FOLLOWS
+		                                        </div>";
+
+		                                    if( isset($_SESSION['id']) ) {
+					                            if( $_GET['id'] != $_SESSION['id'] ) {
+					                            	echo "<a href='add_follower.php?id=" . $_GET['id'] . "' class='badge badge-info'>Follow</a>&nbsp";
+					                            }
+					                        } 
+
+                                            mysqli_free_result($res);
                                         ?>
+
                                     </div>
                                     <div class="col-md-8">
                                         <?php
 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+                                            $q = "SELECT name, last_name, age, e_mail, gender FROM users WHERE ID=" . $_GET['id'];
 
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                
+                                             	echo "Name: " . $r['name'] . "<br>";
+                                                echo "Last name: " . $r['last_name'] . "<br>";
+                                                echo "Age: " . $r['age'] . "<br>";
+                                                echo "E-mail: " . $r['e_mail'] . "<br>";
+                                                echo "Gender: " . $r['gender'] . "<br>";
+                                                if( isset($_SESSION['priv']) ) {
+						                            if( $_SESSION['priv'] == 1 ) {
+						                            	echo "<a href='grant_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Grant privilage</a>&nbsp";
+						                            	echo "<a href='remove_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Remove privilage</a>";
+						                            }
+						                        } 
+						                        break;
                                             }
 
                                             mysqli_free_result($res);
@@ -157,16 +187,41 @@
 
                         <div class="col-md-4">
                           <div class="container">
-                                <h3>Graf</h3>
+                                <h3>Voted for</h3>
+                                <hr width="100%">
                                 <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
-                                </div>
+                                    
+                                    <?php 
+                                    	if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                         $q = "SELECT reg_br_igr, ime, prezime, votes FROM igrac JOIN users_votes using(reg_br_igr) WHERE ID=" . $id . " ORDER BY votes";
+
+                                         $res = $db->query($q);
+
+                                         if( $res->num_rows == 0 ) {
+                                         	echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                         }else {
+                                         	while($row = $res->fetch_assoc()){
+	                                         	echo "<div class='row'>";
+		                                            echo "<div class=col-md-6>
+		                                            		<a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a>
+		                                            	</div>";
+		                                            echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+		                                            		Name: " . $row['ime'] . "</br>
+		                                            		Last name:" . $row['prezime'] ."</br>
+		                                            		Votes: " . $row['votes'] . "
+		                                            	</div>";
+	                                            echo "</div>";
+	                                            echo "<hr width='100%'>";
+	                                         } 
+                                         }                                                                           
+                                    ?>
+                                </div> 
                             </div>
-                            <hr width="100%">
+             
                             <div class="container">
-                                <h3>Nesto</h3>
+                                <h3>Follows</h3>
                                 <div class="container">
                                     <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
                                     Ime igraca<br>
