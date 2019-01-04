@@ -17,6 +17,7 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" type="text/css" href="new_app.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -142,34 +143,35 @@
 
                                     $res = $db->query($q);
 
-                                    echo "<table height=1% width=1% style='color: white; background-image: url(" . 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX24229534.jpg' . ");'>";
+                                    echo "<div id='team'>
+                                        <table style='color: white;'>";
                                     $f = 0;
                                     while( $r = $res->fetch_assoc() ) {
                                         if( $f == 0 ) {
                                             echo "<tr>
                                                     <td colspan=4 align='center'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                        " . $r['ime'] . "</br>
-                                                        " . $r['prezime'] . "</br>
-                                                        " . $r['pozicija_id'] . "</br>
+                                                        <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                     </td>
                                                 </tr>";
                                             $f = 1;
                                         }else if( $f == 1 ) {
                                             echo "<tr>
                                                     <td colspan=2 align='right'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                        " . $r['ime'] . "</br>
-                                                        " . $r['prezime'] . "</br>
-                                                        " . $r['pozicija_id'] . "</br>
+                                                        <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                     </td>";
                                             $f = 2;
                                         }else {
                                             echo "<td colspan=3>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                        " . $r['ime'] . "</br>
-                                                        " . $r['prezime'] . "</br>
-                                                        " . $r['pozicija_id'] . "</br>                                               
+                                                        <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>                                              
                                                     </td>
                                                 </tr>";
                                         }
@@ -184,26 +186,26 @@
                                     while( $r = $res->fetch_assoc() ) {
                                         if( $f == 0 ) {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                             $f = 1;
                                         }else if( $f == 1 ) {
                                             echo "<td colspan=2>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                             $f = 2;
                                         }else {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                         }
                                     }
@@ -218,34 +220,34 @@
                                     while( $r = $res->fetch_assoc() ) {
                                         if( $f == 0 ) {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                             $f = 1;
                                         }else if( $f == 1 ) {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                             $f = 2;
                                         }else if( $f == 2 ) {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                             $f = 3;
                                         }else {
                                             echo "<td>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                         }
                                     }
@@ -258,14 +260,15 @@
                                     echo "<tr>";
                                     while( $r = $res->fetch_assoc() ) {
                                         echo "<td colspan=4 align='center'>
-                                                    <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' class='avatar'></a>
-                                                    " . $r['ime'] . "</br>
-                                                    " . $r['prezime'] . "</br>
-                                                    " . $r['pozicija_id'] . "</br>
+                                                    <div class='col-md-8'>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
+                                                        </div>
                                                 </td>";
                                     }
                                     echo "</tr>";
-                                    echo "</table>";
+                                    echo "</table>
+                                    </div>";
                                 ?>
                             </div>
                         </div>
