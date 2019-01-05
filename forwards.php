@@ -264,7 +264,7 @@
                                                 $res = $db->query($q);
 
                                                 echo "Select league: <select name='league' class='form-control' id = 'liga' required>
-                                                                     <option value=''>Choose league</option>";
+                                                                     <option value='null'>Choose league</option>";
                                                 while( $r = $res->fetch_assoc() ) {
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
@@ -307,7 +307,7 @@
                                                 $res2 = $db->query($q2);
 
                                                 echo "Select club: <select name='club' id = 'club' class='form-control' required>
-                                                                     <option value=''>Choose club</option>";
+                                                                     <option value='null'>Choose club</option>";
                                                 while( $r2 = $res2->fetch_assoc() ) {
                                                     echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
                                                 }

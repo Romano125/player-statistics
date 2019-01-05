@@ -25,14 +25,14 @@
                 }
                 break;
             case 4:
-                if($txt == '') {
+                if($txt == '' || $txt == 'null') {
                     $query = "UPDATE service_table SET val = 0 WHERE idService = 4";
                 } else {
                     $query = "UPDATE service_table SET val = 1 WHERE idService = 4";
                 }
                 break;
             case 5:
-                if($txt == 'Choose club' || $txt == '') {
+                if($txt == 'null' || $txt == '') {
                     $query = "UPDATE service_table SET val = 0 WHERE idService = 5";
                 } else {
                     $query = "UPDATE service_table SET val = 1 WHERE idService = 5";
