@@ -176,189 +176,43 @@
                       </script>-->
 
                     </div>
-
-                    <!-- Desni meni -->
+                    
                     <div class="col-md-4" id="right-sidebar">
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Results:
-                                        </button>
-                                        </h5>
-                                    </div>
+                        <!-- Desni meni -->
+                        <p></p> <p></p>
+                        <p>Search user:</p>
+                        <input type="text" name="txtuser" id="txtuser">
+                        <!--
+                        <script>
+                            var pos = 'FWD';
+                            $(document).ready(function(){
+                                $('input[name = "txtuser"]').keyup(function(){
+                                    var no_in = $(this).val();
+                                    console.log(no_in);
+                                    $.ajax({
+                                        url:"insert_pagination.php",
+                                        method:"POST",
+                                        data:{name:3, text:no_in},
+                                        success:function(data){
+                                                // alert("uspjesno");
+                                        }
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                        <div class="card-body"> <!-- Prikaz radio buttona -->
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio1">
-                                                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="10" checked>10
-                                                </label>
-                                            </div>
-                                            
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio2">
-                                                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="15">15
-                                                </label>
-                                            </div>
-                                                
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio3" name="optradio" value="20">20
-                                            </label>
-                                            </div>
-
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="10000">All
-                                            </label>
-
-                                            <script>
-                                                var pos = 'GK';
-                                                $(document).ready(function(){
-                                                    $('input[name = "optradio"]').click(function(){
-                                                        var no_in = $(this).val();
-                                                        $.ajax({
-                                                            url:"insert_pagination.php",
-                                                            method:"POST",
-                                                            data:{optradio:no_in},
-                                                            success:function(data){
-                                                                   // alert("uspjesno");
-                                                            }
-
-                                                        })
-                                                        load_data(1);
-                                                        function load_data(page){
-                                                            $.ajax({
-                                                                url:"pagination.php",
-                                                                method: "POST",
-                                                                data:{page:page,
-                                                                      pos:pos},
-                                                                success:function(data){
-                                                                    $('#pagination_data').html(data);
-                                                                 }
-                                                                })
-                                                        }
-                                                    });
-                                                });
-                                            </script>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Filter By:
-                                        </button>
-                                        </h5>
-                                    </div>
-                                    
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="card-body"> <!-- Filer -->
-                                            Name: <input type="text" class="form-control" id="usr" name="name">
-                                            <!-- Lige i klubovi-->
-                                            <?php
-                                                $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-
-                                                $q = "SELECT ime_natj FROM natjecanje";
-
-                                                $res = $db->query($q);
-
-                                                echo "Select league: <select onchange='findLeague()' name='league' class='form-control' id = 'liga' required>
-                                                                     <option value=''>Choose league</option>";
-                                                while( $r = $res->fetch_assoc() ) {
-                                                    echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
+                                    })
+                                    load_data(1);
+                                    function load_data(page){
+                                        $.ajax({
+                                            url:"pagination.php",
+                                            method: "POST",
+                                            data:{page:page,
+                                                    pos:pos},
+                                            success:function(data){
+                                                $('#pagination_data').html(data);
                                                 }
-                                                echo "</select>";
-                                                
-                                                $q2 = "SELECT klub_ime FROM klub";
-
-                                                $res2 = $db->query($q2);
-
-                                                echo "Select club: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
-                                                                     <option value=''>Choose league</option>";
-                                                while( $r2 = $res2->fetch_assoc() ) {
-                                                    echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
-                                                }
-                                                echo "</select>";
-                                                mysqli_close($db);
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Sort By:
-                                        </button>
-                                        </h5>
-                                    </div>
-                                    
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                        <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio1">
-                                                    <input type="radio" class="form-check-input" id="radio1s" name="optradio2" value="1" checked>Goals
-                                                </label>
-                                            </div>
-                                            
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label" for="radio2">
-                                                    <input type="radio" class="form-check-input" id="radio2s" name="optradio2" value="2">Assists
-                                                </label>
-                                            </div>
-                                                
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio3s" name="optradio2" value="3">Saves
-                                            </label>
-                                            </div>
-
-                                            <div class="form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Age
-                                            </label>
-                                            <script>
-                                                var pos = 'GK';
-                                                $(document).ready(function(){
-                                                    $('input[name = "optradio2"]').click(function(){
-                                                        var no_in = $(this).val();
-                                                        $.ajax({
-                                                            url:"insert_sortby.php",
-                                                            method:"POST",
-                                                            data:{optradio:no_in},
-                                                            success:function(data){
-                                                                   // alert("uspjesno");
-                                                            }
-
-                                                        })/*
-                                                        load_data(1);
-                                                        function load_data(page){
-                                                            $.ajax({
-                                                                url:"pagination.php",
-                                                                method: "POST",
-                                                                data:{page:page,
-                                                                      pos:pos},
-                                                                success:function(data){
-                                                                    $('#pagination_data').html(data);
-                                                                 }
-                                                                })
-                                                        }*/
-                                                    });
-                                                });
-                                            </script>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            })
+                                    }
+                                });
+                            });
+                        </script> -->
                     </div>
                 </div>
 
