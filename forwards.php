@@ -273,7 +273,6 @@
                                                 <script>
                                                 var pos = 'FWD';
                                                 $(document).ready(function() {
-                                                    var type = 'league';
                                                     $('#liga').change(function(){
                                                         var no_in = $(this).val();
                                                         console.log(no_in);

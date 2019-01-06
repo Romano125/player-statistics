@@ -28,7 +28,7 @@
     $nameBool = $res['val'];
 
 
-    $q = "SELECT val from service_table where idService = 4";
+    $q = "SELECT val from service_table where idService = 4"; //league
     $sql_query = $db->prepare($q);
     $sql_query->execute();
     $result = $sql_query->get_result();
@@ -36,7 +36,7 @@
 
     $leagueBool = $res['val'];
 
-    $q = "SELECT val from service_table where idService = 5";
+    $q = "SELECT val from service_table where idService = 5"; //club
     $sql_query = $db->prepare($q);
     $sql_query->execute();
     $result = $sql_query->get_result();
@@ -44,7 +44,7 @@
 
     $clubBool = $res['val'];
 
-
+    
     $sort_by = "prezime";
     $ascdesc = "ASC";
     switch($sort_db){

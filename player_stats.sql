@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2019 at 12:59 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Jan 06, 2019 at 12:51 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -186,13 +186,13 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 'MID', 'RM'),
 ('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 1, 'DEF', 'RM'),
 ('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 2, 'DEF', 'RM'),
+('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 'DEF', 'RM'),
 ('AA005', 'Raphael', 'Varane', 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA006', 'Toni ', 'Kroos', 8, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
+('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 'MID', 'RM'),
 ('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
 ('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
 ('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('AA010', 'Karim', 'Benzema', 9, 3, 0, 1, 0, 0, 0, 'FWD', 'RM'),
+('AA010', 'Karim', 'Benzema', 9, 9, 0, 2, 1, 0, 0, 'FWD', 'RM'),
 ('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 'GK', 'RIJ'),
 ('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ'),
 ('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 'DEF', 'RIJ'),
@@ -360,19 +360,20 @@ INSERT INTO `pozicija` (`pozicija_id`, `ime_poz`) VALUES
 
 CREATE TABLE `service_table` (
   `idService` int(11) NOT NULL,
-  `val` int(11) NOT NULL
+  `val` int(11) NOT NULL,
+  `txt` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service_table`
 --
 
-INSERT INTO `service_table` (`idService`, `val`) VALUES
-(1, 15),
-(2, 2),
-(3, 1),
-(4, 1),
-(5, 1);
+INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
+(1, 10, NULL),
+(2, 1, NULL),
+(3, 1, 'lio'),
+(4, 1, NULL),
+(5, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -561,14 +562,6 @@ CREATE TABLE `users_votes` (
   `ID` int(11) NOT NULL,
   `reg_br_igr` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_votes`
---
-
-INSERT INTO `users_votes` (`ID`, `reg_br_igr`) VALUES
-(6, 'AA004'),
-(5, 'AA004');
 
 -- --------------------------------------------------------
 

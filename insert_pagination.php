@@ -14,13 +14,16 @@
     if (isset($_POST["name"])) {
         $retval = $_POST["name"];
         $txt = $_POST["text"];
-        echo $txt;
-        echo $retval;
+        //echo $txt;
+        //echo $retval;
         switch($retval) {
             case 3:
                 if($txt == '') {
                     $query = "UPDATE service_table SET val = 0 WHERE idService = 3";
                 } else {
+                    $querytxt = "UPDATE service_table SET txt = '$txt' WHERE idService = 3";
+                    $sql_query_txt = $conn->prepare($querytxt);
+                    $sql_query_txt->execute();
                     $query = "UPDATE service_table SET val = 1 WHERE idService = 3";
                 }
                 break;
@@ -28,6 +31,9 @@
                 if($txt == '' || $txt == 'null') {
                     $query = "UPDATE service_table SET val = 0 WHERE idService = 4";
                 } else {
+                    $querytxt = "UPDATE service_table SET txt = '$txt' WHERE idService = 4";
+                    $sql_query_txt = $conn->prepare($querytxt);
+                    $sql_query_txt->execute();
                     $query = "UPDATE service_table SET val = 1 WHERE idService = 4";
                 }
                 break;
@@ -35,13 +41,16 @@
                 if($txt == 'null' || $txt == '') {
                     $query = "UPDATE service_table SET val = 0 WHERE idService = 5";
                 } else {
+                    $querytxt = "UPDATE service_table SET txt = '$txt' WHERE idService = 5";
+                    $sql_query_txt = $conn->prepare($querytxt);
+                    $sql_query_txt->execute();
                     $query = "UPDATE service_table SET val = 1 WHERE idService = 5";
                 }
                 break;
         }
 
         $sql_query = $conn->prepare($query);
-        $sql_query->bind_param('i', $_POST["name"]);
+        //$sql_query->bind_param('i', $_POST["name"]);
         $sql_query->execute();
     }
 ?>
