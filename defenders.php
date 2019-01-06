@@ -29,17 +29,30 @@
             if( isset($_SESSION['priv']) ) {
                 if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
             }
+
+            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+            $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
+
+            $res = $db->query($q);
+
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
-                                <div class='menu-icon'></div></a>
-                                <button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications</a></button>
-                                <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
+                                <div class='menu-icon'></div></a>";
+                                
+            if( $res->num_rows == 0 ) {
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span>0</span></a></button>";
+            }else {
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $res->num_rows . "</span></a></button>";
+            }
+
+                                echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "  <button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "<button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
                             </td> 
                         </tr>
                     </table>
