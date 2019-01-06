@@ -151,8 +151,27 @@
                                                 break;
                                             }
 
-                                            echo "<div class='row'>
-		                                        	FOLLOWERS FOLLOWS
+                                            $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
+
+                                            $res = $db->query($q);
+
+                                            $foll1 = $res->num_rows;
+
+                                            $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
+
+                                            $res = $db->query($q);
+
+                                            $foll2 = $res->num_rows;
+
+                                            echo "<div class='row' style='text-align: center; color: grey'>
+                                                    <table>
+                                                        <tr>
+                                                            <td>FOLLOWERS</t> <td>FOLLOWS</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>" . $foll2 . "</t> <td>" . $foll1 . "</td>
+                                                        </tr>
+                                                    </table>
 		                                        </div>";
 
 		                                    if( isset($_SESSION['id']) ) {
@@ -236,13 +255,12 @@
                             <div class="container">
                                 <h3>Follows</h3>
                                 <hr width="100%">
-                                <div class="container">
-                                    
+                                <div class="container">  
                                     <?php 
                                         if( isset($_GET['id']) ) $id = $_GET['id'];
 
                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                        $q = "SELECT ID as id, name, last_name, e_mail, user_photo FROM users JOIN users_followers using(ID) WHERE id not in ( SELECT follows as id FROM users_followers WHERE ID=" . $_GET['id'] . ")";
+                                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
 
                                         $res = $db->query($q);
 
@@ -252,7 +270,40 @@
                                             while( $r = $res->fetch_assoc() ) {
                                                 echo "<div class='row'>";
                                                     echo "<div class=col-md-6>
-                                                            <img src='" . $r['user_photo'] . "' height='55px' width='55px'>
+                                                            <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                        </div>";
+                                                    echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                            Name: " . $r['name'] . "</br>
+                                                            Last name:" . $r['last_name'] ."</br>
+                                                            E-mail: " . $r['e_mail'] . "
+                                                        </div>";
+                                                echo "</div>";
+                                                echo "<hr width='100%'>";
+                                            }
+                                        }                                                                           
+                                    ?>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <h3>Followers</h3>
+                                <hr width="100%">
+                                <div class="container">  
+                                    <?php 
+                                        if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
+
+                                        $res = $db->query($q);
+
+                                        if( $res->num_rows == 0 ) {
+                                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                        }else {
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "<div class='row'>";
+                                                    echo "<div class=col-md-6>
+                                                            <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
                                                         </div>";
                                                     echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
                                                             Name: " . $r['name'] . "</br>
