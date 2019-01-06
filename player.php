@@ -317,12 +317,36 @@
                             </div>
                             <hr width="100%">
                             <div class="container">
-                                <h3>Nesto</h3>
+                                <h3>Voters</h3>
+                                <hr width="100%">
                                 <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Obrane: 15<br>
-                                </div>
+                                    
+                                    <?php 
+                                        if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "'";
+
+                                        $res = $db->query($q);
+
+                                        if( $res->num_rows == 0 ) {
+                                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                        }else {
+                                            while( $r = $res->fetch_assoc() ) {
+                                                echo "<div class='row'>";
+                                                    echo "<div class=col-md-6>
+                                                            <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                        </div>";
+                                                    echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                            Name: " . $r['name'] . "</br>
+                                                            Last name:" . $r['last_name'] ."</br>
+                                                            E-mail: " . $r['e_mail'] . "
+                                                        </div>";
+                                                echo "</div>";
+                                                echo "<hr width='100%'>";
+                                            }
+                                        }                                                                           
+                                    ?>
                             </div>
                         </div>
 
