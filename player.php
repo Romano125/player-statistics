@@ -65,6 +65,7 @@
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>
+                                <button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications</a></button>
                                 <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 

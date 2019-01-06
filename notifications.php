@@ -21,7 +21,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src = ./app.js> </script>
-        <script> function load_data(){}</script>
         
     </head>
     <body style="background-color: #e6ffff">
@@ -113,13 +112,43 @@
                 <div class="row align-items-center">
 
                     <div class="col-md-8">
-                      <h2 style="text-align: center;">Middle players</h2><br>
+                      <h2 style="text-align: center;">Users</h2><br>
+                      
                       <div  id = "pagination_data"> <!--class = "table-responsive"-->
 
                       </div>
 
-                      <script>
-                            var pos = 'MID';
+                      <?php
+                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users JOIN followers_pending using(ID) WHERE want_follow=" . $_SESSION['id'];
+
+                        $res = $db->query($q);
+
+                        if( $res->num_rows == 0 ) {
+                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                        }else {
+                            while( $r = $res->fetch_assoc() ) {
+                                echo "<div class='row'>
+                                    <div class='col-md-3'>
+                                        <img src='" . $r['user_photo'] . "' height='55px' width='55px'><br>
+                                        <button type='button' class='btn btn-dark btn-sm'><a href='users_info.php?id=" . $r['ID'] . "' style='text-decoration: none;color: white'>User info</a></button>
+                                    </div>
+                                    <div class='col-md-3'>
+                                        Name: " . $r['name'] . "<br>
+                                        Last name: " . $r['last_name'] . "<br>
+                                        E-mail: " . $r['e_mail'] . "<br>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <button type='button' class='btn btn-dark btn-sm'><a href='accept_foll.php?id=" . $r['ID'] . "' style='text-decoration: none;color: white'>Accept</a></button>
+                                    </div>
+                                </div><br><hr>";
+                            }
+                        }
+                      ?>
+
+                      <!--<script>
+                            var pos = 'GK';
                             $(document).ready(function(){
                                 load_data(1);
                                 function load_data(page){
@@ -138,7 +167,8 @@
                                     load_data(page);
                                 })
                             });
-                      </script>
+                      </script>-->
+
                     </div>
 
                     <!-- Desni meni -->
@@ -175,10 +205,11 @@
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="100000">All
+                                                    <input type="radio" class="form-check-input" id="radio4" name="optradio" value="10000">All
                                             </label>
+
                                             <script>
-                                                var pos = 'MID';
+                                                var pos = 'GK';
                                                 $(document).ready(function(){
                                                     $('input[name = "optradio"]').click(function(){
                                                         var no_in = $(this).val();
@@ -206,6 +237,7 @@
                                                     });
                                                 });
                                             </script>
+
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +319,7 @@
                                                     <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Age
                                             </label>
                                             <script>
-                                                var pos = 'MID';
+                                                var pos = 'GK';
                                                 $(document).ready(function(){
                                                     $('input[name = "optradio2"]').click(function(){
                                                         var no_in = $(this).val();
@@ -299,7 +331,7 @@
                                                                    // alert("uspjesno");
                                                             }
 
-                                                        })
+                                                        })/*
                                                         load_data(1);
                                                         function load_data(page){
                                                             $.ajax({
@@ -311,7 +343,7 @@
                                                                     $('#pagination_data').html(data);
                                                                  }
                                                                 })
-                                                        }
+                                                        }*/
                                                     });
                                                 });
                                             </script>
