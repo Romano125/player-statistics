@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2019 at 12:51 PM
+-- Generation Time: Jan 06, 2019 at 05:25 PM
 -- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -138,6 +138,24 @@ INSERT INTO `ages` (`ID`, `age`) VALUES
 (98, 98),
 (99, 99),
 (100, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followers_pending`
+--
+
+CREATE TABLE `followers_pending` (
+  `ID` int(11) NOT NULL,
+  `want_follow` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `followers_pending`
+--
+
+INSERT INTO `followers_pending` (`ID`, `want_follow`) VALUES
+(6, 4);
 
 -- --------------------------------------------------------
 
@@ -369,11 +387,11 @@ CREATE TABLE `service_table` (
 --
 
 INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
-(1, 10, NULL),
-(2, 1, NULL),
-(3, 1, 'lio'),
-(4, 1, NULL),
-(5, 0, NULL);
+(1, 10000, NULL),
+(2, 2, NULL),
+(3, 1, 'a'),
+(4, 1, 'Europska Liga'),
+(5, 1, 'Dinamo Zagreb');
 
 -- --------------------------------------------------------
 
@@ -530,6 +548,24 @@ INSERT INTO `users` (`ID`, `name`, `last_name`, `gender`, `age`, `password`, `e_
 (8, 'Iva', 'Polic', 'F', 18, 'iva', 'poli.iva@gmail.com', '', '', 0),
 (9, 'p', 'p', 'M', 18, 'p', 'p', '', '', 0),
 (10, 'Nikola', 'Samardzic', 'M', 20, 't', 'nikola@gmail.com', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_followers`
+--
+
+CREATE TABLE `users_followers` (
+  `ID` int(11) NOT NULL,
+  `follows` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_followers`
+--
+
+INSERT INTO `users_followers` (`ID`, `follows`) VALUES
+(6, 5);
 
 -- --------------------------------------------------------
 
