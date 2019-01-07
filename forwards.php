@@ -283,7 +283,7 @@
                                             <?php
                                                 $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                                $q = "SELECT ime_natj FROM natjecanje";
+                                                $q = "SELECT DISTINCT ime_natj FROM natjecanje";
 
                                                 $res = $db->query($q);
 
@@ -325,7 +325,7 @@
                                                 });
                                                 </script>";
 
-                                                $q2 = "SELECT klub_ime FROM klub";
+                                                $q2 = "SELECT DISTINCT klub_ime FROM klub";
 
                                                 $res2 = $db->query($q2);
 

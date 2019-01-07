@@ -9,6 +9,15 @@
         session_destroy();
         header('Location: http://localhost:8080/projekt/expired.html');
     }
+
+    $db = new mysqli('localhost', 'root', '', 'player_stats');
+    $upd = "UPDATE service_table SET val = 0 WHERE idService = 3 OR idService = 4 OR idService = 5";
+    $upd_querry = $db->prepare($upd);
+    $upd_querry->execute();
+
+    $upd = "UPDATE service_table SET val = 10 WHERE idService = 1";
+    $upd_querry = $db->prepare($upd);
+    $upd_querry->execute();
 ?>
 
 <!DOCTYPE html>
@@ -155,7 +164,7 @@
 
                     </div>
 
-                    <!-- Desni meni -->
+                    <!--Desni meni-->
                     <div class="col-md-4" id="right-sidebar">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
@@ -191,7 +200,7 @@
                                                 <label class="form-check-label">
                                                     <input type="radio" class="form-check-input" id="radio4" name="optradio" value="10000">All
                                             </label>
-
+                                            
                                             <script>
                                                 var pos = 'GK';
                                                 $(document).ready(function(){
@@ -221,7 +230,7 @@
                                                     });
                                                 });
                                             </script>
-
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -239,31 +248,125 @@
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body"> <!-- Filer -->
                                             Name: <input type="text" class="form-control" id="usr" name="name">
+                                            <script>
+                                                var pos = 'GK';
+                                                $(document).ready(function(){
+                                                    $('input[name = "name"]').keyup(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:"insert_pagination.php",
+                                                            method:"POST",
+                                                            data:{name:3, text:no_in},
+                                                            success:function(data){
+                                                                   // alert("uspjesno");
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:"pagination.php",
+                                                                method: "POST",
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                             <!-- Lige i klubovi-->
                                             <?php
                                                 $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                                $q = "SELECT ime_natj FROM natjecanje";
+                                                $q = "SELECT DISTINCT ime_natj FROM natjecanje";
 
                                                 $res = $db->query($q);
 
-                                                echo "Select league: <select onchange='findLeague()' name='league' class='form-control' id = 'liga' required>
-                                                                     <option value=''>Choose league</option>";
+                                                echo "Select league: <select name='league' class='form-control' id = 'liga' required>
+                                                                     <option value='null'>Choose league</option>";
                                                 while( $r = $res->fetch_assoc() ) {
                                                     echo "<option value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                 }
                                                 echo "</select>";
-                                                
-                                                $q2 = "SELECT klub_ime FROM klub";
+                                                echo "
+                                                <script>
+                                                var pos = 'GK';
+                                                $(document).ready(function() {
+                                                    $('#liga').change(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:'insert_pagination.php',
+                                                            method:'POST',
+                                                            data:{name:4, text:no_in},
+                                                            success:function(data){
+                                                                   // alert('uspjesno');
+                                                            }
+
+                                                        })
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:'pagination.php',
+                                                                method: 'POST',
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                    });
+                                                });
+                                                </script>";
+
+                                                $q2 = "SELECT DISTINCT klub_ime FROM klub";
 
                                                 $res2 = $db->query($q2);
 
-                                                echo "Select club: <select onchange='findLeague(this.value)' name='league' class='form-control' required>
-                                                                     <option value=''>Choose league</option>";
+                                                echo "Select club: <select name='club' id = 'club' class='form-control' required>
+                                                                     <option value='null'>Choose club</option>";
                                                 while( $r2 = $res2->fetch_assoc() ) {
                                                     echo "<option value='" . $r2['klub_ime'] . "'>". $r2['klub_ime'] . "</option>";
                                                 }
                                                 echo "</select>";
+                                                echo "
+                                                <script>
+                                                var pos = 'GK';
+                                                $(document).ready(function(){
+                                                    $('#club').change(function(){
+                                                        var no_in = $(this).val();
+                                                        console.log(no_in);
+                                                        $.ajax({
+                                                            url:'insert_pagination.php',
+                                                            method:'POST',
+                                                            data:{name:5, text:no_in},
+                                                            success:function(data){
+                                                                   // alert('uspjesno');
+                                                            }
+
+                                                        })
+                                                        
+                                                        load_data(1);
+                                                        function load_data(page){
+                                                            $.ajax({
+                                                                url:'pagination.php',
+                                                                method: 'POST',
+                                                                data:{page:page,
+                                                                      pos:pos},
+                                                                success:function(data){
+                                                                    $('#pagination_data').html(data);
+                                                                 }
+                                                                })
+                                                        }
+                                                        
+                                                    });
+                                                });
+                                                </script>";
                                                 mysqli_close($db);
                                             ?>
                                         </div>
@@ -289,7 +392,7 @@
                                             <div class="form-check-inline">
                                                 <label class="form-check-label" for="radio2">
                                                     <input type="radio" class="form-check-input" id="radio2s" name="optradio2" value="2">Assists
-                                                </label>
+                                                </label>    
                                             </div>
                                                 
                                             <div class="form-check-inline">
@@ -337,9 +440,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
+                </div>      
+            </div>
                 
             </div>
         </div>
