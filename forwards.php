@@ -9,6 +9,16 @@
         session_destroy();
         header('Location: http://localhost:8080/projekt/expired.html');
     }
+
+    $db = new mysqli('localhost', 'root', '', 'player_stats');
+    $upd = "UPDATE service_table SET val = 0 WHERE idService = 3 OR idService = 4 OR idService = 5";
+    $upd_querry = $db->prepare($upd);
+    $upd_querry->execute();
+
+    $upd = "UPDATE service_table SET val = 10 WHERE idService = 1";
+    $upd_querry = $db->prepare($upd);
+    $upd_querry->execute();
+
 ?>
 
 <!DOCTYPE html>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2019 at 05:25 PM
+-- Generation Time: Jan 07, 2019 at 03:32 PM
 -- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -155,6 +155,9 @@ CREATE TABLE `followers_pending` (
 --
 
 INSERT INTO `followers_pending` (`ID`, `want_follow`) VALUES
+(6, 4),
+(6, 4),
+(6, 10),
 (6, 4);
 
 -- --------------------------------------------------------
@@ -209,8 +212,8 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 'MID', 'RM'),
 ('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
 ('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('AA010', 'Karim', 'Benzema', 9, 9, 0, 2, 1, 0, 0, 'FWD', 'RM'),
+('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 'FWD', 'RM'),
+('AA010', 'Karim', 'Benzema', 9, 9, 0, 2, 1, 0, 1, 'FWD', 'RM'),
 ('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 'GK', 'RIJ'),
 ('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ'),
 ('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 'DEF', 'RIJ'),
@@ -387,11 +390,11 @@ CREATE TABLE `service_table` (
 --
 
 INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
-(1, 10000, NULL),
-(2, 2, NULL),
-(3, 1, 'a'),
-(4, 1, 'Europska Liga'),
-(5, 1, 'Dinamo Zagreb');
+(1, 10, NULL),
+(2, 1, NULL),
+(3, 0, 'ben'),
+(4, 0, 'Europska Liga'),
+(5, 0, 'Barcelona');
 
 -- --------------------------------------------------------
 
@@ -527,12 +530,12 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `name` varchar(15) COLLATE utf8_croatian_ci NOT NULL,
   `last_name` varchar(15) COLLATE utf8_croatian_ci NOT NULL,
-  `gender` varchar(1) COLLATE utf8_croatian_ci NOT NULL,
+  `gender` varchar(2) COLLATE utf8_croatian_ci NOT NULL,
   `age` int(11) NOT NULL,
   `password` varchar(18) COLLATE utf8_croatian_ci NOT NULL,
   `e_mail` varchar(18) COLLATE utf8_croatian_ci NOT NULL,
-  `user_photo` mediumtext COLLATE utf8_croatian_ci NOT NULL,
-  `back_photo` mediumtext COLLATE utf8_croatian_ci NOT NULL,
+  `user_photo` mediumtext COLLATE utf8_croatian_ci,
+  `back_photo` mediumtext COLLATE utf8_croatian_ci,
   `privilage` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_croatian_ci;
 
@@ -547,7 +550,9 @@ INSERT INTO `users` (`ID`, `name`, `last_name`, `gender`, `age`, `password`, `e_
 (7, 'a', 'a', 'M', 18, 'a', 'a', '', '', 0),
 (8, 'Iva', 'Polic', 'F', 18, 'iva', 'poli.iva@gmail.com', '', '', 0),
 (9, 'p', 'p', 'M', 18, 'p', 'p', '', '', 0),
-(10, 'Nikola', 'Samardzic', 'M', 20, 't', 'nikola@gmail.com', '', '', 0);
+(10, 'Nikola', 'Samardzic', 'M', 20, 't', 'nikola@gmail.com', '', '', 0),
+(11, 'Izbornik', 'Dena', 'M', 29, '1234', 'dena@aa.com', 'http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0', 'http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0', 0),
+(12, 'Vanja', 'Kosovic', 'NN', 33, '1234', 'vanja@vanja.com', 'http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0', 'http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0', 0);
 
 -- --------------------------------------------------------
 
@@ -565,7 +570,8 @@ CREATE TABLE `users_followers` (
 --
 
 INSERT INTO `users_followers` (`ID`, `follows`) VALUES
-(6, 5);
+(6, 5),
+(11, 6);
 
 -- --------------------------------------------------------
 
@@ -598,6 +604,13 @@ CREATE TABLE `users_votes` (
   `ID` int(11) NOT NULL,
   `reg_br_igr` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_votes`
+--
+
+INSERT INTO `users_votes` (`ID`, `reg_br_igr`) VALUES
+(6, 'AA010');
 
 -- --------------------------------------------------------
 
@@ -685,7 +698,7 @@ ALTER TABLE `ages`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

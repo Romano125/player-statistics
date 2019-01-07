@@ -73,6 +73,7 @@
 								<option value="">Choose gender</option>
 								<option value="M">M</option>
 								<option value="F">F</option>
+								<option value="NN">Something third</option>
 							</select>
 								<div class="invalid-feedback">
 									Please select gender.
