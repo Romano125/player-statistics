@@ -15,8 +15,7 @@
 	$q = "SELECT follows FROM users_followers WHERE ID=" . $_SESSION['id'];
 
 	$res = $db->query($q);
-
-	$f = 0;
+	
 	while( $r = $res->fetch_assoc() ) {
 		if( $r['follows'] == $_GET['id']  ) $f = 1;
 	}
