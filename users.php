@@ -131,50 +131,7 @@
 
                       </div>
 
-                      <?php
-                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-
-                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users";
-
-                        $res = $db->query($q);
-
-                        while( $r = $res->fetch_assoc() ) {
-                            echo "<div class='row'>
-                                <div class='col-md-3'>
-                                    <img src='" . $r['user_photo'] . "' height='55px' width='55px'><br>
-                                    <button type='button' class='btn btn-dark btn-sm'><a href='users_info.php?id=" . $r['ID'] . "' style='text-decoration: none;color: white'>User info</a></button>
-                                </div>
-                                <div class='col-md-3'>
-                                    Name: " . $r['name'] . "<br>
-                                    Last name: " . $r['last_name'] . "<br>
-                                    E-mail: " . $r['e_mail'] . "<br>
-                                </div>
-                            </div><br><hr>";
-                        }
-                      ?>
-
-                      <!--<script>
-                            var pos = 'GK';
-                            $(document).ready(function(){
-                                load_data(1);
-                                function load_data(page){
-                                    $.ajax({
-                                        url:"pagination.php",
-                                        method: "POST",
-                                        data:{page:page,
-                                              pos:pos},
-                                        success:function(data){
-                                            $('#pagination_data').html(data);
-                                        }
-                                    })
-                                }
-                                $(document).on('click', '.pagination_link',function(){
-                                    var page = $(this).attr("id");
-                                    load_data(page);
-                                })
-                            });
-                      </script>-->
-
+                     
                     </div>
                     
                     <div class="col-md-4" id="right-sidebar">
@@ -182,37 +139,47 @@
                         <p></p> <p></p>
                         <p>Search user:</p>
                         <input type="text" name="txtuser" id="txtuser">
-                        <!--
                         <script>
-                            var pos = 'FWD';
-                            $(document).ready(function(){
-                                $('input[name = "txtuser"]').keyup(function(){
-                                    var no_in = $(this).val();
-                                    console.log(no_in);
+                             document.getElementById("txtuser").onchange = function() {
+                                if(document.getElementById("txtuser").value = "") {
                                     $.ajax({
-                                        url:"insert_pagination.php",
+                                            url:"insert_pagination_user.php",
+                                            method:"POST",
+                                            data:{text:""},
+                                            success:function(data){
+                                                    // alert("uspjesno");
+                                                }
+                                            })
+                                } 
+                             }      
+
+                             $(document).ready(function(){
+                                $('input[name = "txtuser"]').keyup(function(){
+                                    var input = $(this).val();
+                                   // console.log(input);
+                                    $.ajax({
+                                        url:"insert_pagination_user.php",
                                         method:"POST",
-                                        data:{name:3, text:no_in},
+                                        data:{text:input},
                                         success:function(data){
                                                 // alert("uspjesno");
-                                        }
+                                            }
 
                                     })
                                     load_data(1);
                                     function load_data(page){
                                         $.ajax({
-                                            url:"pagination.php",
+                                            url:"pagination_user.php",
                                             method: "POST",
-                                            data:{page:page,
-                                                    pos:pos},
+                                            data:{page:page},
                                             success:function(data){
                                                 $('#pagination_data').html(data);
-                                                }
-                                            })
+                                            }
+                                        })
                                     }
                                 });
                             });
-                        </script> -->
+                     </script>
                     </div>
                 </div>
 
