@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2019 at 03:32 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jan 08, 2019 at 11:58 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -392,9 +392,10 @@ CREATE TABLE `service_table` (
 INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
 (1, 10, NULL),
 (2, 1, NULL),
-(3, 0, 'ben'),
+(3, 0, 'a'),
 (4, 0, 'Europska Liga'),
-(5, 0, 'Barcelona');
+(5, 0, 'Barcelona'),
+(6, 0, '');
 
 -- --------------------------------------------------------
 
