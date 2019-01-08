@@ -109,7 +109,15 @@
                 WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND ime_natj = '$filterByLeague'
                 ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
             }
-        } else {
+        } 
+
+        else if ($filterByClub) {
+            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                 WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub'
+                 ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
+        } 
+
+        else {
             $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
             WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%')
             ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
@@ -126,8 +134,14 @@
                 $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
                 WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub'
                 ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
-            }
+            } 
         }
+        else if ($filterByLeague) {
+            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+            WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+            ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
+        }
+        
         else {
              $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
              WHERE pozicija_id=? AND klub_ime = '$filterByClub'
@@ -147,6 +161,11 @@
                 ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
             }
         }
+        else if ($filterByClub) {
+            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+            WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+            ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
+        }
         else {
             $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
             WHERE pozicija_id=? AND ime_natj = '$filterByLeague'
@@ -158,7 +177,7 @@
           WHERE pozicija_id=?
           ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
     }
-
+    
     if ($db->prepare($q)) {
         //echo $q;
         $sql_query = $db->prepare($q);
@@ -188,7 +207,86 @@
                             </div><br><hr>";
         }
         $output .= "<br/><div align 'center'>";
-        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?";
+        if ($filterByName) {
+            if ($filterByLeague) {
+                if ($filterByClub) {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                     WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub' AND ime_natj = '$filterByLeague'
+                     ORDER BY $sort_by $ascdesc";
+                } 
+                else {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                    WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND ime_natj = '$filterByLeague'
+                    ORDER BY $sort_by $ascdesc";
+                }
+            } 
+    
+            else if ($filterByClub) {
+                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                     WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub'
+                     ORDER BY $sort_by $ascdesc";
+            } 
+    
+            else {
+                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%')
+                ORDER BY $sort_by $ascdesc";
+            }
+        } 
+        else if ($filterByClub) {
+            if ($filterByName) {
+                if ($filterByLeague) {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                    WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+                    ORDER BY $sort_by $ascdesc";
+                } 
+                else {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                    WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub'
+                    ORDER BY $sort_by $ascdesc";
+                } 
+            }
+            else if ($filterByLeague) {
+                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+                ORDER BY $sort_by $ascdesc";
+            }
+            
+            else {
+                 $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                 WHERE pozicija_id=? AND klub_ime = '$filterByClub'
+                 ORDER BY $sort_by $ascdesc";
+            }
+        } 
+        else if ($filterByLeague) {
+            if ($filterByName) {
+                if ($filterByClub) {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                    WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub' AND ime_natj = '$filterByLeague'
+                    ORDER BY $sort_by $ascdesc";
+                }
+                else {
+                    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                    WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND ime_natj = '$filterByLeague'
+                    ORDER BY $sort_by $ascdesc";
+                }
+            }
+            else if ($filterByClub) {
+                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+                ORDER BY $sort_by $ascdesc";
+            }
+            else {
+                $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+                WHERE pozicija_id=? AND ime_natj = '$filterByLeague'
+                ORDER BY $sort_by $ascdesc";
+            }
+        } 
+        else {
+            $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
+              WHERE pozicija_id=?
+              ORDER BY $sort_by $ascdesc";
+        }
         $sql_query = $db->prepare($q);
         $sql_query->bind_param('s', $_POST['pos']);
         $sql_query->execute();

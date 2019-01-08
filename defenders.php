@@ -418,7 +418,7 @@
                                                                    // alert("uspjesno");
                                                             }
 
-                                                        })/*
+                                                        })
                                                         load_data(1);
                                                         function load_data(page){
                                                             $.ajax({
@@ -430,7 +430,7 @@
                                                                     $('#pagination_data').html(data);
                                                                  }
                                                                 })
-                                                        }*/
+                                                        }
                                                     });
                                                 });
                                             </script>
