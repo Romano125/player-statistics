@@ -21,6 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
         <script src = ./app.js> </script>
         
     </head>
@@ -315,48 +316,46 @@
 
                                     $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
                                     $res = $db->query($q);
-                                    $r = $res->fetch_assoc()['br_gol'];
+                                    $goals = $res->fetch_assoc()['br_gol'];
                                     $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
                                     $res2 = $db->query($q2);
-                                    $r2 = $res2->fetch_assoc()['suma'];
+                                    $goalsSum = $res2->fetch_assoc()['suma'];
 
-                                    $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                    $q = "SELECT br_asist FROM igrac WHERE reg_br_igr='" . $id . "'";
                                     $res = $db->query($q);
-                                    $r = $res->fetch_assoc()['br_gol'];
-                                    $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
+                                    $assists = $res->fetch_assoc()['br_asist'];
+                                    $q2 = "SELECT SUM(br_asist) as suma FROM igrac";
                                     $res2 = $db->query($q2);
-                                    $r2 = $res2->fetch_assoc()['suma'];
+                                    $assistsSum = $res2->fetch_assoc()['suma'];
 
-                                    $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                    $q = "SELECT br_obrane FROM igrac WHERE reg_br_igr='" . $id . "'";
                                     $res = $db->query($q);
-                                    $r = $res->fetch_assoc()['br_gol'];
-                                    $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
+                                    $saves = $res->fetch_assoc()['br_obrane'];
+                                    $q2 = "SELECT SUM(br_obrane) as suma FROM igrac";
                                     $res2 = $db->query($q2);
-                                    $r2 = $res2->fetch_assoc()['suma'];
+                                    $savesSum = $res2->fetch_assoc()['suma'];
 
                                     $q3 = "SELECT prezime FROM igrac WHERE reg_br_igr = '" . $id . "'";
                                     $res3 = $db->query($q3);
-                                    $r3 = $res3->fetch_assoc()['prezime'];
+                                    $surname = $res3->fetch_assoc()['prezime'];
                                     echo '
                                     <div class="btn-group">
-                                        <button onclick = "graph($)" type="button" class="btn btn-primary">Apple</button>
-                                        <button type="button" class="btn btn-primary">Samsung</button>
-                                        <button type="button" class="btn btn-primary">Sony</button>
+                                        <button onclick = "graph()" type="button" class="btn btn-primary">Goals</button>
+                                        <button type="button" class="btn btn-primary">Assists</button>
+                                        <button type="button" class="btn btn-primary">Saves</button>
                                     </div>'; 
                                 ?>
                                 <div class="container" id = "graf">
                                 
                                 </div>
-                                
-
-                                <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                                              
                                 <script type='text/javascript'>
                                     // Load google charts
                                     google.charts.load('current', {'packages':['corechart']});
                                     google.charts.setOnLoadCallback(drawChart);
-                                    var noGol = <?php Print($r); ?>;
-                                    var sumGol = <?php Print($r2); ?>;
-                                    var surname = '<?php Print($r3); ?>';
+                                    var noGol = <?php Print($goals); ?>;
+                                    var sumGol = <?php Print($goalsSum); ?>;
+                                    var surname = '<?php Print($surname); ?>';
                                     //console.log(brGol);
                                     // Draw the chart and set the chart values
                                     function drawChart() {
