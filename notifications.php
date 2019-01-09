@@ -154,6 +154,7 @@
                                     </div>
                                     <div class='col-md-6'>
                                         <button type='button' class='btn btn-dark btn-sm'><a href='accept_foll.php?id=" . $r['ID'] . "' style='text-decoration: none;color: white'>Accept</a></button>
+                                        <button type='button' class='btn btn-dark btn-sm'><a href='reject_foll.php?id=" . $r['ID'] . "' style='text-decoration: none;color: white'>Reject</a></button>
                                     </div>
                                 </div><br><hr>";
                             }

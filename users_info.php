@@ -174,9 +174,21 @@
                                                     </table>
 		                                        </div>";
 
+                                            $q = "SELECT follows FROM users_followers WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+
 		                                    if( isset($_SESSION['id']) ) {
 					                            if( $_GET['id'] != $_SESSION['id'] ) {
-					                            	echo "<a href='to_pending.php?id=" . $_GET['id'] . "' class='badge badge-info'>Follow</a>&nbsp";
+                                                    $f = 0;
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        if( $_GET['id'] == $r['follows'] ) $f = 1;
+                                                    }
+                                                    if( $f == 1 ) {
+                                                        echo "<a href='remove_foll.php?id=" . $_GET['id'] . "' class='badge badge-info'>Unfollow</a>&nbsp";
+                                                    }else {
+                                                        echo "<a href='to_pending.php?id=" . $_GET['id'] . "' class='badge badge-info'>Follow</a>&nbsp";
+                                                    }
 					                            }
 					                        } 
 
