@@ -309,11 +309,71 @@
                         <div class="col-md-4">
                           <div class="container">
                                 <h3>Graf</h3>
-                                <div class="container">
-                                    <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="55px" width="55px">
-                                    Ime igraca<br>
-                                    Golovi: 12<br>
+                                <?php
+                                    if (isset($_GET['id'])) $id = $_GET['id'];
+                                    $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+
+                                    $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                    $res = $db->query($q);
+                                    $r = $res->fetch_assoc()['br_gol'];
+                                    $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
+                                    $res2 = $db->query($q2);
+                                    $r2 = $res2->fetch_assoc()['suma'];
+
+                                    $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                    $res = $db->query($q);
+                                    $r = $res->fetch_assoc()['br_gol'];
+                                    $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
+                                    $res2 = $db->query($q2);
+                                    $r2 = $res2->fetch_assoc()['suma'];
+
+                                    $q = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                    $res = $db->query($q);
+                                    $r = $res->fetch_assoc()['br_gol'];
+                                    $q2 = "SELECT SUM(br_gol) as suma FROM igrac";
+                                    $res2 = $db->query($q2);
+                                    $r2 = $res2->fetch_assoc()['suma'];
+
+                                    $q3 = "SELECT prezime FROM igrac WHERE reg_br_igr = '" . $id . "'";
+                                    $res3 = $db->query($q3);
+                                    $r3 = $res3->fetch_assoc()['prezime'];
+                                    echo '
+                                    <div class="btn-group">
+                                        <button onclick = "graph($)" type="button" class="btn btn-primary">Apple</button>
+                                        <button type="button" class="btn btn-primary">Samsung</button>
+                                        <button type="button" class="btn btn-primary">Sony</button>
+                                    </div>'; 
+                                ?>
+                                <div class="container" id = "graf">
+                                
                                 </div>
+                                
+
+                                <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                <script type='text/javascript'>
+                                    // Load google charts
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart);
+                                    var noGol = <?php Print($r); ?>;
+                                    var sumGol = <?php Print($r2); ?>;
+                                    var surname = '<?php Print($r3); ?>';
+                                    //console.log(brGol);
+                                    // Draw the chart and set the chart values
+                                    function drawChart() {
+                                        var data = google.visualization.arrayToDataTable([
+                                            ['Player', 'Goals'],
+                                            [surname, noGol],
+                                            ['All goals', sumGol]
+                                            ]);
+                                            
+                                            // Optional; add a title and set the width and height of the chart
+                                            var options = {'width':550, 'height':400};
+                                            
+                                            // Display the chart inside the <div> element with id='piechart'
+                                            var chart = new google.visualization.PieChart(document.getElementById('graf'));
+                                            chart.draw(data, options);
+                                    }
+                                </script>
                             </div>
                             <hr width="100%">
                             <div class="container">
