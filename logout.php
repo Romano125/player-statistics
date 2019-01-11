@@ -3,5 +3,5 @@
 
 	session_destroy();
 
-	header('Location: http://localhost:8080/projekt/main.php');
+	header('Location: http://localhost:8080/projekt/main.html');
 ?>

@@ -2,7 +2,7 @@
 <html>
     
 <head>
-    <title>Login Page</title>
+    <title>SignUp Page</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -22,62 +22,68 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form>
+					<form action="signup.php" method="POST">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="First Name">
+							<input type="text" name="name" class="form-control input_user" value="" placeholder="First Name">
+                        </div>
+                        <div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
+							</div>
+							<input type="text" name="last" class="form-control input_user" value="" placeholder="Last Name">
+                        </div>
+                        <div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
+							</div>
+							<input type="text" name="gender" class="form-control input_user" value="" placeholder="Gender">
+                        </div>
+                        <div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
+							</div>
+							<input type="number" name="age" class="form-control input_user" max="100" min="18" value="" placeholder="Age">
                         </div>
                         <div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="Last Name">
+							<input type="text" name="mail" class="form-control input_user" value="" placeholder="email">
                         </div>
                         <div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="email">
+							<input type="text" name="rmail" class="form-control input_user" value="" placeholder="repeat email">
                         </div>
-                        <div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="repeat email">
-                        </div>
-                        <div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							</div>
-							<input type="text" name="" class="form-control input_user" value="" placeholder="email">
-						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+							<input type="password" name="passwd" class="form-control input_pass" value="" placeholder="password">
                         </div>
                         <div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="repeat password">
+							<input type="password" name="rpasswd" class="form-control input_pass" value="" placeholder="repeat password">
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="customControlInline">
 							</div>
 						</div>
+						<div class="d-flex justify-content-center mt-3 login_container">
+							<button type="submit" name="button" class="btn login_btn">SignUp</button>
+						</div>
 					</form>
-				</div>
-				<div class="d-flex justify-content-center mt-3 login_container">
-					<button type="button" name="button" class="btn login_btn">Login</button>
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="signup.html" class="ml-2">Sign Up</a>
+						Already have an account? <a href="login.html" class="ml-2">Log In</a>
 					</div>
 				</div>
 			</div>

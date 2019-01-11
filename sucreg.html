@@ -5,15 +5,7 @@
 	</head>
 	<body>
 		<p>Uspjesna registracija!</p>
-		<php
-			$time = time();
-			session_start();
-			$_SESSION['id'] = $id;
-			$_SESSION['user'] = $name;
-			$_SESSION['time'] = $time;
-			$_SESSION['gen'] = $gen;
-		?>
-		<form action="main.php">
+		<form action="main.html">
 			<input type="submit" value="Klikni za povratan na naslovnu stranicu">
 		</form>
 		
