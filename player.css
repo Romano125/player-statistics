@@ -50,3 +50,8 @@
 .btn {
 	position: relative;
 }
+
+#navigation {
+	justify-content: center;
+	align-items: center;
+}
