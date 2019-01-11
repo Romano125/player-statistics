@@ -26,7 +26,7 @@
 
 
     $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE name LIKE '%$key%' OR last_name LIKE '%$key%'";
-    echo $key;
+    //echo $key;
   
 
     if ($db->prepare($q)) {

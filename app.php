@@ -159,7 +159,7 @@
                                 <?php
                                     $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'FWD' ORDER BY votes desc LIMIT 3 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'FWD' ORDER BY votes desc LIMIT 3 ";
 
                                     $res = $db->query($q);
 
@@ -171,7 +171,7 @@
                                             echo "<tr>
                                                     <td colspan=4 align='center'>
                                                         <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                     </td>
@@ -181,7 +181,7 @@
                                             echo "<tr>
                                                     <td colspan=2 align='right'>
                                                         <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                     </td>";
@@ -189,7 +189,7 @@
                                         }else {
                                             echo "<td colspan=3>
                                                         <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>                                              
                                                     </td>
@@ -197,7 +197,7 @@
                                         }
                                     }
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'MID' ORDER BY votes desc LIMIT 3 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'MID' ORDER BY votes desc LIMIT 3 ";
 
                                     $res = $db->query($q);
 
@@ -207,7 +207,7 @@
                                         if( $f == 0 ) {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -215,7 +215,7 @@
                                         }else if( $f == 1 ) {
                                             echo "<td colspan=2>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -223,7 +223,7 @@
                                         }else {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -231,7 +231,7 @@
                                     }
                                     echo "</tr>";
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'DEF' ORDER BY votes desc LIMIT 4 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'DEF' ORDER BY votes desc LIMIT 4 ";
 
                                     $res = $db->query($q);
 
@@ -241,7 +241,7 @@
                                         if( $f == 0 ) {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -249,7 +249,7 @@
                                         }else if( $f == 1 ) {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -257,7 +257,7 @@
                                         }else if( $f == 2 ) {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -265,7 +265,7 @@
                                         }else {
                                             echo "<td>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -273,7 +273,7 @@
                                     }
                                     echo "</tr>";
 
-                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id FROM igrac WHERE pozicija_id = 'GK' ORDER BY votes desc LIMIT 1 ";
+                                    $q = "SELECT reg_br_igr, ime, prezime, pozicija_id , pImage FROM igrac WHERE pozicija_id = 'GK' ORDER BY votes desc LIMIT 1 ";
 
                                     $res = $db->query($q);
 
@@ -281,7 +281,7 @@
                                     while( $r = $res->fetch_assoc() ) {
                                         echo "<td colspan=4 align='center'>
                                                     <div class='col-md-8'>
-                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' alt='Avatar' id='av' class='avatar'></a>
+                                                        <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                                         <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                                         </div>
                                                 </td>";
@@ -308,13 +308,13 @@
                                     
                                     <?php 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                         $q = "SELECT reg_br_igr, ime, prezime, votes FROM igrac ORDER BY votes desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                         $q = "SELECT reg_br_igr, ime, prezime, votes, pImage FROM igrac ORDER BY votes desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                          //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
                                          $res = $db->query($q);
                                          echo "<table class = 'table' border = 1> 
                                                 <tr><th></th><th> Igrač</th> <th>Votes</th>";
                                          while($row = $res->fetch_assoc()){
-                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a></td>";
+                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";
                                              echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['votes'] . "</td>";
                                          }
                                          echo "</table>";                                                                            
@@ -328,13 +328,13 @@
                                     
                                     <?php 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                         $q = "SELECT reg_br_igr, ime, prezime, br_gol FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                         $q = "SELECT reg_br_igr, ime, prezime, br_gol, pImage FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                          //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
                                          $res = $db->query($q);
                                          echo "<table class = 'table' border = 1> 
                                                 <tr><th></th><th> Igrač</th> <th>Golovi</th>";
                                          while($row = $res->fetch_assoc()){
-                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a></td>";
+                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";
                                              echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_gol'] . "</td>";
                                          }
                                          echo "</table>";                                                                            
@@ -347,12 +347,12 @@
                                 <div class="container">
                                 <?php 
                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                        $q = "SELECT reg_br_igr, ime, prezime, br_obrane FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                        $q = "SELECT reg_br_igr, ime, prezime, br_obrane, pImage FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                         $res = $db->query($q);
                                         echo "<table class = 'table' border = 1> 
                                                <tr><th></th><th> Igrač</th> <th>Obrane</th>";
                                         while($row = $res->fetch_assoc()){
-                                            echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a> </td>";
+                                            echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a> </td>";
                                             echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_obrane'] . "</td>";
                                         }
                                         echo "</table>";                                                                    
@@ -365,12 +365,12 @@
                                 <div class="container">
                                     <?php 
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                            $q = "SELECT reg_br_igr, ime, prezime, br_asist FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
+                                            $q = "SELECT reg_br_igr, ime, prezime, br_asist, pImage FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                             $res = $db->query($q);
                                             echo "<table class = 'table' border = 1> 
                                                    <tr><th></th><th> Igrač</th> <th>Asistencije</th>";
                                             while($row = $res->fetch_assoc()){
-                                                echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a> </td>";
+                                                echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a> </td>";
                                                 echo "<td>" . $row['ime'] . " " . $row['prezime'] ."</td><td>" . $row['br_asist'] . "</td>";
                                             }
                                             echo "</table>";                                                                     

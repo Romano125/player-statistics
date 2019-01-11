@@ -23,6 +23,19 @@
         <script src = ./app.js> </script>
         
     </head>
+    <script>
+             load_data(1);
+            function load_data(page){
+                $.ajax({
+                    url:"pagination_user.php",
+                    method: "POST",
+                    data:{page:page},
+                    success:function(data){
+                        $('#pagination_data').html(data);
+                    }
+                })
+            }
+    </script>
     <body style="background-color: #e6ffff">
         <?php 
             $s = '';
