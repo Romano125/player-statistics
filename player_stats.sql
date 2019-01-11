@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2019 at 01:29 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jan 11, 2019 at 10:48 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -186,58 +186,60 @@ CREATE TABLE `igrac` (
   `br_utakmica` int(11) NOT NULL,
   `votes` int(11) NOT NULL,
   `pozicija_id` varchar(10) NOT NULL,
-  `klub_id` varchar(10) NOT NULL
+  `klub_id` varchar(10) NOT NULL,
+  `price` varchar(11) NOT NULL,
+  `pImage` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `igrac`
 --
 
-INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`) VALUES
-('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM'),
-('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 0, 'MID', 'RM'),
-('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA005', 'Raphael', 'Varane', 4, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM'),
-('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 1, 'FWD', 'RM'),
-('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 0, 'GK', 'RIJ'),
-('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ'),
-('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ'),
-('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ'),
-('BB004', 'Filip', 'Bradaric', 28, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
-('BB005', 'Zoran', 'Kvrzic', 7, 0, 0, 1, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('BB006', 'Mate', 'Males', 26, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
-('BB007', 'Marko', 'Vesovic', 29, 0, 0, 1, 0, 0, 0, 0, 'MID', 'RIJ'),
-('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 0, 'GK', 'BAR'),
-('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC004', 'Jordi', 'Alba', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 1, 'FWD', 'BAR'),
-('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR'),
-('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR'),
-('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 0, 'GK', 'DZG'),
-('DD001', 'Arijan ', 'Ademi', 5, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD002', 'Filip', 'Benkovic', 26, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD003', 'Adnan', 'Hodzic', 15, 0, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG'),
-('DD004', 'Nikola', 'Moro', 27, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD005', 'Dani', 'Olmo', 7, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD006', 'Ante', 'Coric', 10, 1, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG'),
-('DD007', 'Borna', 'Sosa', 3, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD008', 'El Arbi', 'Soudani', 2, 3, 1, 0, 0, 0, 0, 0, 'FWD', 'DZG'),
-('DD009', 'Tongo', 'Doumbia', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD010', 'Marko ', 'Leskovic', 31, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG');
+INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`, `price`, `pImage`) VALUES
+('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
+('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
+('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/138927-1413206306.jpg?lm=1433143630'),
+('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/44501-1413206117.jpg?lm=1433144595'),
+('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM', '30.00M', 'https://tmssl.akamaized.net//images/portrait/header/25557-1413190249.jpg?lm=1433144128'),
+('AA005', 'Raphael', 'Varane', 4, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/164770-1413206196.jpg?lm=1433143763'),
+('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 0, 'MID', 'RM', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/31909-1519743952.jpg?lm=1519743979'),
+('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/85288-1523366774.jpg?lm=1523366787'),
+('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/51471-1410339990.jpg?lm=1433144687'),
+('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM', '100.00M', 'https://tmssl.akamaized.net//images/portrait/header/8198-1515761767.jpg?lm=1515761786'),
+('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 1, 'FWD', 'RM', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18922-1544774342.jpg?lm=1544774361'),
+('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 0, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
+('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ', '4.00M', 'https://tmssl.akamaized.net//images/portrait/header/179895-1532072097.jpg?lm=1532072195'),
+('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '999M', 'https://tmssl.akamaized.net//images/portrait/header/214625-1497515701.jpg?lm=1497515721'),
+('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '1.50M', 'https://tmssl.akamaized.net//images/portrait/header/165381-1515140234.jpg?lm=1515140266'),
+('BB004', 'Filip', 'Bradaric', 28, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ', '5.00M', 'https://tmssl.akamaized.net//images/portrait/header/238486-1532949045.jpg?lm=1532949058'),
+('BB005', 'Zoran', 'Kvrzic', 7, 0, 0, 1, 0, 0, 0, 0, 'FWD', 'RIJ', '800k', 'https://tmssl.akamaized.net//images/portrait/header/159839-1468316892.jpg?lm=1468316906'),
+('BB006', 'Mate', 'Males', 26, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ', '999M', 'https://tmssl.akamaized.net//images/portrait/header/44230-1517827308.jpg?lm=1517827330'),
+('BB007', 'Marko', 'Vesovic', 29, 0, 0, 1, 0, 0, 0, 0, 'MID', 'RIJ', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/98101-1408715742.jpg?lm=1433145107'),
+('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '1.25M', 'https://tmssl.akamaized.net//images/portrait/header/102249-1451058822.png?lm=1451058834'),
+('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '3.00M', 'https://tmssl.akamaized.net//bilder/spielerfotos/s_61380_260_2012_11_20_1.jpg?lm=0'),
+('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/45425-1437398493.jpg?lm=1437398583'),
+('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 0, 'GK', 'BAR', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/74857-1476949803.jpg?lm=1476949839'),
+('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/231572-1474546433.jpg?lm=1474546447'),
+('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 0, 'DEF', 'BAR', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18944-1454670060.jpg?lm=1454670159'),
+('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/19981-1465280515.jpg?lm=1465280533'),
+('CC004', 'Jordi', 'Alba', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/69751-1454079452.jpg?lm=1454079477'),
+('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '65.00M', 'https://tmssl.akamaized.net//images/portrait/header/32467-1533819327.jpg?lm=1533819348'),
+('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '12.00M', 'https://tmssl.akamaized.net//images/portrait/header/165007-1447239749.jpg?lm=1447239790'),
+('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '6.75M', 'https://tmssl.akamaized.net//images/portrait/header/7600-1464872266.jpg?lm=1464872283'),
+('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 1, 'FWD', 'BAR', '160.00M', 'https://tmssl.akamaized.net//images/portrait/header/28003-1510231943.jpg?lm=1510231982'),
+('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/44352-1453896733.jpg?lm=1453896745'),
+('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/65230-1453896822.jpg?lm=1453896799'),
+('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 0, 'GK', 'DZG', '1.75M', 'https://tmssl.akamaized.net//images/portrait/header/205927-1525072466.jpg?lm=1525072478'),
+('DD001', 'Arijan ', 'Ademi', 5, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '4.50M', 'https://tmssl.akamaized.net//images/portrait/header/71542-1537875033.jpg?lm=1537875046'),
+('DD002', 'Filip', 'Benkovic', 26, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '11.00M', 'https://tmssl.akamaized.net//images/portrait/header/293168-1524751819.jpg?lm=1524751837'),
+('DD003', 'Armin', 'Hodzic', 15, 0, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/166753-1545842984.jpg?lm=1545842994'),
+('DD004', 'Nikola', 'Moro', 0, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG', '2.50M', 'https://tmssl.akamaized.net//images/portrait/header/316934-1446037549.jpg?lm=1446037603'),
+('DD005', 'Dani', 'Olmo', 7, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG', '6.50M', 'https://tmssl.akamaized.net//images/portrait/header/293385-1537950178.jpg?lm=1537950199'),
+('DD006', 'Ante', 'Coric', 10, 1, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG', '7.00M', 'https://tmssl.akamaized.net//images/portrait/header/96630-1535016269.jpg?lm=1535016307'),
+('DD007', 'Borna', 'Sosa', 3, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '6.00M', 'https://tmssl.akamaized.net//images/portrait/header/293194-1532078159.jpg?lm=1532078231'),
+('DD008', 'El Arbi', 'Soudani', 2, 3, 1, 0, 0, 0, 0, 0, 'FWD', 'DZG', '3.50M', 'https://tmssl.akamaized.net//images/portrait/header/174842-1541149776.JPG?lm=1541149799'),
+('DD009', 'Tongo', 'Doumbia', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG', '700k', 'https://tmssl.akamaized.net//images/portrait/header/103563-1410775269.jpg?lm=1433143441'),
+('DD010', 'Marko ', 'Leskovic', 31, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '0.01k', 'https://tmssl.akamaized.net//bilder/spielerfotos/s_133834_144_2014_05_18_1.jpg?lm=0');
 
 -- --------------------------------------------------------
 

@@ -218,19 +218,30 @@
 
                                 <div class="row stats">
                                     <div class="col-md-3">
+                                    <?php
+                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');   
+                                          $q = "SELECT pImage FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
+                                          $res = $db->query($q);
+                                          $row = $res->fetch_assoc();
+                                          echo"<img src='". $row['pImage'] ."' height='181px' width='138px'><br>"
                                         
-                                        <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
+                                    ?>   
+
+
+                                        
                                     </div>
                                     <div class="col-md-8">
                                         <?php
-
+                                            
                                             if( isset($_GET['id']) ) $id = $_GET['id'];
 
-                                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+                                           
 
                                             $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
+                                        
+                                            
 
                                             if( $res->num_rows == 0 ) {
                                                 echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
@@ -253,7 +264,7 @@
                                             }
 
 
-                                            $q = "SELECT ime, prezime, br_gol, br_asist, br_obrane, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz, pozicija_id FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
+                                            $q = "SELECT ime, prezime, br_gol, br_asist, br_obrane, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz, pozicija_id, price FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
                                             
                                             $res = $db->query($q);
 
@@ -295,7 +306,7 @@
                                                             <button name='red+'>+</button>
                                                             <button name='red-'>-</button>
                                                             </form>";
-                                                    echo "Market value: " . 5550055 . "$<br>";
+                                                    echo "Market value: " . $r['price'] . "€<br>";
                                                 }else{
                                                     echo "Name: " . $r['ime'] . "<br>";
                                                     echo "Last name: " . $r['prezime'] . "<br>";
@@ -307,7 +318,7 @@
                                                     if( !strcmp($r['pozicija_id'], "GK") ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                     echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                     echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                    echo "Market value: " . 5550055 . "$<br>";
+                                                    echo "Market value: " . $r['price'] . "€<br>";
                                                 }
                                                 break;
                                             }

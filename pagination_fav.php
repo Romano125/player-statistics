@@ -22,7 +22,7 @@
 
     $start_from = ($page - 1) * $record_per_page;
 
-    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=?
+    $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, pImage FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=?
           LIMIT $start_from, $record_per_page";
 
     $sql_query = $db->prepare($q);
@@ -34,7 +34,7 @@
             $output .= "
             <div class='row'>
                                 <div class='col-md-3'>
-                                    <img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' height='55px' width='55px'><br>
+                                    <img src='".$row['pImage']."' height='119px' width='91px'><br>
                                     <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $row['reg_br_igr'] . "'>More info</a></button>
                                 </div>
                                 <div class='col-md-3'>
