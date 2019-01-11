@@ -14,3 +14,7 @@ document.querySelector('.bg-modal').addEventListener( 'click', () => {
 document.querySelector('.close').addEventListener( 'click', () => {
 	document.querySelector('.bg-modal').style.display = 'none';
 });
+
+document.getElementById('edit').addEventListener( 'click', () => {
+	document.getElementById('stats').innerHTML = 'a';
+});

@@ -207,12 +207,16 @@
                                                   </li>";
                                         }
 
+                                        if( isset($_SESSION['priv']) ) {
+                                            if( $_SESSION['priv'] == 1 ) echo "<li class='nav-item'><a class='nav-link' id='edit' href='#'>Edit</a></li>";
+                                        }
+
                                         echo "</ul>";
 
                                     ?>
                                 </div>
 
-                                <div class="row">
+                                <div class="row stats">
                                     <div class="col-md-3">
                                         
                                         <img src="https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png" style="text-align: center;" height="75px" width="75px">
