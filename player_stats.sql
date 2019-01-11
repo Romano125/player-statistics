@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 11:58 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: Jan 11, 2019 at 01:29 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -150,16 +150,6 @@ CREATE TABLE `followers_pending` (
   `want_follow` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `followers_pending`
---
-
-INSERT INTO `followers_pending` (`ID`, `want_follow`) VALUES
-(6, 4),
-(6, 4),
-(6, 10),
-(6, 4);
-
 -- --------------------------------------------------------
 
 --
@@ -175,7 +165,7 @@ CREATE TABLE `goal_of_the_week` (
 --
 
 INSERT INTO `goal_of_the_week` (`link`) VALUES
-('https://www.youtube.com/embed/SjTnbN3_r38');
+('https://www.youtube.com/embed/Imcc-TLGGOY');
 
 -- --------------------------------------------------------
 
@@ -193,6 +183,7 @@ CREATE TABLE `igrac` (
   `br_zkarton` int(11) DEFAULT '0',
   `br_ckarton` int(11) DEFAULT '0',
   `br_obrane` int(11) DEFAULT '0',
+  `br_utakmica` int(11) NOT NULL,
   `votes` int(11) NOT NULL,
   `pozicija_id` varchar(10) NOT NULL,
   `klub_id` varchar(10) NOT NULL
@@ -202,51 +193,145 @@ CREATE TABLE `igrac` (
 -- Dumping data for table `igrac`
 --
 
-INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `votes`, `pozicija_id`, `klub_id`) VALUES
-('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 'GK', 'RM'),
-('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 'MID', 'RM'),
-('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 1, 'DEF', 'RM'),
-('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 'DEF', 'RM'),
-('AA005', 'Raphael', 'Varane', 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
-('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 'MID', 'RM'),
-('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
-('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 'FWD', 'RM'),
-('AA010', 'Karim', 'Benzema', 9, 9, 0, 2, 1, 0, 1, 'FWD', 'RM'),
-('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 'GK', 'RIJ'),
-('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ'),
-('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 'DEF', 'RIJ'),
-('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 'DEF', 'RIJ'),
-('BB004', 'Filip', 'Bradaric', 28, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
-('BB005', 'Zoran', 'Kvrzic', 7, 0, 0, 1, 0, 0, 0, 'FWD', 'RIJ'),
-('BB006', 'Mate', 'Males', 26, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
-('BB007', 'Marko', 'Vesovic', 29, 0, 0, 1, 0, 0, 0, 'MID', 'RIJ'),
-('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
-('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 'GK', 'BAR'),
-('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 'DEF', 'BAR'),
-('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC004', 'Jordi', 'Alba', 18, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
-('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
-('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 1, 'FWD', 'BAR'),
-('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR'),
-('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 'MID', 'BAR'),
-('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 'GK', 'DZG'),
-('DD001', 'Arijan ', 'Ademi', 5, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD002', 'Filip', 'Benkovic', 26, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD003', 'Adnan', 'Hodzic', 15, 0, 1, 1, 0, 0, 0, 'FWD', 'DZG'),
-('DD004', 'Nikola', 'Moro', 27, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD005', 'Dani', 'Olmo', 7, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD006', 'Ante', 'Coric', 10, 1, 1, 1, 0, 0, 0, 'FWD', 'DZG'),
-('DD007', 'Borna', 'Sosa', 3, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
-('DD008', 'El Arbi', 'Soudani', 2, 3, 1, 0, 0, 0, 0, 'FWD', 'DZG'),
-('DD009', 'Tongo', 'Doumbia', 4, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
-('DD010', 'Marko ', 'Leskovic', 31, 0, 0, 0, 0, 0, 1, 'DEF', 'DZG');
+INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`) VALUES
+('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM'),
+('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 0, 'MID', 'RM'),
+('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
+('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
+('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM'),
+('AA005', 'Raphael', 'Varane', 4, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM'),
+('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 0, 'MID', 'RM'),
+('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
+('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM'),
+('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM'),
+('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 1, 'FWD', 'RM'),
+('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 0, 'GK', 'RIJ'),
+('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ'),
+('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ'),
+('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ'),
+('BB004', 'Filip', 'Bradaric', 28, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
+('BB005', 'Zoran', 'Kvrzic', 7, 0, 0, 1, 0, 0, 0, 0, 'FWD', 'RIJ'),
+('BB006', 'Mate', 'Males', 26, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RIJ'),
+('BB007', 'Marko', 'Vesovic', 29, 0, 0, 1, 0, 0, 0, 0, 'MID', 'RIJ'),
+('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
+('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
+('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ'),
+('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 0, 'GK', 'BAR'),
+('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
+('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 0, 'DEF', 'BAR'),
+('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
+('CC004', 'Jordi', 'Alba', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR'),
+('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
+('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
+('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR'),
+('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 1, 'FWD', 'BAR'),
+('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR'),
+('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR'),
+('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 0, 'GK', 'DZG'),
+('DD001', 'Arijan ', 'Ademi', 5, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
+('DD002', 'Filip', 'Benkovic', 26, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
+('DD003', 'Adnan', 'Hodzic', 15, 0, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG'),
+('DD004', 'Nikola', 'Moro', 27, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
+('DD005', 'Dani', 'Olmo', 7, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
+('DD006', 'Ante', 'Coric', 10, 1, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG'),
+('DD007', 'Borna', 'Sosa', 3, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG'),
+('DD008', 'El Arbi', 'Soudani', 2, 3, 1, 0, 0, 0, 0, 0, 'FWD', 'DZG'),
+('DD009', 'Tongo', 'Doumbia', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG'),
+('DD010', 'Marko ', 'Leskovic', 31, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `igrac_natjecanje`
+--
+
+CREATE TABLE `igrac_natjecanje` (
+  `reg_br_igr` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `ime_natj` varchar(30) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `igrac_natjecanje`
+--
+
+INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`) VALUES
+('AA000', 'Liga Prvaka'),
+('AA000', 'Spanjolska Liga'),
+('AA001', 'Liga Prvaka'),
+('AA001', 'Spanjolska Liga'),
+('AA002', 'Liga Prvaka'),
+('AA002', 'Spanjolska Liga'),
+('AA003', 'Liga Prvaka'),
+('AA003', 'Spanjolska Liga'),
+('AA004', 'Liga Prvaka'),
+('AA004', 'Spanjolska Liga'),
+('AA005', 'Liga Prvaka'),
+('AA005', 'Spanjolska Liga'),
+('AA006', 'Liga Prvaka'),
+('AA006', 'Spanjolska Liga'),
+('AA007', 'Liga Prvaka'),
+('AA007', 'Spanjolska Liga'),
+('AA008', 'Liga Prvaka'),
+('AA008', 'Spanjolska Liga'),
+('AA009', 'Liga Prvaka'),
+('AA009', 'Spanjolska Liga'),
+('AA010', 'Liga Prvaka'),
+('AA010', 'Spanjolska Liga'),
+('BB000', 'Europska Liga'),
+('BB000', 'Hrvatska Nogometna Liga'),
+('BB001', 'Europska Liga'),
+('BB001', 'Hrvatska Nogometna Liga'),
+('BB002', 'Europska Liga'),
+('BB002', 'Hrvatska Nogometna Liga'),
+('BB003', 'Europska Liga'),
+('BB003', 'Hrvatska Nogometna Liga'),
+('BB004', 'Europska Liga'),
+('BB004', 'Hrvatska Nogometna Liga'),
+('BB005', 'Europska Liga'),
+('BB005', 'Hrvatska Nogometna Liga'),
+('BB006', 'Europska Liga'),
+('BB006', 'Hrvatska Nogometna Liga'),
+('BB007', 'Europska Liga'),
+('BB007', 'Hrvatska Nogometna Liga'),
+('BB008', 'Europska Liga'),
+('BB008', 'Hrvatska Nogometna Liga'),
+('BB009', 'Europska Liga'),
+('BB009', 'Hrvatska Nogometna Liga'),
+('BB010', 'Europska Liga'),
+('BB010', 'Hrvatska Nogometna Liga'),
+('CC000', 'Liga Prvaka'),
+('CC000', 'Spanjolska Liga'),
+('CC001', 'Liga Prvaka'),
+('CC001', 'Spanjolska Liga'),
+('CC002', 'Liga Prvaka'),
+('CC002', 'Spanjolska Liga'),
+('CC003', 'Liga Prvaka'),
+('CC003', 'Spanjolska Liga'),
+('CC004', 'Liga Prvaka'),
+('CC004', 'Spanjolska Liga'),
+('CC005', 'Liga Prvaka'),
+('CC005', 'Spanjolska Liga'),
+('CC006', 'Liga Prvaka'),
+('CC006', 'Spanjolska Liga'),
+('CC007', 'Liga Prvaka'),
+('CC007', 'Spanjolska Liga'),
+('CC008', 'Liga Prvaka'),
+('CC008', 'Spanjolska Liga'),
+('CC009', 'Liga Prvaka'),
+('CC009', 'Spanjolska Liga'),
+('CC010', 'Liga Prvaka'),
+('CC010', 'Spanjolska Liga'),
+('DD000', 'Hrvatska Nogometna Liga'),
+('DD001', 'Hrvatska Nogometna Liga'),
+('DD002', 'Hrvatska Nogometna Liga'),
+('DD003', 'Hrvatska Nogometna Liga'),
+('DD004', 'Hrvatska Nogometna Liga'),
+('DD005', 'Hrvatska Nogometna Liga'),
+('DD006', 'Hrvatska Nogometna Liga'),
+('DD007', 'Hrvatska Nogometna Liga'),
+('DD008', 'Hrvatska Nogometna Liga'),
+('DD009', 'Hrvatska Nogometna Liga'),
+('DD010', 'Hrvatska Nogometna Liga');
 
 -- --------------------------------------------------------
 
@@ -391,11 +476,10 @@ CREATE TABLE `service_table` (
 
 INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
 (1, 10, NULL),
-(2, 1, NULL),
-(3, 0, 'a'),
-(4, 0, 'Europska Liga'),
-(5, 0, 'Barcelona'),
-(6, 0, '');
+(2, 2, NULL),
+(3, 0, 'm'),
+(4, 0, 'Spanjolska Liga'),
+(5, 0, 'Dinamo Zagreb');
 
 -- --------------------------------------------------------
 
@@ -410,80 +494,81 @@ CREATE TABLE `statistika_igraca` (
   `igr_br_asist` int(11) DEFAULT '0',
   `igr_br_zkarton` int(11) DEFAULT '0',
   `igr_br_ckarton` int(11) DEFAULT '0',
-  `igr_br_obrana` int(11) NOT NULL DEFAULT '0'
+  `igr_br_obrana` int(11) NOT NULL DEFAULT '0',
+  `igr_igrao` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `statistika_igraca`
 --
 
-INSERT INTO `statistika_igraca` (`reg_br_igr`, `stat_uta_id`, `igr_br_gol`, `igr_br_asist`, `igr_br_zkarton`, `igr_br_ckarton`, `igr_br_obrana`) VALUES
-('AA000', 1, 0, 0, 0, 0, 1),
-('AA000', 2, 0, 0, 0, 0, 2),
-('AA001', 1, 0, 1, 1, 0, 0),
-('AA001', 2, 0, 1, 0, 0, 0),
-('AA004', 1, 0, 0, 1, 0, 0),
-('AA009', 1, 2, 1, 0, 0, 0),
-('AA010', 1, 1, 0, 0, 0, 0),
-('AA010', 2, 2, 0, 1, 0, 0),
-('BB000', 3, 0, 0, 0, 0, 4),
-('BB002', 3, 0, 0, 1, 0, 0),
-('BB003', 3, 0, 0, 1, 0, 0),
-('BB005', 3, 0, 0, 1, 0, 0),
-('BB007', 3, 0, 0, 1, 0, 0),
-('CC000', 1, 0, 0, 0, 0, 2),
-('CC002', 1, 1, 0, 1, 0, 0),
-('CC008', 1, 1, 1, 1, 0, 0),
-('CC008', 2, 1, 0, 0, 0, 0),
-('CC010', 1, 0, 0, 0, 1, 0),
-('CC010', 2, 0, 0, 0, 1, 0),
-('DD003', 3, 0, 1, 1, 0, 0),
-('DD006', 3, 1, 1, 1, 0, 0),
-('DD008', 3, 3, 1, 0, 0, 0),
-('AA000', 1, 0, 0, 0, 0, 1),
-('AA000', 2, 0, 0, 0, 0, 2),
-('AA001', 1, 0, 1, 1, 0, 0),
-('AA001', 2, 0, 1, 0, 0, 0),
-('AA004', 1, 0, 0, 1, 0, 0),
-('AA009', 1, 2, 1, 0, 0, 0),
-('AA010', 1, 1, 0, 0, 0, 0),
-('AA010', 2, 2, 0, 1, 0, 0),
-('BB000', 3, 0, 0, 0, 0, 4),
-('BB002', 3, 0, 0, 1, 0, 0),
-('BB003', 3, 0, 0, 1, 0, 0),
-('BB005', 3, 0, 0, 1, 0, 0),
-('BB007', 3, 0, 0, 1, 0, 0),
-('CC000', 1, 0, 0, 0, 0, 2),
-('CC002', 1, 1, 0, 1, 0, 0),
-('CC008', 1, 1, 1, 1, 0, 0),
-('CC008', 2, 1, 0, 0, 0, 0),
-('CC010', 1, 0, 0, 0, 1, 0),
-('CC010', 2, 0, 0, 0, 1, 0),
-('DD003', 3, 0, 1, 1, 0, 0),
-('DD006', 3, 1, 1, 1, 0, 0),
-('DD008', 3, 3, 1, 0, 0, 0),
-('AA000', 1, 0, 0, 0, 0, 1),
-('AA000', 2, 0, 0, 0, 0, 2),
-('AA001', 1, 0, 1, 1, 0, 0),
-('AA001', 2, 0, 1, 0, 0, 0),
-('AA004', 1, 0, 0, 1, 0, 0),
-('AA009', 1, 2, 1, 0, 0, 0),
-('AA010', 1, 1, 0, 0, 0, 0),
-('AA010', 2, 2, 0, 1, 0, 0),
-('BB000', 3, 0, 0, 0, 0, 4),
-('BB002', 3, 0, 0, 1, 0, 0),
-('BB003', 3, 0, 0, 1, 0, 0),
-('BB005', 3, 0, 0, 1, 0, 0),
-('BB007', 3, 0, 0, 1, 0, 0),
-('CC000', 1, 0, 0, 0, 0, 2),
-('CC002', 1, 1, 0, 1, 0, 0),
-('CC008', 1, 1, 1, 1, 0, 0),
-('CC008', 2, 1, 0, 0, 0, 0),
-('CC010', 1, 0, 0, 0, 1, 0),
-('CC010', 2, 0, 0, 0, 1, 0),
-('DD003', 3, 0, 1, 1, 0, 0),
-('DD006', 3, 1, 1, 1, 0, 0),
-('DD008', 3, 3, 1, 0, 0, 0);
+INSERT INTO `statistika_igraca` (`reg_br_igr`, `stat_uta_id`, `igr_br_gol`, `igr_br_asist`, `igr_br_zkarton`, `igr_br_ckarton`, `igr_br_obrana`, `igr_igrao`) VALUES
+('AA000', 1, 0, 0, 0, 0, 1, 0),
+('AA000', 2, 0, 0, 0, 0, 2, 0),
+('AA001', 1, 0, 1, 1, 0, 0, 0),
+('AA001', 2, 0, 1, 0, 0, 0, 0),
+('AA004', 1, 0, 0, 1, 0, 0, 0),
+('AA009', 1, 2, 1, 0, 0, 0, 0),
+('AA010', 1, 1, 0, 0, 0, 0, 0),
+('AA010', 2, 2, 0, 1, 0, 0, 0),
+('BB000', 3, 0, 0, 0, 0, 4, 0),
+('BB002', 3, 0, 0, 1, 0, 0, 0),
+('BB003', 3, 0, 0, 1, 0, 0, 0),
+('BB005', 3, 0, 0, 1, 0, 0, 0),
+('BB007', 3, 0, 0, 1, 0, 0, 0),
+('CC000', 1, 0, 0, 0, 0, 2, 0),
+('CC002', 1, 1, 0, 1, 0, 0, 0),
+('CC008', 1, 1, 1, 1, 0, 0, 0),
+('CC008', 2, 1, 0, 0, 0, 0, 0),
+('CC010', 1, 0, 0, 0, 1, 0, 0),
+('CC010', 2, 0, 0, 0, 1, 0, 0),
+('DD003', 3, 0, 1, 1, 0, 0, 0),
+('DD006', 3, 1, 1, 1, 0, 0, 0),
+('DD008', 3, 3, 1, 0, 0, 0, 0),
+('AA000', 1, 0, 0, 0, 0, 1, 0),
+('AA000', 2, 0, 0, 0, 0, 2, 0),
+('AA001', 1, 0, 1, 1, 0, 0, 0),
+('AA001', 2, 0, 1, 0, 0, 0, 0),
+('AA004', 1, 0, 0, 1, 0, 0, 0),
+('AA009', 1, 2, 1, 0, 0, 0, 0),
+('AA010', 1, 1, 0, 0, 0, 0, 0),
+('AA010', 2, 2, 0, 1, 0, 0, 0),
+('BB000', 3, 0, 0, 0, 0, 4, 0),
+('BB002', 3, 0, 0, 1, 0, 0, 0),
+('BB003', 3, 0, 0, 1, 0, 0, 0),
+('BB005', 3, 0, 0, 1, 0, 0, 0),
+('BB007', 3, 0, 0, 1, 0, 0, 0),
+('CC000', 1, 0, 0, 0, 0, 2, 0),
+('CC002', 1, 1, 0, 1, 0, 0, 0),
+('CC008', 1, 1, 1, 1, 0, 0, 0),
+('CC008', 2, 1, 0, 0, 0, 0, 0),
+('CC010', 1, 0, 0, 0, 1, 0, 0),
+('CC010', 2, 0, 0, 0, 1, 0, 0),
+('DD003', 3, 0, 1, 1, 0, 0, 0),
+('DD006', 3, 1, 1, 1, 0, 0, 0),
+('DD008', 3, 3, 1, 0, 0, 0, 0),
+('AA000', 1, 0, 0, 0, 0, 1, 0),
+('AA000', 2, 0, 0, 0, 0, 2, 0),
+('AA001', 1, 0, 1, 1, 0, 0, 0),
+('AA001', 2, 0, 1, 0, 0, 0, 0),
+('AA004', 1, 0, 0, 1, 0, 0, 0),
+('AA009', 1, 2, 1, 0, 0, 0, 0),
+('AA010', 1, 1, 0, 0, 0, 0, 0),
+('AA010', 2, 2, 0, 1, 0, 0, 0),
+('BB000', 3, 0, 0, 0, 0, 4, 0),
+('BB002', 3, 0, 0, 1, 0, 0, 0),
+('BB003', 3, 0, 0, 1, 0, 0, 0),
+('BB005', 3, 0, 0, 1, 0, 0, 0),
+('BB007', 3, 0, 0, 1, 0, 0, 0),
+('CC000', 1, 0, 0, 0, 0, 2, 0),
+('CC002', 1, 1, 0, 1, 0, 0, 0),
+('CC008', 1, 1, 1, 1, 0, 0, 0),
+('CC008', 2, 1, 0, 0, 0, 0, 0),
+('CC010', 1, 0, 0, 0, 1, 0, 0),
+('CC010', 2, 0, 0, 0, 1, 0, 0),
+('DD003', 3, 0, 1, 1, 0, 0, 0),
+('DD006', 3, 1, 1, 1, 0, 0, 0),
+('DD008', 3, 3, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -572,7 +657,7 @@ CREATE TABLE `users_followers` (
 
 INSERT INTO `users_followers` (`ID`, `follows`) VALUES
 (6, 5),
-(11, 6);
+(6, 5);
 
 -- --------------------------------------------------------
 
@@ -592,7 +677,6 @@ CREATE TABLE `users_igrac` (
 INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 (5, 'DD002'),
 (6, 'AA001'),
-(6, 'AA010'),
 (6, 'CC002');
 
 -- --------------------------------------------------------
@@ -603,15 +687,17 @@ INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 
 CREATE TABLE `users_votes` (
   `ID` int(11) NOT NULL,
-  `reg_br_igr` varchar(15) NOT NULL
+  `reg_br_igr` varchar(15) NOT NULL,
+  `voteDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users_votes`
 --
 
-INSERT INTO `users_votes` (`ID`, `reg_br_igr`) VALUES
-(6, 'AA010');
+INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`) VALUES
+(6, 'AA010', '0000-00-00'),
+(6, 'CC008', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -635,6 +721,18 @@ INSERT INTO `utakmica` (`utak_id`, `domaci`, `gosti`, `natj_id`) VALUES
 ('UTA2', 'Barcelona', 'Real Madrid', 'LP'),
 ('UTA3', 'Rijeka', 'Dinamo Zagreb', 'HNL');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weeks`
+--
+
+CREATE TABLE `weeks` (
+  `weekNo` int(11) NOT NULL,
+  `startDate` date NOT NULL,
+  `endDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -652,6 +750,12 @@ ALTER TABLE `igrac`
   ADD PRIMARY KEY (`reg_br_igr`),
   ADD KEY `fk_Igrac_Pozicija1_idx` (`pozicija_id`),
   ADD KEY `fk_Igrac_Klub1_idx` (`klub_id`);
+
+--
+-- Indexes for table `igrac_natjecanje`
+--
+ALTER TABLE `igrac_natjecanje`
+  ADD KEY `reg_br_igr` (`reg_br_igr`,`ime_natj`);
 
 --
 -- Indexes for table `service_table`
@@ -684,6 +788,12 @@ ALTER TABLE `users_igrac`
 ALTER TABLE `utakmica`
   ADD PRIMARY KEY (`utak_id`),
   ADD KEY `fk_Utakmica_Natjecanje1_idx` (`natj_id`);
+
+--
+-- Indexes for table `weeks`
+--
+ALTER TABLE `weeks`
+  ADD PRIMARY KEY (`weekNo`);
 
 --
 -- AUTO_INCREMENT for dumped tables
