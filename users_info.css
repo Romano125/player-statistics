@@ -54,3 +54,7 @@
 #foll2, #foll1 {
 	cursor: pointer;
 }
+
+.profile {
+	position: flex;
+}

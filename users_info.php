@@ -215,7 +215,7 @@
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "<img src='" . $r['user_photo'] ."' style='text-align: center;' height='75px' width='75px'>";
+                                                echo "<img id='profile' src='" . $r['user_photo'] ."' style='text-align: center;' height='75px' width='75px'>";
                                                 break;
                                             }
 
@@ -331,71 +331,10 @@
                                     ?>
                                 </div> 
                             </div>
-             
-                            <div class="container">
-                                <h3>Follows</h3>
-                                <hr width="100%">
-                                <div class="container">  
-                                    <?php 
-                                        if( isset($_GET['id']) ) $id = $_GET['id'];
-
-                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
-
-                                        $res = $db->query($q);
-
-                                        if( $res->num_rows == 0 ) {
-                                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
-                                        }else {
-                                            while( $r = $res->fetch_assoc() ) {
-                                                echo "<div class='row'>";
-                                                    echo "<div class=col-md-6>
-                                                            <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
-                                                        </div>";
-                                                    echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                            Name: " . $r['name'] . "</br>
-                                                            Last name:" . $r['last_name'] ."</br>
-                                                            E-mail: " . $r['e_mail'] . "
-                                                        </div>";
-                                                echo "</div>";
-                                                echo "<hr width='100%'>";
-                                            }
-                                        }                                                                           
-                                    ?>
-                                </div>
-                            </div>
 
                             <div class="container">
-                                <h3>Followers</h3>
+                                <h3>Activity graph</h3>
                                 <hr width="100%">
-                                <div class="container">  
-                                    <?php 
-                                        if( isset($_GET['id']) ) $id = $_GET['id'];
-
-                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                        $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
-
-                                        $res = $db->query($q);
-
-                                        if( $res->num_rows == 0 ) {
-                                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
-                                        }else {
-                                            while( $r = $res->fetch_assoc() ) {
-                                                echo "<div class='row'>";
-                                                    echo "<div class=col-md-6>
-                                                            <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
-                                                        </div>";
-                                                    echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                            Name: " . $r['name'] . "</br>
-                                                            Last name:" . $r['last_name'] ."</br>
-                                                            E-mail: " . $r['e_mail'] . "
-                                                        </div>";
-                                                echo "</div>";
-                                                echo "<hr width='100%'>";
-                                            }
-                                        }                                                                           
-                                    ?>
-                                </div>
                             </div>
                         </div>
 
