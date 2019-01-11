@@ -17,7 +17,7 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
-        <link rel="stylesheet" type="text/css" href="player.css">
+        <link rel="stylesheet" type="text/css" href="users_info.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -25,6 +25,72 @@
         
     </head>
     <body style="background-color: #e6ffff">
+        <div class="bg-modal1">
+            <div class="modal-content col-md-4 pre-scrollable">
+                <h3>Followers</h3>
+                <hr width="100%">
+                <div class="close">+</div>
+                <?php 
+                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                    $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                    $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
+
+                    $res = $db->query($q);
+
+                    if( $res->num_rows == 0 ) {
+                        echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                    }else {
+                        while( $r = $res->fetch_assoc() ) {
+                                echo "<div class=col-md-6>
+                                        <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                    </div>";
+                                echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                        Name: " . $r['name'] . "</br>
+                                        Last name:" . $r['last_name'] ."</br>
+                                        E-mail: " . $r['e_mail'] . "
+                                    </div>";
+                            echo "<hr width='100%'>";
+                        }
+                    }
+
+                ?>
+            </div>
+        </div>
+
+        <div class="bg-modal2">
+            <div class="modal-content col-md-4 pre-scrollable">
+                <h3>Follows</h3>
+                <hr width="100%">
+                <div class="close">+</div>
+                <?php 
+                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                    $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
+                    $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
+
+                    $res = $db->query($q);
+
+                    if( $res->num_rows == 0 ) {
+                        echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                    }else {
+                        while( $r = $res->fetch_assoc() ) {
+                            echo "<div class='row'>";
+                                echo "<div class=col-md-6>
+                                        <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                    </div>";
+                                echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                        Name: " . $r['name'] . "</br>
+                                        Last name:" . $r['last_name'] ."</br>
+                                        E-mail: " . $r['e_mail'] . "
+                                    </div>";
+                            echo "</div>";
+                            echo "<hr width='100%'>";
+                        }
+                    }
+                ?>
+            </div>
+        </div>
         <?php 
         	$s = '';
             if( isset($_SESSION['priv']) ) {
@@ -125,6 +191,7 @@
             <div id="page-content-wrapper" style="background-color: white;">
                 
                 <div class="container-fluid">
+
                     <div class="row align-items-center">
 
                         <div class="col-md-8">
@@ -170,7 +237,7 @@
                                                             <td>FOLLOWERS</t> <td>FOLLOWS</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>" . $foll2 . "</t> <td>" . $foll1 . "</td>
+                                                            <td id='foll2'>" . $foll2 . "</t> <td id='foll1'>" . $foll1 . "</td>
                                                         </tr>
                                                     </table>
 		                                        </div>";
@@ -338,7 +405,7 @@
             </div>
         </div>
 
-        <script type="text/javascript" src='player.js'></script>
+        <script type="text/javascript" src='users_info.js'></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
