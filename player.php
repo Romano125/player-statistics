@@ -27,7 +27,7 @@
     </head>
     <body style="background-color: #e6ffff">
         <div class="bg-modal">
-            <div class="modal-content col-md-4">
+            <div class="modal-content col-md-4 pre-scrollable">
                 <h3>Voters</h3>
                 <hr width="100%">
                 <div class="close">+</div>
@@ -44,11 +44,11 @@
                         echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                     }else{
                         while( $r = $res->fetch_assoc() ) {
-                            echo "<div class='row'>
+                            echo "
                                 <a href='settings.php' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
                                 Name: " . $r['name'] . "<br>
                                 Last name: " . $r['last_name'] . "<hr width='100%'>
-                                </div>";
+                                ";
                         }
                     }
 
@@ -367,7 +367,7 @@
                                             ]);
                                             
                                             // Optional; add a title and set the width and height of the chart
-                                            var options = {'width':550, 'height':400};
+                                            var options = {'width':300, 'height':300};
                                             
                                             // Display the chart inside the <div> element with id='piechart'
                                             var chart = new google.visualization.PieChart(document.getElementById('graf'));
@@ -407,8 +407,8 @@
                                             }
                                         }                                                                           
                                     ?>
+                                </div>
                             </div>
-                        </div>
 
                     </div>
                 </div>
