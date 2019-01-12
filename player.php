@@ -36,7 +36,7 @@
 
                     $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                    $q = "SELECT user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "'";
+                    $q = "SELECT user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
 
                     $res = $db->query($q);
 

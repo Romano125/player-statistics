@@ -307,7 +307,7 @@
                                     	if( isset($_GET['id']) ) $id = $_GET['id'];
 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                         $q = "SELECT reg_br_igr, ime, prezime, votes,pImage  FROM igrac JOIN users_votes using(reg_br_igr) WHERE ID=" . $id . " ORDER BY votes";
+                                         $q = "SELECT reg_br_igr, ime, prezime, votes,pImage  FROM igrac JOIN users_votes using(reg_br_igr) WHERE ID=" . $id .  " AND active =  1 ORDER BY votes";
 
                                          $res = $db->query($q);
 

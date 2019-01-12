@@ -10,7 +10,10 @@
 		$db->query($q);
 	}
 
-	$q = "DELETE FROM users_votes";
+	$q = "UPDATE users_votes SET active = 0 WHERE active = 1";
+	$db->query($q);
+
+	$q = "UPDATE service_table SET val = val + 1 WHERE idService = 7";
 	$db->query($q);
 
 	header('Location: app.php');

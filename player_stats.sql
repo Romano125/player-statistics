@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2019 at 03:27 PM
+-- Generation Time: Jan 12, 2019 at 03:59 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -218,7 +218,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '1.25M', 'https://tmssl.akamaized.net//images/portrait/header/102249-1451058822.png?lm=1451058834'),
 ('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '3.00M', 'https://tmssl.akamaized.net//bilder/spielerfotos/s_61380_260_2012_11_20_1.jpg?lm=0'),
 ('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/45425-1437398493.jpg?lm=1437398583'),
-('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 1, 'GK', 'BAR', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/74857-1476949803.jpg?lm=1476949839'),
+('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 0, 'GK', 'BAR', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/74857-1476949803.jpg?lm=1476949839'),
 ('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/231572-1474546433.jpg?lm=1474546447'),
 ('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 0, 'DEF', 'BAR', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18944-1454670060.jpg?lm=1454670159'),
 ('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/19981-1465280515.jpg?lm=1465280533'),
@@ -226,7 +226,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '65.00M', 'https://tmssl.akamaized.net//images/portrait/header/32467-1533819327.jpg?lm=1533819348'),
 ('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '12.00M', 'https://tmssl.akamaized.net//images/portrait/header/165007-1447239749.jpg?lm=1447239790'),
 ('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '6.75M', 'https://tmssl.akamaized.net//images/portrait/header/7600-1464872266.jpg?lm=1464872283'),
-('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 1, 'FWD', 'BAR', '160.00M', 'https://tmssl.akamaized.net//images/portrait/header/28003-1510231943.jpg?lm=1510231982'),
+('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 0, 'FWD', 'BAR', '160.00M', 'https://tmssl.akamaized.net//images/portrait/header/28003-1510231943.jpg?lm=1510231982'),
 ('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/44352-1453896733.jpg?lm=1453896745'),
 ('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/65230-1453896822.jpg?lm=1453896799'),
 ('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 0, 'GK', 'DZG', '1.75M', 'https://tmssl.akamaized.net//images/portrait/header/205927-1525072466.jpg?lm=1525072478'),
@@ -482,7 +482,8 @@ INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
 (3, 0, 'm'),
 (4, 0, 'Spanjolska Liga'),
 (5, 0, 'Dinamo Zagreb'),
-(6, 0, '');
+(6, 0, ''),
+(7, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -691,17 +692,23 @@ INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 CREATE TABLE `users_votes` (
   `ID` int(11) NOT NULL,
   `reg_br_igr` varchar(15) NOT NULL,
-  `voteDate` date NOT NULL
+  `voteDate` date NOT NULL,
+  `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users_votes`
 --
 
-INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`) VALUES
-(6, 'CC008', '2019-01-12'),
-(7, 'AA001', '2019-01-12'),
-(6, 'CC000', '2019-01-12');
+INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`, `active`) VALUES
+(6, 'CC008', '2019-01-12', 0),
+(7, 'AA001', '2019-01-12', 0),
+(6, 'CC000', '2019-01-12', 0),
+(6, 'CC003', '2019-01-12', 0),
+(6, 'CC001', '2019-01-12', 0),
+(6, 'CC001', '2019-01-12', 0),
+(6, 'CC001', '2019-01-12', 0),
+(6, 'AA001', '2019-01-12', 1);
 
 -- --------------------------------------------------------
 
