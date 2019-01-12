@@ -94,7 +94,7 @@
         <?php 
         	$s = '';
             if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
             }
 
             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
@@ -307,7 +307,7 @@
                                     	if( isset($_GET['id']) ) $id = $_GET['id'];
 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
-                                         $q = "SELECT reg_br_igr, ime, prezime, votes FROM igrac JOIN users_votes using(reg_br_igr) WHERE ID=" . $id . " ORDER BY votes";
+                                         $q = "SELECT reg_br_igr, ime, prezime, votes,pImage  FROM igrac JOIN users_votes using(reg_br_igr) WHERE ID=" . $id . " ORDER BY votes";
 
                                          $res = $db->query($q);
 
@@ -317,7 +317,7 @@
                                          	while($row = $res->fetch_assoc()){
 	                                         	echo "<div class='row'>";
 		                                            echo "<div class=col-md-6>
-		                                            		<a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='https://img.uefa.com/imgml/2016/ucl/social/og-statistics.png' style='text-align: center;' height='55px' width='55px'></a>
+		                                            		<a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."'  style='text-align: center;' height='119px' width='91px'></a>
 		                                            	</div>";
 		                                            echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
 		                                            		Name: " . $row['ime'] . "</br>

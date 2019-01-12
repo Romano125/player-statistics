@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$showDate = date("Ymd");
 
 	$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
@@ -8,7 +9,7 @@
 	$res = $db->query($q);
 
 	if( $res->num_rows == 0 ) {
-		$q = "INSERT INTO users_votes (ID, reg_br_igr) VALUES (" . $_SESSION['id'] . ", '" . $_GET['id'] . "')";
+		$q = "INSERT INTO users_votes (ID, reg_br_igr, voteDate) VALUES (" . $_SESSION['id'] . ", '" . $_GET['id'] . "', '$showDate')";
 		$db->query($q);
 		$q = "UPDATE igrac SET votes=votes+1 WHERE reg_br_igr='" . $_GET['id'] . "'";
 		$db->query($q);

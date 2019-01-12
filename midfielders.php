@@ -37,7 +37,7 @@
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
             }
 
             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');

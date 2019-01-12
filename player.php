@@ -36,7 +36,7 @@
 
                     $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                    $q = "SELECT user_photo, name, last_name FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "'";
+                    $q = "SELECT user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "'";
 
                     $res = $db->query($q);
 
@@ -47,7 +47,8 @@
                             echo "
                                 <a href='settings.php' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
                                 Name: " . $r['name'] . "<br>
-                                Last name: " . $r['last_name'] . "<hr width='100%'>
+                                Last name: " . $r['last_name'] . "<br>
+                                Voted on: ".$r['voteDate']."<hr width='100%'>
                                 ";
                         }
                     }
@@ -58,7 +59,7 @@
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
             }
 
             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
