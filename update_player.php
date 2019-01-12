@@ -2,66 +2,61 @@
 
 	$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-	if( isset($_POST['goal+']) ) {
-		$q = "UPDATE igrac SET br_gol=br_gol+1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+	$br = 0;
+	$br = $br + $_POST['gLiga_Prvaka'];
+	echo $br;
 
-	}else if( isset($_POST['goal-']) ) {
-		$tmp = "SELECT br_gol FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
-		$sql_query = $db->prepare($tmp);
-		$sql_query->execute();
-		$res = $sql_query->get_result()->fetch_assoc();
-		echo $res['br_gol'];
-		if ($res['br_gol'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_gol=br_gol-1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+	$q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $_GET['id'] . "'";
 
-	}else if( isset($_POST['ass+']) ) {
-		$q = "UPDATE igrac SET br_asist = br_asist + 1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+    $res = $db->query($q);
 
-	}else if( isset($_POST['ass-']) ) {
-		$tmp = "SELECT br_asist FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
-		$sql_query = $db->prepare($tmp);
-		$sql_query->execute();
-		$res = $sql_query->get_result()->fetch_assoc();
-		echo $res['br_asist'];
-		if ($res['br_asist'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_asist=br_asist-1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+    $natj;
+    while( $r = $res->fetch_assoc() ) {
+    	$natj = str_replace(' ', '_', $r['ime_natj']);
+    	if( isset($_POST['g' . $natj]) ) {
+    		echo $_POST['g' . $natj];
+			$q = "UPDATE igrac_natjecanje SET br_gol=br_gol+" . $_POST['g' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
 
-	}else if( isset($_POST['yell+']) ) {
-		$q = "UPDATE igrac SET br_zkarton=br_zkarton+1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$q = "UPDATE igrac SET br_gol=br_gol+" . $_POST['g' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
+		if( isset($_POST['a' . $natj]) ) {
+			$q = "UPDATE igrac_natjecanje SET br_asist=br_asist+" . $_POST['a' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
 
-	}else if( isset($_POST['yell-']) ) {
-		$tmp = "SELECT br_zkarton FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
-		$sql_query = $db->prepare($tmp);
-		$sql_query->execute();
-		$res = $sql_query->get_result()->fetch_assoc();
-		echo $res['br_zkarton'];
-		if ($res['br_zkarton'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_zkarton=br_zkarton-1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$q = "UPDATE igrac SET br_asist=br_asist+" . $_POST['a' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
+		if( isset($_POST['s' . $natj]) ) {
+			$q = "UPDATE igrac_natjecanje SET br_obrane=br_obrane+" . $_POST['s' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
 
-	}else if( isset($_POST['red+']) ) {
-		$q = "UPDATE igrac SET br_ckarton=br_ckarton+1 WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$q = "UPDATE igrac SET br_obrane=br_obrane+" . $_POST['s' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
+		if( isset($_POST['y' . $natj]) ) {
+			$q = "UPDATE igrac_natjecanje SET br_zkarton=br_zkarton+" . $_POST['y' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
 
-	}else if( isset($_POST['red-']) ) {
-		$tmp = "SELECT br_ckarton FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
-		$sql_query = $db->prepare($tmp);
-		$sql_query->execute();
-		$res = $sql_query->get_result()->fetch_assoc();
-		echo $res['br_ckarton'];
-		if ($res['br_ckarton'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_ckarton=br_ckarton-1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
-	}else if( isset($_POST['sav+']) ) {
-		$q = "UPDATE igrac SET br_obrane=br_obrane+1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
-	}else if( isset($_POST['sav-']) ) {
-		$tmp = "SELECT br_obrane FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
-		$sql_query = $db->prepare($tmp);
-		$sql_query->execute();
-		$res = $sql_query->get_result()->fetch_assoc();
-		echo $res['br_obrane'];
-		if ($res['br_obrane'] < 1) goto flag;
-		$q = "UPDATE igrac SET br_obrane=br_obrane-1 WHERE reg_br_igr='" . $_GET['id'] . "'";	
+			$q = "UPDATE igrac SET br_zkarton=br_zkarton+" . $_POST['y' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
+		if( isset($_POST['r' . $natj]) ) {
+			$q = "UPDATE igrac_natjecanje SET br_ckarton=br_ckarton+" . $_POST['r' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
+
+			$q = "UPDATE igrac SET br_ckarton=br_ckarton+" . $_POST['r' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
+		if( isset($_POST['p' . $natj]) ) {
+			$q = "UPDATE igrac_natjecanje SET br_utakmica=br_utakmica+" . $_POST['p' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "' AND ime_natj='" . $r['ime_natj'] . "'";
+			$db->query($q);
+
+			$q = "UPDATE igrac SET br_utakmica=br_utakmica+" . $_POST['p' . $natj] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+		}
 	}
 
-	$db->query($q);
-flag:
 	header('Location: player.php?id=' . $_GET['id']);
 ?>

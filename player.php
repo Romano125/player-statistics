@@ -193,28 +193,29 @@
                                             break;
                                         }
 
-                                        echo "<ul class='nav nav-tabs'>
-                                                  <li class='nav-item'>
-                                                    <a class='nav-link active' href='#'>Stats</a>
-                                                  </li>";
+                                        echo "<nav>
+                                              <div class='nav nav-tabs' id='nav-tab' role='tablist'>
+                                                <a class='nav-item nav-link active' id='nav-stats-tab' data-toggle='tab' href='#nav-stats' role='tab' aria-controls='nav-stats' aria-selected='true'>Stats</a>";
 
                                         $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
 
                                         $res = $db->query($q);
 
+                                        $c = 1;
                                         while( $r = $res->fetch_assoc() ) {
-                                            echo "<li class='nav-item'>
-                                                    <a class='nav-link' href='#'>" . $r['ime_natj'] . "</a>
-                                                  </li>";
+                                            echo "<a class='nav-item nav-link' id='nav-" . $c . "-tab' data-toggle='tab' href='#nav-" . $c . "' role='tab' aria-controls='nav-" . $c . "' aria-selected='false'>" . $r['ime_natj'] . "</a>";
+                                            $c++;
                                         }
 
                                         if( isset($_SESSION['priv']) ) {
-                                            if( $_SESSION['priv'] == 1 ) echo "<li class='nav-item'><a class='nav-link' id='edit' href='#'>Edit</a></li>";
+                                            if( $_SESSION['priv'] == 1 ) echo "<a class='nav-item nav-link' id='nav-edit-tab' data-toggle='tab' href='#nav-edit' role='tab' aria-controls='nav-edit' aria-selected='false'>Edit</a>";
                                         }
 
-                                        echo "</ul>";
+                                        echo "</div>
+                                            </nav>";
 
                                     ?>
+
                                 </div>
 
                                 <div class="row stats">
@@ -232,109 +233,314 @@
                                         
                                     </div>
                                     <div class="col-md-8">
-                                        <?php
-                                            
-                                            if( isset($_GET['id']) ) $id = $_GET['id'];
+                                        <div class='tab-content' id='nav-tabContent'>
+                                            <div class='tab-pane fade show active' id='nav-stats' role='tabpanel' aria-labelledby='nav-stats-tab'>
+                                                <?php
+                                                    
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];
 
-                                           
+                                                    $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
 
-                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+                                                    $res = $db->query($q);
+                                                
+                                                    
 
-                                            $res = $db->query($q);
-                                        
-                                            
-
-                                            if( $res->num_rows == 0 ) {
-                                                echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                    </form>";
-                                            }else{
-                                                $f = 0;
-                                                while( $r = $res->fetch_assoc() ) {
-                                                    if( $r['reg_br_igr'] == $id ) $f = 1;
-                                                }
-                                                if( $f == 1 ) {
-                                                    echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                    <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
-                                                    </form>";
-                                                }else{
-                                                    echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
-                                                    </form>";
-                                                }
-                                            }
-
-
-                                            $q = "SELECT ime, prezime, br_gol, br_asist, br_obrane, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz, pozicija_id, price FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
-                                            
-                                            $res = $db->query($q);
-
-                                            $f = 0;
-                                            if( isset($_SESSION['priv']) ) {
-                                                if( $_SESSION['priv'] == 1 ) $f = 1;
-                                            }
-                                            while( $r = $res->fetch_assoc() ) {
-                                                if( $f == 1 ) {
-                                                    echo "Name: " . $r['ime'] . "<br>";
-                                                    echo "Last name: " . $r['prezime'] . "<br>";
-                                                    echo "Club: " . $r['klub_ime'] . "<br>";
-                                                    echo "Jersy number: " . $r['br_dres'] . "<br>";
-                                                    echo "Field position: " . $r['ime_poz'] . "<br>";
-                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
-                                                            Total goals: " . $r['br_gol'] . "
-                                                            <button name='goal+'>+</button>
-                                                            <button name='goal-'>-</button>
+                                                    if( $res->num_rows == 0 ) {
+                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
                                                             </form>";
-                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
-                                                            Total assists: " . $r['br_asist'] . "
-                                                            <button name='ass+'>+</button>
-                                                            <button name='ass-'>-</button>
+                                                    }else{
+                                                        $f = 0;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                        }
+                                                        if( $f == 1 ) {
+                                                            echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
                                                             </form>";
-                                                    if( !strcmp($r['pozicija_id'], "GK") ) {
-                                                        echo "<form action='update_player.php?id=" . $id . "' method='POST'>
-                                                            Total saves: " . $r['br_obrane'] . "
-                                                            <button name='sav+'>+</button>
-                                                            <button name='sav-'>-</button>
+                                                        }else{
+                                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
                                                             </form>";
+                                                        }
                                                     }
-                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
-                                                            Total yellow cards: " . $r['br_zkarton'] . "
-                                                            <button name='yell+'>+</button>
-                                                            <button name='yell-'>-</button>
-                                                            </form>";
-                                                    echo "<form action='update_player.php?id=" . $id . "' method='POST'>
-                                                            Total red cards: " . $r['br_ckarton'] . "
-                                                            <button name='red+'>+</button>
-                                                            <button name='red-'>-</button>
-                                                            </form>";
-                                                    echo "Market value: " . $r['price'] . "€<br>";
-                                                }else{
-                                                    echo "Name: " . $r['ime'] . "<br>";
-                                                    echo "Last name: " . $r['prezime'] . "<br>";
-                                                    echo "Club: " . $r['klub_ime'] . "<br>";
-                                                    echo "Jersy number: " . $r['br_dres'] . "<br>";
-                                                    echo "Field position: " . $r['ime_poz'] . "<br>";
-                                                    echo "Total goals: " . $r['br_gol'] . "<br>";
-                                                    echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                    if( !strcmp($r['pozicija_id'], "GK") ) echo "Total saves: " . $r['br_obrane'] . "<br>";
-                                                    echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                    echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                    echo "Market value: " . $r['price'] . "€<br>";
-                                                }
-                                                break;
-                                            }
 
-                                            if( isset($_GET['voted']) ) {
-                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
-                                                echo "<button id='btn_show' class='badge badge-info'>Show voters</button>
-                                                    <span style='color:red'>Vas glas je vec zaprimljen</span>";
-                                            }else{
-                                                echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
-                                                echo "<button id='btn_show' class='badge badge-info'>Show voters</button>";
-                                            }
 
-                                            mysqli_free_result($res);
-                                        ?>
+                                                    $q = "SELECT ime, prezime, br_gol, br_asist, br_obrane, klub_ime, br_dres, br_zkarton, br_ckarton, ime_poz, pozicija_id, price, votes, br_utakmica FROM igrac NATURAL JOIN klub NATURAL JOIN pozicija WHERE reg_br_igr='" . $id . "'";
+                                                    
+                                                    $res = $db->query($q);
+
+                                                    $f = 0;
+                                                    if( isset($_SESSION['priv']) ) {
+                                                        if( $_SESSION['priv'] == 1 ) $f = 1;
+                                                    }
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        echo "Name: " . $r['ime'] . "<br>";
+                                                        echo "Last name: " . $r['prezime'] . "<br>";
+                                                        echo "Club: " . $r['klub_ime'] . "<br>";
+                                                        echo "Jersy number: " . $r['br_dres'] . "<br>";
+                                                        echo "Field position: " . $r['ime_poz'] . "<br>";
+                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                        if( !strcmp($r['pozicija_id'], "GK") ) echo "Total saves: " . $r['br_obrane'] . "<br>";
+                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
+                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
+                                                        echo "Market value: " . $r['price'] . "€<br>";
+                                                        echo "Total votes this week: " . $r['votes'] . "<br>";
+                                                        echo "Total games played: " . $r['br_utakmica'] . "<br>";
+                                                        break;
+                                                    }
+
+                                                    if( isset($_GET['voted']) ) {
+                                                        echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
+                                                        echo "<button id='btn_show' class='badge badge-info'>Show voters</button>
+                                                            <span style='color:red'>Vas glas je vec zaprimljen</span>";
+                                                    }else{
+                                                        echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
+                                                        echo "<button id='btn_show' class='badge badge-info'>Show voters</button>";
+                                                    }
+
+                                                    mysqli_free_result($res);
+                                                ?>
+                                            </div>
+                                            <div class='tab-pane fade show' id='nav-1' role='tabpanel' aria-labelledby='nav-1-tab'>
+                                                <?php
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                                    $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                                    $res = $db->query($q);
+                                                
+                                                    
+
+                                                    if( $res->num_rows == 0 ) {
+                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                    }else{
+                                                        $f = 0;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                        }
+                                                        if( $f == 1 ) {
+                                                            echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }else{
+                                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }
+                                                    }
+
+                                                    $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $natj;
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        $natj = $r['ime_natj'];
+                                                        break;
+                                                    }
+
+                                                    $q = "SELECT pozicija_id FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $f = 0;
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        if( !strcmp($r['pozicija_id'], "GK") ) $f = 1;
+                                                    }
+
+                                                    $q = "SELECT br_gol, br_asist, br_obrane, br_zkarton, br_ckarton, br_utakmica FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "' AND ime_natj='" . $natj . "'";
+                                                    
+                                                    $res = $db->query($q);
+
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
+                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
+                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        break;
+                                                    }
+
+                                                    mysqli_free_result($res);
+                                                ?>
+                                            </div>
+                                            <div class='tab-pane fade show' id='nav-2' role='tabpanel' aria-labelledby='nav-2-tab'>
+                                                <?php
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                                    $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                                    $res = $db->query($q);
+                                                
+                                                    
+
+                                                    if( $res->num_rows == 0 ) {
+                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                    }else{
+                                                        $f = 0;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                        }
+                                                        if( $f == 1 ) {
+                                                            echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }else{
+                                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }
+                                                    }
+
+                                                    $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $natj;
+                                                    $c = 1;                         
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        $natj = $r['ime_natj'];
+                                                        if( $c == 2 ) break;
+                                                    }
+
+                                                    $q = "SELECT pozicija_id FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $f = 0;
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        if( !strcmp($r['pozicija_id'], "GK") ) $f = 1;
+                                                    }
+
+                                                    $q = "SELECT br_gol, br_asist, br_obrane, br_zkarton, br_ckarton, br_utakmica FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "' AND ime_natj='" . $natj . "'";
+                                                    
+                                                    $res = $db->query($q);
+
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
+                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
+                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        break;
+                                                    }
+
+                                                    mysqli_free_result($res);
+                                                ?>
+                                            </div>
+                                            <div class='tab-pane fade show' id='nav-2' role='tabpanel' aria-labelledby='nav-2-tab'>
+                                                <?php
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                                    $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                                    $res = $db->query($q);
+                                                
+                                                    
+
+                                                    if( $res->num_rows == 0 ) {
+                                                        echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                    }else{
+                                                        $f = 0;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                        }
+                                                        if( $f == 1 ) {
+                                                            echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }else{
+                                                            echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            </form>";
+                                                        }
+                                                    }
+
+                                                    $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $natj;
+                                                    $c = 1;                         
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        $natj = $r['ime_natj'];
+                                                        if( $c == 3 ) break;
+                                                    }
+
+                                                    $q = "SELECT pozicija_id FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                                    $res = $db->query($q);
+
+                                                    $f = 0;
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        if( !strcmp($r['pozicija_id'], "GK") ) $f = 1;
+                                                    }
+
+                                                    $q = "SELECT br_gol, br_asist, br_obrane, br_zkarton, br_ckarton, br_utakmica FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "' AND ime_natj='" . $natj . "'";
+                                                    
+                                                    $res = $db->query($q);
+
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
+                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
+                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        break;
+                                                    }
+
+                                                    mysqli_free_result($res);
+                                                ?>
+                                            </div>
+                                            <div class='tab-pane fade show' id='nav-edit' role='tabpanel' aria-labelledby='nav-edit-tab'>
+                                                    <?php
+                                                        if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                                        echo "<form action='update_player.php?id=" . $id . "' method='POST'>";
+
+                                                        $q = "SELECT pozicija_id FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                                        $res = $db->query($q);
+
+                                                        $f = 0;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            if( !strcmp($r['pozicija_id'], "GK") ) $f = 1;
+                                                        }
+
+                                                        $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
+
+                                                        $res = $db->query($q);
+
+                                                        $natj;
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            $natj = str_replace(' ', '_', $r['ime_natj']);
+                                                            echo "<input type='text' name='" . $id . "' style='display: none'>";
+                                                            echo "<b>" . $r['ime_natj'] . ":</b><br>";
+                                                            echo "Match: <input type='text' placeholder='home'> vs <input type='text' placeholder='away'><br>
+                                                                Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
+                                                                Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
+                                                            if( $f == 1 ) echo "Saves: <input type='number' name='s" . $natj . "' min='0' value='0'><br>";
+                                                            echo "Yellow cards: <input type='number' name='y" . $natj . "' min='0' value='0'><br>
+                                                                Red cards: <input type='number' name='r" . $natj . "' min='0' value='0'><br>
+                                                                Played: <input type='number' name='p" . $natj . "' min='0' max='1' value='0'><br>
+                                                                ";
+                                                        }
+                                                    ?>
+                                                    <button type='submit' class='btn btn-dark home-btn'>Save</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
