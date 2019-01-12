@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2019 at 10:48 PM
+-- Generation Time: Jan 12, 2019 at 03:27 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -197,7 +197,7 @@ CREATE TABLE `igrac` (
 
 INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`, `price`, `pImage`) VALUES
 ('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
-('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
+('AA001', 'Luka', 'Modric', 10, 0, 2, 1, 0, 0, 0, 1, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
 ('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/138927-1413206306.jpg?lm=1433143630'),
 ('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/44501-1413206117.jpg?lm=1433144595'),
 ('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM', '30.00M', 'https://tmssl.akamaized.net//images/portrait/header/25557-1413190249.jpg?lm=1433144128'),
@@ -206,8 +206,8 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/85288-1523366774.jpg?lm=1523366787'),
 ('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/51471-1410339990.jpg?lm=1433144687'),
 ('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM', '100.00M', 'https://tmssl.akamaized.net//images/portrait/header/8198-1515761767.jpg?lm=1515761786'),
-('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 1, 'FWD', 'RM', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18922-1544774342.jpg?lm=1544774361'),
-('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 0, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
+('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 0, 'FWD', 'RM', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18922-1544774342.jpg?lm=1544774361'),
+('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 1, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
 ('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ', '4.00M', 'https://tmssl.akamaized.net//images/portrait/header/179895-1532072097.jpg?lm=1532072195'),
 ('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '999M', 'https://tmssl.akamaized.net//images/portrait/header/214625-1497515701.jpg?lm=1497515721'),
 ('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '1.50M', 'https://tmssl.akamaized.net//images/portrait/header/165381-1515140234.jpg?lm=1515140266'),
@@ -218,7 +218,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('BB008', 'Maxwell', 'Acosti', 14, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '1.25M', 'https://tmssl.akamaized.net//images/portrait/header/102249-1451058822.png?lm=1451058834'),
 ('BB009', 'Mario', 'Gavranovic', 17, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '3.00M', 'https://tmssl.akamaized.net//bilder/spielerfotos/s_61380_260_2012_11_20_1.jpg?lm=0'),
 ('BB010', 'Alexandar', 'Gorgon', 11, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'RIJ', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/45425-1437398493.jpg?lm=1437398583'),
-('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 0, 'GK', 'BAR', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/74857-1476949803.jpg?lm=1476949839'),
+('CC000', 'Marc', 'Ter Stegen', 1, 0, 0, 3, 0, 2, 0, 1, 'GK', 'BAR', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/74857-1476949803.jpg?lm=1476949839'),
 ('CC001', 'Nelson', 'Semedo', 2, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/231572-1474546433.jpg?lm=1474546447'),
 ('CC002', 'Gerard', 'Pique', 3, 1, 0, 1, 0, 0, 0, 0, 'DEF', 'BAR', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18944-1454670060.jpg?lm=1454670159'),
 ('CC003', 'Javier ', 'Mascherano', 14, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'BAR', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/19981-1465280515.jpg?lm=1465280533'),
@@ -481,7 +481,8 @@ INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
 (2, 2, NULL),
 (3, 0, 'm'),
 (4, 0, 'Spanjolska Liga'),
-(5, 0, 'Dinamo Zagreb');
+(5, 0, 'Dinamo Zagreb'),
+(6, 0, '');
 
 -- --------------------------------------------------------
 
@@ -698,8 +699,9 @@ CREATE TABLE `users_votes` (
 --
 
 INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`) VALUES
-(6, 'AA010', '0000-00-00'),
-(6, 'CC008', '0000-00-00');
+(6, 'CC008', '2019-01-12'),
+(7, 'AA001', '2019-01-12'),
+(6, 'CC000', '2019-01-12');
 
 -- --------------------------------------------------------
 
