@@ -36,17 +36,26 @@
 
             $res = $db->query($q);
 
+            $foll = $res->num_rows;
+
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+            $res = $db->query($q);
+
+            $not = $res->num_rows;
+
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>";
-                                
-            if( $res->num_rows == 0 ) {
+            
+            $sum = $foll + $not;                
+            if( $foll == 0 && $not == 0 ) {
                 echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span>0</span></a></button>";
             }else {
-                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $res->num_rows . "</span></a></button>";
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $sum . "</span></a></button>";
             }
 
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
@@ -126,7 +135,7 @@
                 <div class="row align-items-center">
 
                     <div class="col-md-8">
-                      <h2 style="text-align: center;">Users</h2><br>
+                      <h2 style="text-align: center;">Notifications</h2><br>
                       
                       <div  id = "pagination_data"> <!--class = "table-responsive"-->
 
@@ -139,8 +148,9 @@
 
                         $res = $db->query($q);
 
+                        $fu = 0;
                         if( $res->num_rows == 0 ) {
-                            echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                            $fu = 1;
                         }else {
                             while( $r = $res->fetch_assoc() ) {
                                 echo "<div class='row'>
@@ -160,6 +170,21 @@
                                 </div><br><hr>";
                             }
                         }
+
+                        $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+                        $res = $db->query($q);
+
+                        $fn = 0;
+                        if( $res->num_rows != 0 ) {
+                            while( $r = $res->fetch_assoc() ) {
+                                echo $r['notification'] . "
+                                    <button type='button' class='btn btn-dark btn-sm' style='float: right'><a href='remove_notification.php?id=" . $_SESSION['id'] . "&not=" . $r['notification'] . "' style='text-decoration: none;color: white'>x</a></button>
+                                    <br><hr>";
+                            }
+                        }else $fn = 1;
+
+                        if( $fu == 0 && $fn == 0 ) echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                       ?>
 
                       <!--<script>

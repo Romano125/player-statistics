@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2019 at 11:56 PM
+-- Generation Time: Jan 13, 2019 at 08:22 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -197,7 +197,7 @@ CREATE TABLE `igrac` (
 
 INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`, `price`, `pImage`) VALUES
 ('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
-('AA001', 'Luka', 'Modric', 10, 0, 5, 1, 1, 0, 0, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
+('AA001', 'Luka', 'Modric', 10, 3, 7, 4, 1, 0, 6, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
 ('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/138927-1413206306.jpg?lm=1433143630'),
 ('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/44501-1413206117.jpg?lm=1433144595'),
 ('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM', '30.00M', 'https://tmssl.akamaized.net//images/portrait/header/25557-1413190249.jpg?lm=1433144128'),
@@ -207,7 +207,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/51471-1410339990.jpg?lm=1433144687'),
 ('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM', '100.00M', 'https://tmssl.akamaized.net//images/portrait/header/8198-1515761767.jpg?lm=1515761786'),
 ('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 0, 'FWD', 'RM', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18922-1544774342.jpg?lm=1544774361'),
-('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 1, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
+('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 2, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
 ('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ', '4.00M', 'https://tmssl.akamaized.net//images/portrait/header/179895-1532072097.jpg?lm=1532072195'),
 ('BB002', 'Leonard', 'Zuta', 8, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '999M', 'https://tmssl.akamaized.net//images/portrait/header/214625-1497515701.jpg?lm=1497515721'),
 ('BB003', 'Dario', 'Zuparic', 13, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RIJ', '1.50M', 'https://tmssl.akamaized.net//images/portrait/header/165381-1515140234.jpg?lm=1515140266'),
@@ -265,7 +265,7 @@ CREATE TABLE `igrac_natjecanje` (
 INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`, `br_gol`, `br_asist`, `br_ckarton`, `br_zkarton`, `br_obrane`, `br_utakmica`) VALUES
 ('AA000', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA000', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
-('AA001', 'Liga Prvaka', 3, 3, 0, 0, 0, 2),
+('AA001', 'Liga Prvaka', 6, 3, 0, 0, 0, 2),
 ('AA001', 'Spanjolska Liga', 0, 0, 1, 0, 0, 2),
 ('AA002', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA002', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
@@ -692,6 +692,18 @@ INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users_notifications`
+--
+
+CREATE TABLE `users_notifications` (
+  `ID` int(11) NOT NULL,
+  `notification` mediumtext NOT NULL,
+  `seen` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_votes`
 --
 
@@ -715,7 +727,8 @@ INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`, `active`) VALUES
 (6, 'CC001', '2019-01-12', 0),
 (6, 'CC001', '2019-01-12', 0),
 (6, 'AA001', '2019-01-12', 0),
-(6, 'CC000', '2019-01-12', 1);
+(6, 'CC000', '2019-01-12', 1),
+(6, 'BB000', '2019-01-13', 1);
 
 -- --------------------------------------------------------
 

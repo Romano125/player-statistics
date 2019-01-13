@@ -68,17 +68,26 @@
 
             $res = $db->query($q);
 
+            $foll = $res->num_rows;
+
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+            $res = $db->query($q);
+
+            $not = $res->num_rows;
+
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>";
-                                
-            if( $res->num_rows == 0 ) {
+            
+            $sum = $foll + $not;                
+            if( $foll == 0 && $not == 0 ) {
                 echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span>0</span></a></button>";
             }else {
-                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $res->num_rows . "</span></a></button>";
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $sum . "</span></a></button>";
             }
 
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
@@ -525,9 +534,8 @@
                                                         $natj;
                                                         while( $r = $res->fetch_assoc() ) {
                                                             $natj = str_replace(' ', '_', $r['ime_natj']);
-                                                            echo "<input type='text' name='" . $id . "' style='display: none'>";
                                                             echo "<b>" . $r['ime_natj'] . ":</b><br>";
-                                                            echo "Match: <input type='text' placeholder='home'> vs <input type='text' placeholder='away'><br>
+                                                            echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
                                                             if( $f == 1 ) echo "Saves: <input type='number' name='s" . $natj . "' min='0' value='0'><br>";

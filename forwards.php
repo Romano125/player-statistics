@@ -37,7 +37,7 @@
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Prijavljeni ste kao admin';
+                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
             }
 
             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
@@ -46,17 +46,26 @@
 
             $res = $db->query($q);
 
+            $foll = $res->num_rows;
+
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+            $res = $db->query($q);
+
+            $not = $res->num_rows;
+
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
                                 <div class='menu-icon'></div>
                                 <div class='menu-icon'></div></a>";
-                                
-            if( $res->num_rows == 0 ) {
+            
+            $sum = $foll + $not;                
+            if( $foll == 0 && $not == 0 ) {
                 echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span>0</span></a></button>";
             }else {
-                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $res->num_rows . "</span></a></button>";
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $sum . "</span></a></button>";
             }
 
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
