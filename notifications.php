@@ -38,7 +38,9 @@
 
             $foll = $res->num_rows;
 
-            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+            //$q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND reg_br_igr IN (SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . ") AND ID=" . $_SESSION['id'];
 
             $res = $db->query($q);
 
@@ -171,7 +173,9 @@
                             }
                         }
 
-                        $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+                        $q = "SELECT notification FROM users_notifications WHERE seen=1 AND reg_br_igr IN (SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . ") AND ID=" . $_SESSION['id'];
+
+                        //$q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
 
                         $res = $db->query($q);
 
@@ -184,7 +188,7 @@
                             }
                         }else $fn = 1;
 
-                        if( $fu == 0 && $fn == 0 ) echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                        if( $fu == 1 && $fn == 1 ) echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                       ?>
 
                       <!--<script>

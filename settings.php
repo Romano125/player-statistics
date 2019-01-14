@@ -39,7 +39,9 @@
 
             $foll = $res->num_rows;
 
-            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+            //$q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND reg_br_igr IN (SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . ") AND ID=" . $_SESSION['id'];
 
             $res = $db->query($q);
 
@@ -68,7 +70,6 @@
                     </table>
                 </div>"; 
         ?>
-
 
         <div id="wrapper">
 

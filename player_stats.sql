@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2019 at 08:22 PM
+-- Generation Time: Jan 14, 2019 at 12:23 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -196,8 +196,8 @@ CREATE TABLE `igrac` (
 --
 
 INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`, `price`, `pImage`) VALUES
-('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 3, 0, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
-('AA001', 'Luka', 'Modric', 10, 3, 7, 4, 1, 0, 6, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
+('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 5, 1, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
+('AA001', 'Luka', 'Modric', 10, 3, 7, 5, 1, 0, 7, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
 ('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/138927-1413206306.jpg?lm=1433143630'),
 ('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/44501-1413206117.jpg?lm=1433144595'),
 ('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM', '30.00M', 'https://tmssl.akamaized.net//images/portrait/header/25557-1413190249.jpg?lm=1433144128'),
@@ -263,10 +263,10 @@ CREATE TABLE `igrac_natjecanje` (
 --
 
 INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`, `br_gol`, `br_asist`, `br_ckarton`, `br_zkarton`, `br_obrane`, `br_utakmica`) VALUES
-('AA000', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
+('AA000', 'Liga Prvaka', 0, 0, 0, 0, 2, 0),
 ('AA000', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
 ('AA001', 'Liga Prvaka', 6, 3, 0, 0, 0, 2),
-('AA001', 'Spanjolska Liga', 0, 0, 1, 0, 0, 2),
+('AA001', 'Spanjolska Liga', 0, 0, 1, 1, 0, 2),
 ('AA002', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA002', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
 ('AA003', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
@@ -685,7 +685,9 @@ CREATE TABLE `users_igrac` (
 --
 
 INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
+(5, 'AA000'),
 (5, 'DD002'),
+(6, 'AA000'),
 (6, 'AA001'),
 (6, 'CC002');
 
@@ -697,6 +699,7 @@ INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 
 CREATE TABLE `users_notifications` (
   `ID` int(11) NOT NULL,
+  `reg_br_igr` varchar(100) NOT NULL,
   `notification` mediumtext NOT NULL,
   `seen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
