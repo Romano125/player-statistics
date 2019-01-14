@@ -82,7 +82,7 @@ a:hover {
 
 .top-menu {
 	background-color: #33ccff; 
-	height:100px; 
+	height:150px; 
 	align-items:center; 
 	top:0; 
 	position:sticky; 
@@ -96,8 +96,13 @@ a:hover {
 	top: 100px;
 }
 
-.table td{
+.card-img-top {
+	height: 150px;
+}
+
+.tablica {
 	padding: 0.40rem;
+	font-weight: bold;
 }
 
 .right-menu-onload {

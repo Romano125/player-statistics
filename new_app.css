@@ -11,8 +11,9 @@
 #team {
 	padding: 20px;
 	height: 650px;
-	width: 430px;
+	width: 480px;
 	margin-top: 50px;
-	background-image: url("https://ih1.redbubble.net/image.360456387.3989/mp,550x550,gloss,ffffff,t.3u1.jpg");
+  background-image: url("./pitchTOTW.jpg");
+  background-size: auto;
   align-items: center;
 }
