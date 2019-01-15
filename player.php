@@ -72,6 +72,10 @@
 
             //$q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
 
+            $q = "UPDATE users_notifications SET seen=0 WHERE reg_br_igr NOT IN ( SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . " ) AND ID=" . $_SESSION['id'];
+
+            $db->query($q);
+
             $q = "SELECT notification FROM users_notifications WHERE seen=1 AND reg_br_igr IN (SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . ") AND ID=" . $_SESSION['id'];
 
             $res = $db->query($q);
@@ -541,8 +545,8 @@
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
                                                             if( $f == 1 ) echo "Saves: <input type='number' name='s" . $natj . "' min='0' value='0'><br>";
-                                                            echo "Yellow cards: <input type='number' name='y" . $natj . "' min='0' value='0'><br>
-                                                                Red cards: <input type='number' name='r" . $natj . "' min='0' value='0'><br>
+                                                            echo "Yellow cards: <input type='number' name='y" . $natj . "' min='0' max='2' value='0'><br>
+                                                                Red cards: <input type='number' name='r" . $natj . "' min='0' max='1' value='0'><br>
                                                                 Played: <input type='number' name='p" . $natj . "' min='0' max='1' value='0'><br>
                                                                 ";
                                                         }

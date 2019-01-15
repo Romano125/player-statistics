@@ -41,13 +41,17 @@
 
             //$q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
 
+            $q = "UPDATE users_notifications SET seen=0 WHERE reg_br_igr NOT IN ( SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . " ) AND ID=" . $_SESSION['id'];
+
+            $db->query($q);
+
             $q = "SELECT notification FROM users_notifications WHERE seen=1 AND reg_br_igr IN (SELECT reg_br_igr FROM users_igrac WHERE ID=" . $_SESSION['id'] . ") AND ID=" . $_SESSION['id'];
 
             $res = $db->query($q);
 
-            $not = $foll;
+            $not = $res->num_rows;
 
-            echo "<div class='container-fluid top-menu' style = 'background-image: url("."https://png.pngtree.com/thumb_back/fh260/back_pic/03/72/13/9257b90dd201ba6.jpg".")'>
+            echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
                                 <a href='#' class='btn btn-dark' id='menu-toggle'><div class='menu-icon'></div>
