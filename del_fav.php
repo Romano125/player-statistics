@@ -7,5 +7,7 @@
 
 	$db->query($q);
 
+	$q = "UPDATE users_notifications SET seen=0 WHERE ID=" . $_SESSION['id'] . " AND reg_br_igr='" . $_GET['id'] . "'";
+
 	header('Location: player.php?id=' . $_GET['id']);
 ?>

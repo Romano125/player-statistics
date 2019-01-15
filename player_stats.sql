@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2019 at 12:23 PM
+-- Generation Time: Jan 15, 2019 at 06:23 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -196,8 +196,8 @@ CREATE TABLE `igrac` (
 --
 
 INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_asist`, `br_zkarton`, `br_ckarton`, `br_obrane`, `br_utakmica`, `votes`, `pozicija_id`, `klub_id`, `price`, `pImage`) VALUES
-('AA000', 'Keylor', 'Navas', 1, 0, 0, 0, 0, 5, 1, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
-('AA001', 'Luka', 'Modric', 10, 3, 7, 5, 1, 0, 7, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
+('AA000', 'Keylor', 'Navas', 1, 0, 0, 2, 0, 7, 6, 0, 'GK', 'RM', '15,00M', 'https://tmssl.akamaized.net//images/portrait/header/79422-1413205936.jpg?lm=1433144964'),
+('AA001', 'Luka', 'Modric', 10, 3, 8, 5, 2, 0, 9, 0, 'MID', 'RM', '25.00M', 'https://tmssl.akamaized.net//images/portrait/header/27992-1543926073.jpg?lm=1543926085'),
 ('AA002', 'Daniel ', 'Carvajal', 2, 4, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/138927-1413206306.jpg?lm=1433143630'),
 ('AA003', 'Da Silva', 'Marcelo', 12, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RM', '70.00M', 'https://tmssl.akamaized.net//images/portrait/header/44501-1413206117.jpg?lm=1433144595'),
 ('AA004', 'Sergio', 'Ramos', 4, 0, 0, 1, 0, 0, 0, 0, 'DEF', 'RM', '30.00M', 'https://tmssl.akamaized.net//images/portrait/header/25557-1413190249.jpg?lm=1433144128'),
@@ -205,7 +205,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('AA006', 'Toni ', 'Kroos', 8, 0, 1, 0, 0, 0, 0, 0, 'MID', 'RM', '80.00M', 'https://tmssl.akamaized.net//images/portrait/header/31909-1519743952.jpg?lm=1519743979'),
 ('AA007', 'Alcaron', 'Isco', 22, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/85288-1523366774.jpg?lm=1523366787'),
 ('AA008', 'Mateo', 'Kovacic', 23, 0, 0, 0, 0, 0, 0, 0, 'MID', 'RM', '35.00M', 'https://tmssl.akamaized.net//images/portrait/header/51471-1410339990.jpg?lm=1433144687'),
-('AA009', 'Cristiano', 'Ronaldo', 7, 2, 1, 0, 0, 0, 0, 0, 'FWD', 'RM', '100.00M', 'https://tmssl.akamaized.net//images/portrait/header/8198-1515761767.jpg?lm=1515761786'),
+('AA009', 'Cristiano', 'Ronaldo', 7, 3, 1, 1, 0, 0, 2, 0, 'FWD', 'RM', '100.00M', 'https://tmssl.akamaized.net//images/portrait/header/8198-1515761767.jpg?lm=1515761786'),
 ('AA010', 'Karim', 'Benzema', 9, 11, 0, 2, 1, 0, 0, 0, 'FWD', 'RM', '40.00M', 'https://tmssl.akamaized.net//images/portrait/header/18922-1544774342.jpg?lm=1544774361'),
 ('BB000', 'Simon', 'Sluga', 12, 0, 0, 0, 0, 4, 0, 2, 'GK', 'RIJ', '1.00M', 'https://tmssl.akamaized.net//images/portrait/header/188201-1515140102.jpg?lm=1515140127'),
 ('BB001', 'Josip', 'Elez', 18, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'RIJ', '4.00M', 'https://tmssl.akamaized.net//images/portrait/header/179895-1532072097.jpg?lm=1532072195'),
@@ -231,7 +231,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/65230-1453896822.jpg?lm=1453896799'),
 ('DD000', 'Dominik', 'Livakovic', 40, 0, 0, 0, 0, 0, 0, 0, 'GK', 'DZG', '1.75M', 'https://tmssl.akamaized.net//images/portrait/header/205927-1525072466.jpg?lm=1525072478'),
 ('DD001', 'Arijan ', 'Ademi', 5, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '4.50M', 'https://tmssl.akamaized.net//images/portrait/header/71542-1537875033.jpg?lm=1537875046'),
-('DD002', 'Filip', 'Benkovic', 26, 0, 0, 0, 0, 0, 0, 0, 'DEF', 'DZG', '11.00M', 'https://tmssl.akamaized.net//images/portrait/header/293168-1524751819.jpg?lm=1524751837'),
+('DD002', 'Filip', 'Benkovic', 26, 0, 1, 1, 0, 0, 2, 0, 'DEF', 'DZG', '11.00M', 'https://tmssl.akamaized.net//images/portrait/header/293168-1524751819.jpg?lm=1524751837'),
 ('DD003', 'Armin', 'Hodzic', 15, 0, 1, 1, 0, 0, 0, 0, 'FWD', 'DZG', '2.00M', 'https://tmssl.akamaized.net//images/portrait/header/166753-1545842984.jpg?lm=1545842994'),
 ('DD004', 'Nikola', 'Moro', 0, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG', '2.50M', 'https://tmssl.akamaized.net//images/portrait/header/316934-1446037549.jpg?lm=1446037603'),
 ('DD005', 'Dani', 'Olmo', 7, 0, 0, 0, 0, 0, 0, 0, 'MID', 'DZG', '6.50M', 'https://tmssl.akamaized.net//images/portrait/header/293385-1537950178.jpg?lm=1537950199'),
@@ -263,9 +263,9 @@ CREATE TABLE `igrac_natjecanje` (
 --
 
 INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`, `br_gol`, `br_asist`, `br_ckarton`, `br_zkarton`, `br_obrane`, `br_utakmica`) VALUES
-('AA000', 'Liga Prvaka', 0, 0, 0, 0, 2, 0),
-('AA000', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
-('AA001', 'Liga Prvaka', 6, 3, 0, 0, 0, 2),
+('AA000', 'Liga Prvaka', 0, 0, 0, 0, 2, 2),
+('AA000', 'Spanjolska Liga', 0, 0, 0, 2, 2, 0),
+('AA001', 'Liga Prvaka', 6, 4, 1, 0, 0, 2),
 ('AA001', 'Spanjolska Liga', 0, 0, 1, 1, 0, 2),
 ('AA002', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA002', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
@@ -281,8 +281,8 @@ INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`, `br_gol`, `br_asist`, 
 ('AA007', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
 ('AA008', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA008', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
-('AA009', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
-('AA009', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
+('AA009', 'Liga Prvaka', 1, 0, 0, 0, 0, 0),
+('AA009', 'Spanjolska Liga', 0, 0, 0, 1, 0, 0),
 ('AA010', 'Liga Prvaka', 0, 0, 0, 0, 0, 0),
 ('AA010', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
 ('BB000', 'Europska Liga', 0, 0, 0, 0, 5, 0),
@@ -331,7 +331,7 @@ INSERT INTO `igrac_natjecanje` (`reg_br_igr`, `ime_natj`, `br_gol`, `br_asist`, 
 ('CC010', 'Spanjolska Liga', 0, 0, 0, 0, 0, 0),
 ('DD000', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
 ('DD001', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
-('DD002', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
+('DD002', 'Hrvatska Nogometna Liga', 0, 1, 0, 1, 0, 0),
 ('DD003', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
 ('DD004', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
 ('DD005', 'Hrvatska Nogometna Liga', 0, 0, 0, 0, 0, 0),
@@ -485,7 +485,7 @@ CREATE TABLE `service_table` (
 INSERT INTO `service_table` (`idService`, `val`, `txt`) VALUES
 (1, 10, NULL),
 (2, 2, NULL),
-(3, 0, 'm'),
+(3, 0, 'fili'),
 (4, 0, 'Spanjolska Liga'),
 (5, 0, 'Dinamo Zagreb'),
 (6, 1, 'k'),
@@ -686,9 +686,8 @@ CREATE TABLE `users_igrac` (
 
 INSERT INTO `users_igrac` (`ID`, `reg_br_igr`) VALUES
 (5, 'AA000'),
-(5, 'DD002'),
+(5, 'AA009'),
 (6, 'AA000'),
-(6, 'AA001'),
 (6, 'CC002');
 
 -- --------------------------------------------------------
@@ -701,7 +700,8 @@ CREATE TABLE `users_notifications` (
   `ID` int(11) NOT NULL,
   `reg_br_igr` varchar(100) NOT NULL,
   `notification` mediumtext NOT NULL,
-  `seen` int(11) NOT NULL
+  `seen` int(11) NOT NULL,
+  `was_fav` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
