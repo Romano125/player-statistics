@@ -62,7 +62,10 @@
 
             $res = $db->query($q);
 
-            $not = $res->num_rows;
+            if ($res) {
+                $not = $res->num_rows;
+            } 
+            else $not = 0;
 
             echo "<div class='container-fluid top-menu'>
                     <table>
