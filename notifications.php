@@ -187,9 +187,15 @@
                         $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
 
                         $res = $db->query($q);
+                        if ($res) {
+                            $not = $res->num_rows;
+                        }
+                        else {
+                            $not = 0;
+                        }
 
                         $fn = 0;
-                        if( $res->num_rows != 0 ) {
+                        if($not) {
                             while( $r = $res->fetch_assoc() ) {
                                 echo $r['notification'] . "
                                     <button type='button' class='btn btn-dark btn-sm' style='float: right'><a href='remove_notification.php?id=" . $_SESSION['id'] . "&not=" . $r['notification'] . "' style='text-decoration: none;color: white'>x</a></button>
