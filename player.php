@@ -219,7 +219,7 @@
                                               <div class='nav nav-tabs' id='nav-tab' role='tablist'>
                                                 <a class='nav-item nav-link active' id='nav-stats-tab' data-toggle='tab' href='#nav-stats' role='tab' aria-controls='nav-stats' aria-selected='true'>Stats</a>";
 
-                                        $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
+                                        $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "' AND klub_id IN (SELECT klub_id FROM igrac WHERE reg_br_igr='" . $id . "')";
 
                                         $res = $db->query($q);
 
@@ -230,7 +230,10 @@
                                         }
 
                                         if( isset($_SESSION['priv']) ) {
-                                            if( $_SESSION['priv'] == 1 ) echo "<a class='nav-item nav-link' id='nav-edit-tab' data-toggle='tab' href='#nav-edit' role='tab' aria-controls='nav-edit' aria-selected='false'>Edit</a>";
+                                            if( $_SESSION['priv'] == 1 ) {
+                                                echo "<a class='nav-item nav-link' id='nav-edit-tab' data-toggle='tab' href='#nav-edit' role='tab' aria-controls='nav-edit' aria-selected='false'>Edit</a>";
+                                                echo "<a class='nav-item nav-link' id='nav-club_change-tab' data-toggle='tab' href='#nav-club_change' role='tab' aria-controls='nav-club_change' aria-selected='false'>Change club</a>";
+                                            }
                                         }
 
                                         echo "</div>
@@ -556,6 +559,28 @@
                                                                 Red cards: <input type='number' name='r" . $natj . "' min='0' max='1' value='0'><br>
                                                                 Played: <input type='number' name='p" . $natj . "' min='0' max='1' value='0'><br>
                                                                 ";
+                                                        }
+                                                    ?>
+                                                    <button type='submit' class='btn btn-dark home-btn'>Save</button>
+                                                </form>
+                                            </div>
+                                            <div class='tab-pane fade show' id='nav-club_change' role='tabpanel' aria-labelledby='nav-club_change-tab'>
+                                                    <?php
+                                                        if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                                        echo "<form action='update_player.php?id=" . $id . "' method='POST'>";
+
+                                                        $q = "SELECT klub_id, br_dres, price FROM igrac WHERE reg_br_igr='" . $id . "'";
+
+                                                        $res = $db->query($q);
+
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            echo "<b>Enter new club:</b><br>
+                                                                New club: <input type='text' name='club' value='" . $r['klub_id'] . "'><br>
+                                                                <b>Enter new Jersy number:</b><br>
+                                                                New jersy number: <input type='number' name='jersy' min='0' value='" . $r['br_dres'] . "'><br>
+                                                                <b>Enter new market value:</b><br>
+                                                                New market value: <input type='text' name='price' min='0' value='" . $r['price'] . "'><br>";
                                                         }
                                                     ?>
                                                     <button type='submit' class='btn btn-dark home-btn'>Save</button>
