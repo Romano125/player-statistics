@@ -17,7 +17,7 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
-        <link rel="stylesheet" type="text/css" href="users_info.css">
+        <!--<link rel="stylesheet" type="text/css" href="users_info.css">-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -25,7 +25,7 @@
         
     </head>
     <body style="background-color: #e6ffff">
-        <div class="bg-modal1">
+       <!-- <div class="bg-modal1">
             <div class="modal-content col-md-4 pre-scrollable">
                 <h3>Followers</h3>
                 <hr width="100%">
@@ -90,7 +90,7 @@
                     }
                 ?>
             </div>
-        </div>
+        </div>-->
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {
@@ -259,10 +259,88 @@
                                                             <td>FOLLOWERS</t> <td>FOLLOWS</td>
                                                         </tr>
                                                         <tr>
-                                                            <td id='foll2'>" . $foll2 . "</t> <td id='foll1'>" . $foll1 . "</td>
+                                                            <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter1'>" . $foll2 . "</t> <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter'>" . $foll1 . "</td>
                                                         </tr>
                                                     </table>
 		                                        </div>";
+
+                                            echo "<!-- Modal -->
+                                                    <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true' pre-scrollable>
+                                                      <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                        <div class='modal-content'>
+                                                          <div class='modal-header'>
+                                                            <h5 class='modal-title' id='exampleModalLongTitle'>Follows</h5>
+                                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                              <span aria-hidden='true'>&times;</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class='modal-body'>";
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];                                        
+                                                    $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
+
+                                                    $res = $db->query($q);
+
+                                                    if( $res->num_rows == 0 ) {
+                                                        echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                                    }else {
+                                                        while( $r = $res->fetch_assoc() ) {
+                                                            echo "<div class='row'>";
+                                                                echo "<div class=col-md-6>
+                                                                        <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                    </div>";
+                                                                echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                        Name: " . $r['name'] . "</br>
+                                                                        Last name:" . $r['last_name'] ."</br>
+                                                                        E-mail: " . $r['e_mail'] . "
+                                                                    </div>";
+                                                            echo "</div>";
+                                                            echo "<hr width='100%'>";
+                                                        }
+                                                    }
+                                                    
+                                                    echo "</div>
+                                                        </div>
+                                                    </div>
+                                                 </div>";
+
+                                                 echo "<!-- Modal -->
+                                                    <div class='modal fade' id='exampleModalCenter1' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true' pre-scrollable>
+                                                      <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                        <div class='modal-content'>
+                                                          <div class='modal-header'>
+                                                            <h5 class='modal-title' id='exampleModalLongTitle'>Followers</h5>
+                                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                              <span aria-hidden='true'>&times;</span>
+                                                            </button>
+                                                          </div>
+                                                          <div class='modal-body'>";
+                                                    if( isset($_GET['id']) ) $id = $_GET['id'];                                      
+                                                $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
+
+                                                $res = $db->query($q);
+
+                                                if( $res->num_rows == 0 ) {
+                                                    echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                                }else {
+                                                    while( $r = $res->fetch_assoc() ) {
+                                                            echo "<div class=col-md-6>
+                                                                    <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                </div>";
+                                                            echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                    Name: " . $r['name'] . "</br>
+                                                                    Last name:" . $r['last_name'] ."</br>
+                                                                    E-mail: " . $r['e_mail'] . "
+                                                                </div>";
+                                                        echo "<hr width='100%'>";
+                                                    }
+                                                }
+                                                    
+                                                echo "</div>
+                                                    </div>
+                                                </div>
+                                             </div>";
+
+
 
                                             $q = "SELECT follows FROM users_followers WHERE ID=" . $_SESSION['id'];
 

@@ -17,7 +17,7 @@
         <title>Player statistics</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
-        <link rel="stylesheet" type="text/css" href="player.css">
+        <!-- <link rel="stylesheet" type="text/css" href="player.css">-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -26,7 +26,7 @@
         
     </head>
     <body style="background-color: #e6ffff">
-        <div class="bg-modal">
+        <!-- <div class="bg-modal">
             <div class="modal-content col-md-4 pre-scrollable">
                 <h3>Voters</h3>
                 <hr width="100%">
@@ -55,7 +55,7 @@
 
                 ?>
             </div>
-        </div>
+        </div>-->
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {
@@ -318,11 +318,80 @@
 
                                                     if( isset($_GET['voted']) ) {
                                                         echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
-                                                        echo "<button id='btn_show' class='badge badge-info'>Show voters</button>
+                                                        echo "<!-- Button trigger modal -->
+                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter'>Show voters</button>
+
+                                                            <!-- Modal -->
+                                                                    <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+                                                                      <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                                        <div class='modal-content' pre-scrollable>
+                                                                          <div class='modal-header'>
+                                                                            <h5 class='modal-title' id='exampleModalLongTitle'>Voters</h5>
+                                                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                                              <span aria-hidden='true'>&times;</span>
+                                                                            </button>
+                                                                          </div>
+                                                                          <div class='modal-body'>";
+                                                            $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+
+                                                            $res = $db->query($q);
+
+                                                            if( $res->num_rows == 0 ) {
+                                                                echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                                            }else{
+                                                                while( $r = $res->fetch_assoc() ) {
+                                                                    echo "
+                                                                        <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
+                                                                        Name: " . $r['name'] . "<br>
+                                                                        Last name: " . $r['last_name'] . "<br>
+                                                                        Voted on: ".$r['voteDate']."<hr width='100%'>
+                                                                        ";
+                                                                }
+                                                            }
+                                                            
+                                                            echo "</div>
+                                                                </div>
+                                                            </div>
+                                                         </div>
                                                             <span style='color:red'>Vas glas je vec zaprimljen</span>";
                                                     }else{
                                                         echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
-                                                        echo "<button id='btn_show' class='badge badge-info'>Show voters</button>";
+
+                                                        echo "<!-- Button trigger modal -->
+                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter'>Show voters</button>
+
+                                                            <!-- Modal -->
+                                                            <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true' pre-scrollable>
+                                                              <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                                <div class='modal-content'>
+                                                                  <div class='modal-header'>
+                                                                    <h5 class='modal-title' id='exampleModalLongTitle'>Voters</h5>
+                                                                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                                      <span aria-hidden='true'>&times;</span>
+                                                                    </button>
+                                                                  </div>
+                                                                  <div class='modal-body'>";
+                                                            $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+
+                                                            $res = $db->query($q);
+
+                                                            if( $res->num_rows == 0 ) {
+                                                                echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                                            }else{
+                                                                while( $r = $res->fetch_assoc() ) {
+                                                                    echo "
+                                                                        <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
+                                                                        Name: " . $r['name'] . "<br>
+                                                                        Last name: " . $r['last_name'] . "<br>
+                                                                        Voted on: ".$r['voteDate']."<hr width='100%'>
+                                                                        ";
+                                                                }
+                                                            }
+                                                            
+                                                            echo "</div>
+                                                                </div>
+                                                            </div>
+                                                         </div>";
                                                     }
 
                                                     mysqli_free_result($res);
