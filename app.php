@@ -24,7 +24,7 @@
         <script src = ./app.js> </script>
     </head>
 
-    <body background="https://www.desktopbackground.org/p/2012/10/23/472370_webpage-background-images-hd-wallpapers-lovely_1920x1080_h.jpg">
+    <body style="background: rgba(102, 204, 255, 0.4)">
         <?php 
             $s = '';
             if( isset($_SESSION['priv']) ) {

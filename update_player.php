@@ -215,56 +215,59 @@
 				}	
     		}
 		}
-		//treba doraditi bazu za ovo da radi...
-		/*if( isset($_POST['club']) ) {
-			$q = "SELECT klub_ime, ime, prezime FROM igrac JOIN klub using(klub_id) WHERE reg_br_igr='" . $_GET['id'] . "'";
+	}
 
-			$res = $db->query($q);
+	//treba doraditi bazu za ovo da radi...
+	/*if( isset($_POST['club']) ) {
+		$q = "SELECT klub_ime, ime, prezime FROM igrac JOIN klub using(klub_id) WHERE reg_br_igr='" . $_GET['id'] . "'";
 
-			$name;
-			$last;
-			$club;
-			$showDate = date("Y-m-d");
-			while( $r = $res->fetch_assoc() ) {
-				$name = $r['ime'];
-				$last = $r['prezime'];
-				$club = $r['klub_ime'];
-			}
+		$res = $db->query($q);
 
-			$q = "UPDATE igrac_natjecanje SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
-
-			$db->query($q);
-
-			$q = "UPDATE igrac SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
-
-			$db->query($q);
-
-			$not = $showDate . "<br>Player " . $name . " " . $last . " moved from " . $club . " to " . $_POST['club'];
-
-			$q = "SELECT ID FROM users";
-
-			$res = $db->query($q);
-
-			while( $r = $res->fetch_assoc() ) {
-				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
-				$db->query($q);
-			}
+		$name;
+		$last;
+		$club;
+		$showDate = date("Y-m-d");
+		while( $r = $res->fetch_assoc() ) {
+			$name = $r['ime'];
+			$last = $r['prezime'];
+			$club = $r['klub_ime'];
 		}
-		if( isset($_POST['jersy']) ) {
-			$q = "SELECT br_dres, ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
 
-			$res = $db->query($q);
+		$q = "UPDATE igrac_natjecanje SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
 
-			$name;
-			$last;
-			$jersy;
-			$showDate = date("Y-m-d");
-			while( $r = $res->fetch_assoc() ) {
-				$name = $r['ime'];
-				$last = $r['prezime'];
-				$jersy = $r['br_dres'];
-			}
+		$db->query($q);
 
+		$q = "UPDATE igrac SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+		$db->query($q);
+
+		$not = $showDate . "<br>Player " . $name . " " . $last . " moved from " . $club . " to " . $_POST['club'];
+
+		$q = "SELECT ID FROM users";
+
+		$res = $db->query($q);
+
+		while( $r = $res->fetch_assoc() ) {
+			$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
+			$db->query($q);
+		}
+	}*/
+	if( isset($_POST['jersy']) ) {
+		$q = "SELECT br_dres, ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+		$res = $db->query($q);
+
+		$name;
+		$last;
+		$jersy;
+		$showDate = date("Y-m-d");
+		while( $r = $res->fetch_assoc() ) {
+			$name = $r['ime'];
+			$last = $r['prezime'];
+			$jersy = $r['br_dres'];
+		}
+
+		if( $jersy != $_POST['jersy'] ) {
 			$q = "UPDATE igrac SET br_dres=" . $_POST['jersy'] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
 
 			$db->query($q);
@@ -280,48 +283,66 @@
 				$db->query($q);
 			}
 		}
-		if( isset($_POST['price']) ) {
-			$q = "SELECT price, ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
+	}
+	if( isset($_POST['price']) ) {
+		$q = "SELECT price, ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+		$res = $db->query($q);
+
+		$name;
+		$last;
+		$price;
+		$showDate = date("Y-m-d");
+		while( $r = $res->fetch_assoc() ) {
+			$name = $r['ime'];
+			$last = $r['prezime'];
+			$price = $r['price'];
+		}
+
+		if( strcmp($price, $_POST['price']) ) {
+			$q = "UPDATE igrac SET price='" . $_POST['price'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+			$db->query($q);
+
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: red'>changed</span> and now it's value is " . $_POST['price'];
+
+			$q = "SELECT ID FROM users";
 
 			$res = $db->query($q);
 
-			$name;
-			$last;
-			$price;
-			$showDate = date("Y-m-d");
 			while( $r = $res->fetch_assoc() ) {
-				$name = $r['ime'];
-				$last = $r['prezime'];
-				$price = $r['price'];
-			}
-
-			$f = 0;
-			if( $_POST['price'] != $price ) {
-				$q = "UPDATE igrac SET price=" . $_POST['price'] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
-
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
 				$db->query($q);
-
-				$f = $_POST['price'] > $price ? 1 : -1;
 			}
+		}
 
-			$dif = 0;
-			if( $f == 1 ) {
-				$dif = $_POST['price'] - $price;
-				$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: green'>increased</span> by " . $dif . " and now it's value is " . $_POST['price'];
-			}
-			if( $f == -1 ) {
-				$dif = $price - $_POST['price'];
-				$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: red'>decreased</span> by " . $dif . " and now it's value is " . $_POST['price'];
-			}
-			if( $f != 0 ) {
-				$q = "SELECT ID FROM users";
+		/*$f = 0;
+		if( $_POST['price'] != $price ) {
+			$q = "UPDATE igrac SET price=" . $_POST['price'] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
 
-				$res = $db->query($q);
+			$db->query($q);
 
-				while( $r = $res->fetch_assoc() ) {
-					$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
-					$db->query($q);
-				}
+			$f = $_POST['price'] > $price ? 1 : -1;
+		}
+
+		$dif = 0;
+		if( $f == 1 ) {
+			$dif = $_POST['price'] - $price;
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: green'>increased</span> by " . $dif . " and now it's value is " . $_POST['price'];
+		}
+		if( $f == -1 ) {
+			$dif = $price - $_POST['price'];
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: red'>decreased</span> by " . $dif . " and now it's value is " . $_POST['price'];
+		}
+
+		if( $f != 0 ) {
+			$q = "SELECT ID FROM users";
+
+			$res = $db->query($q);
+
+			while( $r = $res->fetch_assoc() ) {
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
+				$db->query($q);
 			}
 		}*/
 	}
