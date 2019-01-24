@@ -7,7 +7,22 @@
 
 	$db->query($q);
 
-	$q = "UPDATE users_notifications SET seen=0 WHERE ID=" . $_SESSION['id'] . " AND reg_br_igr='" . $_GET['id'] . "'";
+	$q = "SELECT ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+	$res = $db->query($q);
+
+	$name;
+	$last;
+	$showDate = date("Y-m-d");
+	while( $r = $res->fetch_assoc() ) {
+		$name = $r['ime'];
+		$last = $r['prezime'];
+	}
+
+	$not = $showDate . "<br>You are no longer following player " . $name . " " . $last;
+
+	$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $_SESSION['id'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 1)";
+	$db->query($q);
 
 	header('Location: player.php?id=' . $_GET['id']);
 ?>

@@ -24,20 +24,18 @@
         <script src = ./app.js> </script>
     </head>
 
-    <body style="background: rgba(102, 204, 255, 0.4)">
+    <body >
         <?php 
-            $s = '';
-            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-            if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
+           $s = '';
+           $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+           if( isset($_SESSION['priv']) ) {
+               if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = $_SESSION['user'] . '(admin) &nbsp';
                 else {
-                    $q = "SELECT * FROM users WHERE ID =" . $_SESSION['id'];
-                    $res = $db->query($q);
-                    $s = $res->fetch_assoc()['name'] . "&nbsp&nbsp";
+                    $s = $_SESSION['user'];
                 }
             }
-
-            
+           }
 
             $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
 
@@ -81,7 +79,7 @@
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "<button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
                             </td> 
                         </tr>
                     </table>
@@ -135,7 +133,7 @@
                         </div>';
                     ?>
                 </li>
-                <li><a href="forwards.php" id="fwd">Forwards</a></li>
+                <li id="fwd"><a href="forwards.php">Forwards</a></li>
                 <li><a href="midfielders.php" id="mid">Midfielders</a></li>
                 <li><a href="defenders.php" id="def">Defenders</a></li>
                 <li><a href="goalkeepers.php" id="gk">Goalkeepers</a></li>
@@ -153,7 +151,7 @@
                        
     <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container">
+            <div class="container" >
 
             <!-- Jumbotron Header -->
             <div class="my-4">

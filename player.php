@@ -60,12 +60,12 @@
            $s = '';
            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
            if( isset($_SESSION['priv']) ) {
-               if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
-               else {
-                   $q = "SELECT * FROM users WHERE ID =" . $_SESSION['id'];
-                   $res = $db->query($q);
-                   $s = $res->fetch_assoc()['name'] . "&nbsp&nbsp";
-               }
+               if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = $_SESSION['user'] . '(admin) &nbsp';
+                else {
+                    $s = $_SESSION['user'];
+                }
+            }
            }
 
             $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
@@ -110,7 +110,7 @@
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "<button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
                             </td> 
                         </tr>
                     </table>
@@ -321,7 +321,8 @@
                                                     }
 
                                                     if( isset($_GET['voted']) ) {
-                                                        echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
+                                                        echo "<button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter5'>Vote</button>";
+                                                        //echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
                                                         echo "<!-- Button trigger modal -->
                                                                     <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter'>Show voters</button>
 
@@ -356,8 +357,24 @@
                                                             echo "</div>
                                                                 </div>
                                                             </div>
-                                                         </div>
-                                                            <span style='color:red'>Vas glas je vec zaprimljen</span>";
+                                                         </div>";
+
+                                                         echo "<!-- Modal -->
+                                                                    <div class='modal fade' id='exampleModalCenter5' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
+                                                                      <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                                        <div class='modal-content' pre-scrollable>
+                                                                          <div class='modal-header'>
+                                                                            <h5 class='modal-title' id='exampleModalLongTitle'>Notifier</h5>
+                                                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                                              <span aria-hidden='true'>&times;</span>
+                                                                            </button>
+                                                                          </div>
+                                                                          <div class='modal-body'>
+                                                                        <h6><span style='color:red'>Your vote has already been submited... :)</span></h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                         </div>";
                                                     }else{
                                                         echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
 

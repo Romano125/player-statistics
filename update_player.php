@@ -304,7 +304,7 @@
 
 			$db->query($q);
 
-			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: red'>changed</span> and now it's value is " . $_POST['price'];
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " changed and now it's value is " . $_POST['price'] . "";
 
 			$q = "SELECT ID FROM users";
 
