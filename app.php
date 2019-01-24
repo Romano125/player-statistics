@@ -27,11 +27,17 @@
     <body style="background: rgba(102, 204, 255, 0.4)">
         <?php 
             $s = '';
+            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
             if( isset($_SESSION['priv']) ) {
                 if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
+                else {
+                    $q = "SELECT * FROM users WHERE ID =" . $_SESSION['id'];
+                    $res = $db->query($q);
+                    $s = $res->fetch_assoc()['name'] . "&nbsp&nbsp";
+                }
             }
 
-            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+            
 
             $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
 
