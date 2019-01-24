@@ -219,7 +219,7 @@
                 
                 <div class="container-fluid">
 
-                    <div class="row align-items-center">
+                    <div class="row">
 
                         <div class="col-md-8">
 
