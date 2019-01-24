@@ -385,7 +385,7 @@
                                                 echo "E-mail: " . $r['e_mail'] . "<br>";
                                                 echo "Gender: " . $r['gender'] . "<br>";
                                                 if( isset($_SESSION['priv']) ) {
-						                            if( $_SESSION['priv'] == 1 ) {
+						                            if( $_SESSION['priv'] == 1 && $_GET['id'] != $_SESSION['id'] ) {
 						                            	echo "<a href='grant_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Grant privilage</a>&nbsp";
 						                            	echo "<a href='remove_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Remove privilage</a>";
 						                            }
