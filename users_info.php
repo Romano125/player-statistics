@@ -93,12 +93,16 @@
             </div>
         </div>-->
         <?php 
-            $s = '';
-            if( isset($_SESSION['priv']) ) {
-                if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
+           $s = '';
+           $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+           if( isset($_SESSION['priv']) ) {
+               if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = $_SESSION['user'] . '(admin) &nbsp';
+                else {
+                    $s = $_SESSION['user'];
+                }
             }
-
-            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+           }
 
             $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
 
@@ -142,7 +146,7 @@
                                 echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "<button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
                             </td> 
                         </tr>
                     </table>
@@ -381,7 +385,7 @@
                                                 echo "E-mail: " . $r['e_mail'] . "<br>";
                                                 echo "Gender: " . $r['gender'] . "<br>";
                                                 if( isset($_SESSION['priv']) ) {
-						                            if( $_SESSION['priv'] == 1 ) {
+						                            if( $_SESSION['priv'] == 1 && $_GET['id'] != $_SESSION['id'] ) {
 						                            	echo "<a href='grant_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Grant privilage</a>&nbsp";
 						                            	echo "<a href='remove_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Remove privilage</a>";
 						                            }
