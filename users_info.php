@@ -21,6 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src = ./app.js> </script>
         
     </head>
@@ -431,11 +432,75 @@
                                     ?>
                                 </div> 
                             </div>
-
-                            <div class="container">
+                            <div class = "container">
                                 <h3>Activity graph</h3>
                                 <hr width="100%">
-                            </div>
+                                <?php
+                                     if( isset($_GET['id']) ) {
+                                        $id = $_GET['id'];
+                                        $months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                       
+                                        $q = "SELECT COUNT(*) as ct, extract(month from voteDate) as mon
+                                        from users_votes
+                                        where ID = '". $id. "'
+                                        GROUP BY extract(month from voteDate)
+                                        LIMIT 6";
+                    
+                                        $res = $db->query($q);
+                                        $count = 1;
+                                        while( $r = $res->fetch_assoc() ) {
+                                            $quantity[$count] = $r['ct'];
+                                            $month[$count] = $months[$r['mon'] - 1];
+                                            $count = $count + 1;
+                                        }
+                                        for($i = $count; $i <= 6; $i++) {
+                                            $quantity[$i] = 0;
+                                            $month[$i] = '';
+                                        }
+                                        
+
+
+
+                                    }
+                                ?>
+                                <div class="container" id = "curve_chart" style="width: 600px; height: 500px"> <!--; margin: 0px; padding: 0px; align_content: center; ">-->
+                                    
+                                    <script type="text/javascript">
+                                            google.charts.load('current', {'packages':['corechart']});
+                                            google.charts.setOnLoadCallback(drawChart);
+
+                                            function drawChart() {
+                                            var data = google.visualization.arrayToDataTable([
+                                                ['Month', 'Votes'],
+                                                ['<?php Print($month[1]);?>',  <?php Print($quantity[1]); ?>],
+                                                ['<?php Print($month[2]);?>',  <?php Print($quantity[2]); ?>],
+                                                ['<?php Print($month[3]);?>',  <?php Print($quantity[3]); ?>],
+                                                ['<?php Print($month[4]);?>',  <?php Print($quantity[4]); ?>],
+                                                ['<?php Print($month[5]);?>',  <?php Print($quantity[5]); ?>],
+                                                ['<?php Print($month[6]);?>',  <?php Print($quantity[6]); ?>],                                          
+                                            ]);
+
+                                            var options = {
+                                                curveType: 'function',
+                                                legend: { position: 'bottom' },
+                                                vAxis : {
+                                                    viewWindow:{
+                                                        min:0
+                                                    }
+                                                }
+                                            };
+                                        
+                                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                                        
+                                            chart.draw(data, options);
+                                            }
+                                            </script>
+                                    
+
+
+                                    
+                                </div>
+                            </div>    
                         </div>
 
                     </div>
