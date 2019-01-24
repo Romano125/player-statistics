@@ -15,10 +15,12 @@
 <html>
     <head>
         <title>Player statistics</title>
+        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="app.css">
         <link rel="stylesheet" type="text/css" href="new_app.css">    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src = ./app.js> </script>
@@ -298,7 +300,7 @@
                     <?php
                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
-                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'FWD' ORDER BY votes desc LIMIT 3 ";
+                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage, votes FROM igrac WHERE pozicija_id = 'FWD' ORDER BY votes desc LIMIT 3 ";
 
                         $res = $db->query($q);
 
@@ -310,7 +312,7 @@
                                 echo "<tr>
                                         <td colspan=4 align='center'>
                                             <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                         </td>
@@ -320,7 +322,7 @@
                                 echo "<tr>
                                         <td colspan=2 align='right'>
                                             <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                         </td>";
@@ -328,7 +330,7 @@
                             }else {
                                 echo "<td colspan=3>
                                             <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>                                              
                                         </td>
@@ -336,7 +338,7 @@
                             }
                         }
 
-                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'MID' ORDER BY votes desc LIMIT 3 ";
+                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage, votes FROM igrac WHERE pozicija_id = 'MID' ORDER BY votes desc LIMIT 3 ";
 
                         $res = $db->query($q);
 
@@ -346,7 +348,7 @@
                             if( $f == 0 ) {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -354,7 +356,7 @@
                             }else if( $f == 1 ) {
                                 echo "<td colspan=2>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -362,7 +364,7 @@
                             }else {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -370,7 +372,7 @@
                         }
                         echo "</tr>";
 
-                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage FROM igrac WHERE pozicija_id = 'DEF' ORDER BY votes desc LIMIT 4 ";
+                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id, pImage, votes FROM igrac WHERE pozicija_id = 'DEF' ORDER BY votes desc LIMIT 4 ";
 
                         $res = $db->query($q);
 
@@ -380,7 +382,7 @@
                             if( $f == 0 ) {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -388,7 +390,7 @@
                             }else if( $f == 1 ) {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -396,7 +398,7 @@
                             }else if( $f == 2 ) {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -404,7 +406,7 @@
                             }else {
                                 echo "<td>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -412,7 +414,7 @@
                         }
                         echo "</tr>";
 
-                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id , pImage FROM igrac WHERE pozicija_id = 'GK' ORDER BY votes desc LIMIT 1 ";
+                        $q = "SELECT reg_br_igr, ime, prezime, pozicija_id , pImage,votes FROM igrac WHERE pozicija_id = 'GK' ORDER BY votes desc LIMIT 1 ";
 
                         $res = $db->query($q);
 
@@ -420,7 +422,7 @@
                         while( $r = $res->fetch_assoc() ) {
                             echo "<td colspan=4 align='center'>
                                         <div class='col-md-8'>
-                                            <a href='player.php?id=" . $r['reg_br_igr'] . "'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
+                                            <a href='player.php?id=" . $r['reg_br_igr'] . "' data-toggle = 'tooltip' title = '".$r['votes'] ." votes'><img src='".$r['pImage']."' alt='Avatar' id='av' class='avatar'></a>
                                             <p>" . $r['ime'] . " " . $r['prezime'] . "<br>" . $r['pozicija_id'] . "</p>
                                             </div>
                                     </td>";
@@ -457,7 +459,13 @@
             });
         </script>
         <script src="./mainApp/vendor/jquery/jquery.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.js"></script>
         <script src="./mainApp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script>
+            $(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>    
     </body>
 </html>
