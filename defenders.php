@@ -161,7 +161,7 @@
                 <div class="row align-items-center">
 
                     <div class="col-md-8">
-                      <h2 style="text-align: center;">Defense players</h2><br>
+                        <h2 style="text-align: center;">Defense players</h2><br>
                       
                       <div  id = "pagination_data"> <!--class = "table-responsive"-->
 

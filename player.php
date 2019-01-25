@@ -666,17 +666,18 @@
 
                                                         echo "<form action='update_player.php?id=" . $id . "' method='POST'>";
 
-                                                        $q = "SELECT klub_id, br_dres, price FROM igrac WHERE reg_br_igr='" . $id . "'";
+                                                        $q = "SELECT klub_ime, br_dres, price FROM igrac JOIN klub using(klub_id) WHERE reg_br_igr='" . $id . "'";
 
                                                         $res = $db->query($q);
 
                                                         while( $r = $res->fetch_assoc() ) {
                                                             echo "<b>Enter new club:</b><br>
-                                                                New club: <input type='text' name='club' value='" . $r['klub_id'] . "'><br>
+                                                                New club: <input type='text' name='club' value='" . $r['klub_ime'] . "'><br>
                                                                 <b>Enter new Jersy number:</b><br>
                                                                 New jersy number: <input type='number' name='jersy' min='0' value='" . $r['br_dres'] . "'><br>
                                                                 <b>Enter new market value:</b><br>
                                                                 New market value: <input type='text' name='price' min='0' value='" . $r['price'] . "'><br>";
+                                                            break;
                                                         }
                                                     ?>
                                                     <button type='submit' class='btn btn-dark home-btn'>Save</button>

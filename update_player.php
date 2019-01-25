@@ -218,7 +218,7 @@
 	}
 
 	//treba doraditi bazu za ovo da radi...
-	/*if( isset($_POST['club']) ) {
+	if( isset($_POST['club']) ) {
 		$q = "SELECT klub_ime, ime, prezime FROM igrac JOIN klub using(klub_id) WHERE reg_br_igr='" . $_GET['id'] . "'";
 
 		$res = $db->query($q);
@@ -233,25 +233,48 @@
 			$club = $r['klub_ime'];
 		}
 
-		$q = "UPDATE igrac_natjecanje SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
-
-		$db->query($q);
-
-		$q = "UPDATE igrac SET klub_id='" . $_POST['club'] . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
-
-		$db->query($q);
-
-		$not = $showDate . "<br>Player " . $name . " " . $last . " moved from " . $club . " to " . $_POST['club'];
-
-		$q = "SELECT ID FROM users";
+		$q = "SELECT klub_id, klub_ime FROM igrac JOIN klub using(klub_id)";
 
 		$res = $db->query($q);
 
+		$cid = 0;
+		$f = 0;
 		while( $r = $res->fetch_assoc() ) {
-			$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
-			$db->query($q);
+			if( !strcmp(strtolower($r['klub_ime']), strtolower($_POST['club'])) ) {
+				$f = 1;
+				$cid = $r['klub_id'];
+			}
 		}
-	}*/
+
+		if( $f == 1 ) {
+			$q = "UPDATE igrac SET klub_id='" . $cid . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+
+			$q = "DELETE FROM igrac_natjecanje WHERE reg_br_igr='" . $_GET['id'] . "'";
+			$db->query($q);
+
+			$q = "SELECT DISTINCT ime_natj FROM natjecanje JOIN natjecanja_kluba using(natj_id) WHERE natj_id IN (SELECT DISTINCT natj_id FROM natjecanja_kluba WHERE klub_id='" . $cid ."')";
+
+			$res = $db->query($q);
+
+			while( $r = $res->fetch_assoc() ) {
+				$q = "INSERT INTO igrac_natjecanje (reg_br_igr, ime_natj, klub_id, br_gol, br_asist, br_ckarton, br_zkarton, br_obrane, br_utakmica) VALUES ('" . $_GET['id'] . "', '" . $r['ime_natj'] . "', '" . $cid . "', 0, 0, 0, 0, 0, 0)";
+				$db->query($q);
+			}
+
+			$not = $showDate . "<br>Player " . $name . " " . $last . " moved from " . $club . " to " . $_POST['club'];
+
+			$q = "SELECT ID FROM users";
+
+			$res = $db->query($q);
+
+			while( $r = $res->fetch_assoc() ) {
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
+				$db->query($q);
+			}
+			
+		}
+	}
 	if( isset($_POST['jersy']) ) {
 		$q = "SELECT br_dres, ime, prezime FROM igrac WHERE reg_br_igr='" . $_GET['id'] . "'";
 
