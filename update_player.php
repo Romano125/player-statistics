@@ -246,7 +246,7 @@
 			}
 		}
 
-		if( $f == 1 && strcmp(strtolower($club), strtolower($_POST['club'])) ) {
+		if( $f == 1 ) {
 			$q = "UPDATE igrac SET klub_id='" . $cid . "' WHERE reg_br_igr='" . $_GET['id'] . "'";
 			$db->query($q);
 
@@ -327,7 +327,7 @@
 
 			$db->query($q);
 
-			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " changed and now it's value is " . $_POST['price'];
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " changed and now it's value is " . $_POST['price'] . "";
 
 			$q = "SELECT ID FROM users";
 
@@ -338,11 +338,37 @@
 				$db->query($q);
 			}
 		}
+
+		/*$f = 0;
+		if( $_POST['price'] != $price ) {
+			$q = "UPDATE igrac SET price=" . $_POST['price'] . " WHERE reg_br_igr='" . $_GET['id'] . "'";
+
+			$db->query($q);
+
+			$f = $_POST['price'] > $price ? 1 : -1;
+		}
+
+		$dif = 0;
+		if( $f == 1 ) {
+			$dif = $_POST['price'] - $price;
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: green'>increased</span> by " . $dif . " and now it's value is " . $_POST['price'];
+		}
+		if( $f == -1 ) {
+			$dif = $price - $_POST['price'];
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " <span style='color: red'>decreased</span> by " . $dif . " and now it's value is " . $_POST['price'];
+		}
+
+		if( $f != 0 ) {
+			$q = "SELECT ID FROM users";
+
+			$res = $db->query($q);
+
+			while( $r = $res->fetch_assoc() ) {
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0)";
+				$db->query($q);
+			}
+		}*/
 	}
 
 	header('Location: player.php?id=' . $_GET['id']);
 ?>
-
-
-
-		
