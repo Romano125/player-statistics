@@ -320,7 +320,13 @@
                                                         break;
                                                     }
 
-                                                    if( isset($_GET['voted']) ) {
+                                                    $f = 0;
+                                                    if( isset($_SESSION[$id]) ) {
+                                                    	if( $_SESSION[$id] == 1 ) $f = 1;
+                                                    }
+
+                                                    if( isset($_GET['voted']) || $f ) {
+                                                    	$_SESSION[$id] = 1;
                                                         echo "<button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter5'>Vote</button>";
                                                         //echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
                                                         echo "<!-- Button trigger modal -->
