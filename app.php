@@ -205,10 +205,6 @@
                                     ?>
                                 </p>
                             </div>
-
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Find Out More!</a>
-                            </div>
                         </div>
                     </div>
 
@@ -222,7 +218,7 @@
                                             $q = "SELECT reg_br_igr, ime, prezime, br_asist, pImage FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                             $res = $db->query($q);
                                             echo "<table class = 'tablica' background= './pitchgrass.jpg' border = 1> 
-                                                    <tr><th></th><th>PLAYER</th> <th width='10'>ASSISTS</th>";
+                                                    <tr><th></th><th>PLAYER</th> <th width='10'>ASSISTS</th></tr>";
                                             while($row = $res->fetch_assoc()){
                                                 echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";
                                                 echo "<td style = 'text-decoration-color: aqua '>" . $row['ime'] . " " . $row['prezime'] ."</td><td width='10'>" . $row['br_asist'] . "</td>";
@@ -230,10 +226,6 @@
                                             echo "</table>";                                                                     
                                     ?>
                                 </p>  
-                            </div>
-
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Find Out More!</a>
                             </div>
                         </div>
                     </div>
@@ -257,10 +249,6 @@
                                     ?>
                                 </p>
                             </div>
-
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Find Out More!</a>
-                            </div>
                         </div>
                     </div>
 
@@ -283,10 +271,6 @@
                                         echo "</table>";                                                                            
                                     ?>
                                 </p>
-                            </div>
-
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary">Find Out More!</a>
                             </div>
                         </div>
                     </div>
