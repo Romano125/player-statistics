@@ -41,12 +41,12 @@
            $s = '';
            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
            if( isset($_SESSION['priv']) ) {
-               if( $_SESSION['priv'] == 1 ) $s = 'Logged in as admin &nbsp';
-               else {
-                   $q = "SELECT * FROM users WHERE ID =" . $_SESSION['id'];
-                   $res = $db->query($q);
-                   $s = $res->fetch_assoc()['name'] . "&nbsp&nbsp";
-               }
+               if( isset($_SESSION['priv']) ) {
+                if( $_SESSION['priv'] == 1 ) $s = $_SESSION['user'] . '(admin) &nbsp';
+                else {
+                    $s = $_SESSION['user'];
+                }
+            }
            }
 
             $q = "SELECT * FROM followers_pending WHERE want_follow=" . $_SESSION['id'];
@@ -83,15 +83,15 @@
             
             $sum = $foll + $not;                
             if( $foll == 0 && $not == 0 ) {
-                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span>0</span></a></button>";
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span class='badge badge-light'>0</span></a></button>";
             }else {
-                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span style='color: red'>" . $sum . "</span></a></button>";
+                echo "&nbsp<button type='button' class='btn btn-dark home-btn'><a href='notifications.php' style='text-decoration: none;color: white'>Notifications <span class='badge badge-light' style='color: red'>" . $sum . "</span></a></button>";
             }
 
-                                echo "<button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
+                                echo "  <button type='button' class='btn btn-dark home-btn'><a href='app.php' style='text-decoration: none;color: white'>Home</a></button>
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
-                            <td width='25%' style='text-align: right; padding: 20px'>" . $s . "<button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut</a></button>
+                            <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
                             </td> 
                         </tr>
                     </table>
