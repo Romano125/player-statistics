@@ -467,7 +467,7 @@
 
                                     }
                                 ?>
-                                <div class="container" id = "curve_chart" style="width: 600px; height: 500px"> <!--; margin: 0px; padding: 0px; align_content: center; ">-->
+                                <div class="container" id = "curve_chart" style="width: 100%; height: 500px; padding: 0px; margin 0px 0px;"> <!--; margin: 0px; padding: 0px; align_content: center; ">-->
                                     
                                     <script type="text/javascript">
                                             google.charts.load('current', {'packages':['corechart']});

@@ -431,7 +431,7 @@
 
                                             <div class="form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Age
+                                                    <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Votes
                                             </label>
                                             <script>
                                                 var pos = 'FWD';
