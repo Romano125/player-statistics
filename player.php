@@ -23,9 +23,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
         <script src = ./app.js> </script>
+        <script src = ./player.js> </script>
         
     </head>
-    <body style="background-color: #e6ffff">
+    <body style="background-color: #e6ffff" onload = graph(1)>
         <!-- <div class="bg-modal">
             <div class="modal-content col-md-4 pre-scrollable">
                 <h3>Voters</h3>
@@ -724,9 +725,9 @@
                                     $surname = $res3->fetch_assoc()['prezime'];
                                     echo '
                                     <div class="btn-group">
-                                        <button onclick = "graph()" type="button" class="btn btn-primary">Goals</button>
-                                        <button type="button" class="btn btn-primary">Assists</button>
-                                        <button type="button" class="btn btn-primary">Saves</button>
+                                        <button onclick = "graph(1)" type="button" class="btn btn-primary">Goals</button>
+                                        <button onclick = "graph(2)" type="button" class="btn btn-primary">Assists</button>
+                                        <button onclick = "graph(3)" type="button" class="btn btn-primary">Saves</button>
                                     </div>'; 
                                 ?>
                                 <div class="container" id = "graf">
@@ -735,26 +736,46 @@
                                                               
                                 <script type='text/javascript'>
                                     // Load google charts
-                                    google.charts.load('current', {'packages':['corechart']});
-                                    google.charts.setOnLoadCallback(drawChart);
-                                    var noGol = <?php Print($goals); ?>;
-                                    var sumGol = <?php Print($goalsSum); ?>;
-                                    var surname = '<?php Print($surname); ?>';
-                                    //console.log(brGol);
-                                    // Draw the chart and set the chart values
-                                    function drawChart() {
-                                        var data = google.visualization.arrayToDataTable([
-                                            ['Player', 'Goals'],
-                                            [surname, noGol],
-                                            ['All goals', sumGol]
-                                            ]);
-                                            
-                                            // Optional; add a title and set the width and height of the chart
-                                            var options = {'width':300, 'height':300};
-                                            
-                                            // Display the chart inside the <div> element with id='piechart'
-                                            var chart = new google.visualization.PieChart(document.getElementById('graf'));
-                                            chart.draw(data, options);
+                                    function graph(x) {
+                                        google.charts.load('current', {'packages':['corechart']});
+                                        google.charts.setOnLoadCallback(drawChart);
+                                        if (x == 1) {
+                                            var noGol = <?php Print($goals); ?>;
+                                            var sumGol = <?php Print($goalsSum); ?>;
+                                            var surname = '<?php Print($surname); ?>';
+                                            var txt1 = 'Goals'
+                                            var txt2 = 'All goals'
+                                        }
+                                        else if (x == 2) {
+                                            var noGol = <?php Print($assists); ?>;
+                                            var sumGol = <?php Print($assistsSum); ?>;
+                                            var surname = '<?php Print($surname); ?>';
+                                            var txt1 = 'Assists'
+                                            var txt2 = 'All assists'
+                                        }
+                                        else {
+                                            var noGol = <?php Print($saves); ?>;
+                                            var sumGol = <?php Print($savesSum); ?>;
+                                            var surname = '<?php Print($surname); ?>';
+                                            var txt1 = 'Saves'
+                                            var txt2 = 'All saves'
+                                        }
+                                        //console.log(brGol);
+                                        // Draw the chart and set the chart values
+                                        function drawChart() {
+                                            var data = google.visualization.arrayToDataTable([
+                                                ['Player', txt1],
+                                                [surname, noGol],
+                                                [txt2, sumGol]
+                                                ]);
+                                                
+                                                // Optional; add a title and set the width and height of the chart
+                                                var options = {'width':300, 'height':300};
+                                                
+                                                // Display the chart inside the <div> element with id='piechart'
+                                                var chart = new google.visualization.PieChart(document.getElementById('graf'));
+                                                chart.draw(data, options);
+                                        }
                                     }
                                 </script>
                             </div>
