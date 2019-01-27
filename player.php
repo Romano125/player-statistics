@@ -305,7 +305,8 @@
                                                         if( $_SESSION['priv'] == 1 ) $f = 1;
                                                     }
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Name: " . $r['ime'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Name: " . $r['ime'] . "<br>";
                                                         echo "Last name: " . $r['prezime'] . "<br>";
                                                         echo "Club: " . $r['klub_ime'] . "<br>";
                                                         echo "Jersy number: " . $r['br_dres'] . "<br>";
@@ -317,7 +318,7 @@
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
                                                         echo "Market value: " . $r['price'] . "€<br>";
                                                         echo "Total votes this week: " . $r['votes'] . "<br>";
-                                                        echo "Total games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Total games played: " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -479,12 +480,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -546,12 +548,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class = 'txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
                                                         break;
                                                     }
 
@@ -613,12 +616,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
                                                         break;
                                                     }
 
