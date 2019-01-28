@@ -22,6 +22,7 @@
 
 .images {
 	height: 225px;
+	background-size: cover;
 }
 
 .sidebar-name {
@@ -33,6 +34,10 @@
 }
 
 /*Side bar*/
+.sidebar-nav {
+	padding-left: 0px;
+}
+
 #sidebar-wrapper {
 	z-index: 1;
 	position: fixed;
@@ -107,5 +112,13 @@ a:hover {
 
 .right-menu-onload {
 	position: static;
+}
+
+#accordionExample {
+	margin-top: 50px;
+}
+
+.txt {
+	font-family: Arial, Helvetica, sans-serif;
 }
 

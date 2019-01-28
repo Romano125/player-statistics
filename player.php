@@ -305,7 +305,8 @@
                                                         if( $_SESSION['priv'] == 1 ) $f = 1;
                                                     }
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Name: " . $r['ime'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Name: " . $r['ime'] . "<br>";
                                                         echo "Last name: " . $r['prezime'] . "<br>";
                                                         echo "Club: " . $r['klub_ime'] . "<br>";
                                                         echo "Jersy number: " . $r['br_dres'] . "<br>";
@@ -317,7 +318,7 @@
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
                                                         echo "Market value: " . $r['price'] . "€<br>";
                                                         echo "Total votes this week: " . $r['votes'] . "<br>";
-                                                        echo "Total games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Total games played: " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -479,12 +480,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -546,12 +548,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class = 'txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
                                                         break;
                                                     }
 
@@ -613,12 +616,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
+                                                        echo "<div class='txt'>
+                                                            Total goals: " . $r['br_gol'] . "<br>";
                                                         echo "Total assists: " . $r['br_asist'] . "<br>";
                                                         if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
                                                         echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
                                                         echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br>";
+                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
                                                         break;
                                                     }
 
@@ -643,11 +647,11 @@
                                                         $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
 
                                                         $res = $db->query($q);
-
-                                                        $natj;
+                                                        echo "<select style='font-weight:bold; name='natjecanje' class='form-control' required>";    
                                                         while( $r = $res->fetch_assoc() ) {
-                                                            $natj = str_replace(' ', '_', $r['ime_natj']);
-                                                            echo "<b>" . $r['ime_natj'] . ":</b><br>";
+                                                            echo "<option style='font-weight:bold;' value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
+                                                        }
+                                                            echo "</select>";
                                                             echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
@@ -656,7 +660,6 @@
                                                                 Red cards: <input type='number' name='r" . $natj . "' min='0' max='1' value='0'><br>
                                                                 Played: <input type='number' name='p" . $natj . "' min='0' max='1' value='0'><br>
                                                                 ";
-                                                        }
                                                     ?>
                                                     <button type='submit' class='btn btn-dark home-btn'>Save</button>
                                                 </form>
