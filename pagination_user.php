@@ -11,7 +11,7 @@
         $key = $res['txt'];
     } 
 
-    $record_per_page = 10;
+    $record_per_page = 5;
     
     $page = '';
     $output = '';
@@ -25,7 +25,7 @@
     $start_from = ($page - 1) * $record_per_page;
 
 
-    $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE name LIKE '%$key%' OR last_name LIKE '%$key%'";
+    $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE name LIKE '%$key%' OR last_name LIKE '%$key%' LIMIT $start_from, $record_per_page";
     //echo $key;
   
 

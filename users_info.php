@@ -407,8 +407,35 @@
                                 <h3>Voted for</h3>
                                 <hr width="100%">
                                 <div class="container">
+                                <div  id = "pagination_data"> <!--class = "table-responsive"-->
+
+                                </div>
+
+                                <script>
+                                $(document).ready(function(){
+                                    load_data(1);
+                                    function load_data(page){
+                                        $.ajax({
+                                            url:"pagination_user_info.php",
+                                            method: "POST",
+                                            data:{page:page,
+                                                  id : <?php echo $id?>  },
+                                            success:function(data){
+                                                $('#pagination_data').html(data);
+                                            }
+                                        })
+                                    }
+                                    $(document).on('click', '.pagination_link',function(){
+                                    var page = $(this).attr("id");
+                                    load_data(page);
+                                })
+
+                                });
+
+                                </script>
+
                                     
-                                    <?php 
+                                    <?php /*
                                     	if( isset($_GET['id']) ) $id = $_GET['id'];
 
                                          $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
@@ -432,7 +459,7 @@
 	                                            echo "</div>";
 	                                            echo "<hr width='100%'>";
 	                                         } 
-                                         }                                                                           
+                                         }  */                                                                         
                                     ?>
                                 </div> 
                             </div>
