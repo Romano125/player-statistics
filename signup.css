@@ -1,7 +1,3 @@
-html {
-
-}
-
 .login {
   position: relative;
   height: 100%;
@@ -12,14 +8,14 @@ html {
 
  .cont {
   position: relative;
-  height: 657px;
+  height: 100%;
   background-image: url('https://images.pexels.com/photos/47354/the-ball-stadion-football-the-pitch-47354.jpeg?cs=srgb&dl=feld-fussball-gras-47354.jpg&fm=jpg');
   background-size: cover;
   overflow: auto;
 }
 
 .links {
-    font-size: 15px;
+	font-size: 15px;
     color: #ABA8AE;
     
     a {

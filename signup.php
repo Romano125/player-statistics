@@ -1,6 +1,6 @@
 <?php
-	if( !isset($_POST['name']) || !isset($_POST['last']) || !isset($_POST['passwd']) || !isset($_POST['mail']) || !isset($_POST['rpasswd']) || !isset($_POST['rmail']) || !isset($_POST['gender']) || !isset($_POST['age']) ) {
-		//header('Location: http://localhost:8080/projekt/signup.html');	
+	if( empty($_POST['name']) || empty($_POST['last']) || empty($_POST['passwd']) || empty($_POST['mail']) || empty($_POST['rpasswd']) || empty($_POST['rmail']) || empty($_POST['gender']) || empty($_POST['age']) ) {
+		header('Location: http://localhost:8080/projekt/failreg.html');	
 	}else{
 		$name = $_POST['name'];
 		$last = $_POST['last'];
