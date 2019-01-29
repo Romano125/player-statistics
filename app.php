@@ -195,7 +195,7 @@
                                         $q = "SELECT reg_br_igr, ime, prezime, br_gol, pImage FROM igrac ORDER BY br_gol desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                         //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
                                         $res = $db->query($q);
-                                        echo "<table class = 'tablica' background= './pitchgrass.jpg' border = 1> 
+                                        echo "<table class = 'tablica' background= './pitchgrass.jpg'> 
                                             <tr><th></th><th> PLAYER</th> <th>GOALS</th>";
                                         while($row = $res->fetch_assoc()){
                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";
@@ -217,7 +217,7 @@
                                             $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
                                             $q = "SELECT reg_br_igr, ime, prezime, br_asist, pImage FROM igrac ORDER BY br_asist desc LIMIT 5 "; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                             $res = $db->query($q);
-                                            echo "<table class = 'tablica' background= './pitchgrass.jpg' border = 1> 
+                                            echo "<table class = 'tablica' background= './pitchgrass.jpg'> 
                                                     <tr><th></th><th>PLAYER</th> <th width='10'>ASSISTS</th></tr>";
                                             while($row = $res->fetch_assoc()){
                                                 echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";
@@ -239,7 +239,7 @@
                                         $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');                                        
                                         $q = "SELECT reg_br_igr, ime, prezime, br_obrane, pImage FROM igrac WHERE pozicija_id = 'GK' ORDER BY br_obrane desc LIMIT 5"; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                         $res = $db->query($q);
-                                        echo "<table class = 'tablica' background= './pitchgrass.jpg' border = 1> 
+                                        echo "<table class = 'tablica' background= './pitchgrass.jpg'> 
                                                 <tr><th></th><th>PLAYER</th> <th>SAVES</th>";
                                         while($row = $res->fetch_assoc()){
                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a> </td>";
@@ -262,7 +262,7 @@
                                         $q = "SELECT reg_br_igr, ime, prezime, votes, pImage FROM igrac ORDER BY votes desc LIMIT 5"; //. $_SESSION['id'];//romano ja ne znam zasto si ti ovo stavljao..ali ne radi s tim
                                         //rep. => to je za usera spremam mu id u sesiju jer npr. svaki user ima razlicite igrace u favoritima pa da ih mogu hvatat
                                         $res = $db->query($q);
-                                        echo "<table class = 'tablica' background= './pitchgrass.jpg' border = 1> 
+                                        echo "<table class = 'tablica' background= './pitchgrass.jpg'> 
                                             <tr><th></th><th> PLAYER</th> <th>VOTES</th>";
                                         while($row = $res->fetch_assoc()){
                                             echo "<tr><td><a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."' style='text-align: center;' height='55px' width='55px'></a></td>";

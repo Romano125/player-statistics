@@ -408,12 +408,17 @@
                                                                 echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                                                             }else{
                                                                 while( $r = $res->fetch_assoc() ) {
-                                                                    echo "
-                                                                        <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
-                                                                        Name: " . $r['name'] . "<br>
-                                                                        Last name: " . $r['last_name'] . "<br>
-                                                                        Voted on: ".$r['voteDate']."<hr width='100%'>
-                                                                        ";
+                                                                    echo "<div class='row'>";
+                                                                        echo "<div class=col-md-6>
+                                                                                <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                            </div>";
+                                                                        echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                            Name: " . $r['name'] . "</br>
+                                                                            Last name:" . $r['last_name'] ."</br>
+                                                                            Voted on: ".$r['voteDate']."
+                                                                        </div>";
+                                                                    echo "</div>";
+                                                                    echo "<hr width='100%'>";
                                                                 }
                                                             }
                                                             
