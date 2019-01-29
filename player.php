@@ -667,42 +667,46 @@
                                                             
 
                                                             ?>
+                                                            
                                                             <div id = "pagination_data">
 
                                                             </div>
                                                             <script>
 
-                                                            window.onload =  function() {
-                                                                    var liga = document.getElementById("dropDownSelect").value ;
-                                                                    //console.log(liga);
-                                                                    $.ajax({
-                                                                        url:"edit_match.php",
-                                                                        method:"POST",
-                                                                        data:{liga:liga,
-                                                                               gk:<?php echo $f;?>},
-                                                                        success:function(data){
-                                                                            $('#pagination_data').html(data);
-                                                                        }
-                                                                    })
-                                                                    
-                                                                }; 
+                                                                window.onload =  function() {
+                                                                        var liga = document.getElementById("dropDownSelect").value ;
+                                                                        //console.log(liga);
+                                                                        $.ajax({
+                                                                            url:"edit_match.php",
+                                                                            method:"POST",
+                                                                            data:{liga:liga,
+                                                                                gk:"<?php echo $f;?>"},
+                                                                            success:function(data){
+                                                                                $('#pagination_data').html(data);
+                                                                            }
+                                                                        })
+                                                                        
+                                                                    }; 
 
 
-                                                                document.getElementById("dropDownSelect").onclick =  function() {
-                                                                    var liga = document.getElementById("dropDownSelect").value ;
-                                                                    //console.log(liga);
-                                                                    $.ajax({
-                                                                        url:"edit_match.php",
-                                                                        method:"POST",
-                                                                        data:{liga:liga,
-                                                                               gk:<?php echo $f;?>},
-                                                                        success:function(data){
-                                                                            $('#pagination_data').html(data);
-                                                                        }
-                                                                    })
-                                                                    
-                                                                };    
+                                                                    document.getElementById("dropDownSelect").onclick =  function() {
+                                                                        var liga = document.getElementById("dropDownSelect").value;
+                                                                        //console.log(liga);
+                                                                        $.ajax({
+                                                                            url:"edit_match.php",
+                                                                            method:"POST",
+                                                                            data:{liga:liga,
+                                                                                gk:"<?php echo $f;?>"},
+                                                                            success:function(data){
+                                                                                $('#pagination_data').html(data);
+                                                                            }
+                                                                        })
+                                                                        
+                                                                    };   
+                                                             
                                                             </script>
+                                                            
+                                                          
                                                            <!--echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
 =======
                                                             

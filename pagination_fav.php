@@ -22,8 +22,46 @@
 
     $start_from = ($page - 1) * $record_per_page;
 
+    $q = "SELECT val from service_table where idService = 2";
+    $sql_query = $db->prepare($q);
+    $sql_query->execute();
+    $result = $sql_query->get_result();
+    $res = $result->fetch_array();
+    $r = $res['val'];
+    $ord;
+    $ascdesc;
+    switch($r) {
+
+        case 0:
+            $ord = "prezime";
+            $ascdesc = "ASC";
+        break;
+        
+        case 1:
+            $ord = "br_gol";
+            $ascdesc = "DESC";
+        break;
+        
+        case 2:
+            $ord = "br_asist";
+            $ascdesc = "DESC";
+        break;
+        
+        case 3:
+            $ord = "br_obrane";
+            $ascdesc = "DESC";
+        break;
+       
+        case 4:
+            $ord = "votes";
+            $ascdesc = "DESC";
+        break;
+
+        
+    }
+
     $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, pImage FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=?
-          LIMIT $start_from, $record_per_page";
+          ORDER BY $ord $ascdesc LIMIT $start_from, $record_per_page";
 
     $sql_query = $db->prepare($q);
     $sql_query->bind_param('i', $_POST['id_usr']);

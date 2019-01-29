@@ -374,7 +374,8 @@
                                                     <input type="radio" class="form-check-input" id="radio4s" name="optradio2" value="4">Votes
                                             </label>
                                             <script>
-                                                var pos = 'MID';
+                                                var id_usr = "<?php echo $usr; ?>";
+                                                //console.log(id_usr);
                                                 $(document).ready(function(){
                                                     $('input[name = "optradio2"]').click(function(){
                                                         var no_in = $(this).val();
@@ -390,10 +391,10 @@
                                                         load_data(1);
                                                         function load_data(page){
                                                             $.ajax({
-                                                                url:"pagination.php",
+                                                                url:"pagination_fav.php",
                                                                 method: "POST",
                                                                 data:{page:page,
-                                                                      pos:pos},
+                                                                      id_usr:id_usr},
                                                                 success:function(data){
                                                                     $('#pagination_data').html(data);
                                                                  }
