@@ -233,14 +233,19 @@
 			$club = $r['klub_ime'];
 		}
 
+		echo $_POST['club'];
+
 		$q = "SELECT klub_id, klub_ime FROM igrac JOIN klub using(klub_id)";
 
 		$res = $db->query($q);
 
 		$cid = 0;
 		$f = 0;
+
 		while( $r = $res->fetch_assoc() ) {
-			if( !strcmp(strtolower($r['klub_ime']), strtolower($_POST['club'])) ) {
+			$r['klub_ime'] = explode(' ', $r['klub_ime']);
+			$r['klub_ime'] = implode('+', $r['klub_ime']);
+			if( !strcmp(strtolower($r['klub_ime']), strtolower($_POST['club'])) && strcmp(strtolower($club), strtolower($_POST['club'])) ) {
 				$f = 1;
 				$cid = $r['klub_id'];
 			}
