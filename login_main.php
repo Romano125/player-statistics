@@ -27,23 +27,25 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 							</div>
-							<input type="text" name="mail" class="form-control input_user" value="" placeholder="E-mail">
+							<input type="text" name="mail" class="form-control input_user ma" value="" placeholder="E-mail">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="passwd" class="form-control input_pass" value="" placeholder="Password">
+							<input type="password" name="passwd" class="form-control input_pass pa" value="" placeholder="Password">
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="customControlInline">
 							</div>
+							<p class='data'>
 							<?php
 								if( isset($_GET['f']) ) {
 									if( $_GET['f'] == 1 ) echo "<span style='color: red'>Please, check your e-mail or password</span>";
 								}
 							?>
+							</p>
 						</div>
 						<div class="d-flex justify-content-center mt-3 login_container">
 							<button type="submit" name="button" class="btn btn-primary">Login</button>
@@ -58,5 +60,13 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		document.querySelector('.ma').addEventListener('onfocus', delete);
+
+		function delete() {
+			document.querySelector('.data').innerHTML = '';
+		}
+	</script>
 </body>
 </html>
