@@ -663,7 +663,6 @@
                                                         }
 
                                                             echo "</select>";
-<<<<<<< HEAD
 
                                                             
 
@@ -708,7 +707,6 @@
 =======
                                                             
                                                             echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
->>>>>>> 02ab41f651bda107243d7f434ec343efcbdf0d68
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
                                                             if( $f == 1 ) echo "Saves: <input type='number' name='s" . $natj . "' min='0' value='0'><br>";
