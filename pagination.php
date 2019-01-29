@@ -194,8 +194,8 @@
             $output .= "
             <div class='row'>
                                 <div class='col-md-3'>
-                                    <img src='". $row['pImage'] ."' height='119px' width='91px'><br>
-                                    <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $row['reg_br_igr'] . "'>More info</a></button>
+                                    <img src='". $row['pImage'] ."' class='img-rounded' height='119px' width='91px'><br>
+                                    <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $row['reg_br_igr'] . "'><span class='glyphicon glyphicon-search'></span>More info</a></button>
                                 </div>
                                 <div class='col-md-3'>
                                     Name: " . $row['ime'] . "<br>
