@@ -86,7 +86,7 @@
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
                             <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
                             <br><br><span class='badge badge-dark'style='padding-top: 10px; padding-bottom: 10px; padding-left: 6px; padding-right: 6px;
-                        '>".$res['weekNo'].". week started on ".$res['startDate']."</span>
+                            '>Week ".$res['weekNo']." started on ".$res['startDate']."</span>
                             </td> 
                         </tr>
                     </table>
