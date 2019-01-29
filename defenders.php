@@ -123,7 +123,7 @@
                                                 $pic = $r['user_photo'];
                                             }
 
-                                            echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                            echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar useravatar'></a>";
                                     echo '</div>
                                     <div class="col-md-8">';
 
@@ -141,13 +141,13 @@
                             </div>';
                         ?>
                     </li>
-                    <li><a href="forwards.php" id="fwd">Forwards</a></li>
-                    <li><a href="midfielders.php" id="mid">Midfielders</a></li>
-                    <li><a href="defenders.php" id="def">Defenders</a></li>
-                    <li><a href="goalkeepers.php" id="gk">Goalkeepers</a></li>
-                    <li><a href="favourites.php" id="fav">Favourites</a></li>
-                    <li><a href="settings.php" id="pos">Settings</a></li>
-                    <li><a href='users.php' id='pos'>Users</a></li>
+                    <li class="fwd"><a href="forwards.php" class="f">Forwards</a></li>
+                    <li class="mid"><a href="midfielders.php" class="m">Midfielders</a></li>
+                    <li class="def"><a href="defenders.php" class="d">Defenders</a></li>
+                    <li class="gk"><a href="goalkeepers.php" class="g">Goalkeepers</a></li>
+                    <li class="fav"><a href="favourites.php" class="f">Favourites</a></li>
+                    <li class="pos"><a href="settings.php" class="s">Settings</a></li>
+                    <li class='use'><a href='users.php' class="u">Users</a></li>
                     <!--<?php
                         if( isset($_SESSION['priv']) ) {
                             if( $_SESSION['priv'] == 1 ) echo "<li><a href='users.php' id='pos'>Users</a></li>";
@@ -479,6 +479,7 @@
                 e.preventDefault();
                 document.getElementById('wrapper').classList.toggle('menuDisplayed');
             });
+            document.querySelector('.def').classList.add('active');
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
