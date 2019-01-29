@@ -94,6 +94,9 @@
             } 
             else $not = 0;
 
+            $q = "SELECT weekNo, startDate FROM weeks";
+            $res = ($db->query($q))->fetch_assoc();
+
             echo "<div class='container-fluid top-menu'>
                     <table>
                         <tr> <td width='25%'>
@@ -112,6 +115,8 @@
                             </td>
                             <td style='text-align: center; padding: 20px; font-family: Papyrus, fantasy; font-size: 49px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 40.6px;'><h2>Welcome to the site about football players</h2></td> 
                             <td width='25%' style='text-align: right; padding: 20px'><button type='button' class='btn btn-dark btn-sm'><a href='logout.php' style='text-decoration: none;color: white'>LogOut " . $s . "</a></button>
+                            <br><br><span class='badge badge-dark'style='padding-top: 10px; padding-bottom: 10px; padding-left: 6px; padding-right: 6px;
+                            '> Week ".$res['weekNo']." started on ".$res['startDate']."</span>
                             </td> 
                         </tr>
                     </table>
@@ -256,6 +261,35 @@
                                           $res = $db->query($q);
                                           $row = $res->fetch_assoc();
                                           echo "<img src='". $row['pImage'] ."' height='181px' width='138px'><br><br>";
+
+                                          if( isset($_GET['id']) ) $id = $_GET['id'];
+
+                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
+
+                                            $res = $db->query($q);
+                                                
+                                                    
+                                            echo "<div class='row'>";
+                                            if( $res->num_rows == 0 ) {
+                                                echo "<form action='add_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
+                                                    </form>";
+                                            }else{
+                                                $f = 0;
+                                                while( $r = $res->fetch_assoc() ) {
+                                                    if( $r['reg_br_igr'] == $id ) $f = 1;
+                                                }
+                                                if( $f == 1 ) {
+                                                    echo "<form action='del_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                    <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'> + Favourites</button>
+                                                    </form>";
+                                                }else{
+                                                    echo "<form action='add_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
+                                                    </form>";
+                                                }
+                                            }
+                                            echo "</div>";
                                         
                                     ?>   
 
