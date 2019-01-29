@@ -105,45 +105,45 @@
                 <ul class="sidebar-nav">
                     <li>
                         <?php
-                            $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
-                            
-                            $q = "SELECT back_photo FROM users WHERE ID=" . $_SESSION['id'];
+                        $db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
+                        
+                        $q = "SELECT back_photo FROM users WHERE ID=" . $_SESSION['id'];
 
-                            $res = $db->query($q);
+                        $res = $db->query($q);
 
-                            while( $r = $res->fetch_assoc() ) {
-                                $pic = $r['back_photo'];
-                            }
+                        while( $r = $res->fetch_assoc() ) {
+                            $pic = $r['back_photo'];
+                        }
 
-                            echo '<div id="wrapper" class="images" style="background-image: url(' . $pic . ');">
-                                <div class="row">
-                                    <div class="col-md-3">';
+                        echo '<div id="wrapper" class="images" style="background-image: url(' . $pic . ');">
+                            <div class="row">
+                                <div class="col-md-3">';
 
-                                            $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
+                                        $q = "SELECT user_photo FROM users WHERE ID=" . $_SESSION['id'];
+
+                                        $res = $db->query($q);
+
+                                        while( $r = $res->fetch_assoc() ) {
+                                            $pic = $r['user_photo'];
+                                        }
+
+                                        echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar useravatar'></a>";
+                                echo '</div>
+                                <div class="col-md-8 sidebar-text">';
+
+                                            $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                $pic = $r['user_photo'];
+                                                echo "<span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span><br>";
+                                                echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
                                             }
 
-                                            echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar useravatar'></a>";
-                                    echo '</div>
-                                    <div class="col-md-8">';
-
-                                                $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
-
-                                                $res = $db->query($q);
-
-                                                while( $r = $res->fetch_assoc() ) {
-                                                    echo "<p><span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span></p>";
-                                                    echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
-                                                }
-
-                                   echo '</div>
-                                </div>
-                            </div>';
-                        ?>
+                                echo '</div>
+                            </div>
+                        </div>';
+                    ?>
                     </li>
                     <li class="fwd"><a href="forwards.php" class="f">Forwards</a></li>
                     <li class="mid"><a href="midfielders.php" class="m">Midfielders</a></li>

@@ -662,6 +662,7 @@
                                                             echo "<option style='font-weight:bold;' value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                         }
                                                             echo "</select>";
+                                                            
                                                             echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
