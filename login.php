@@ -3,7 +3,7 @@
 	$mail = $_POST['mail'];
 
 	if(empty($pass) | empty($mail)) {
-		header('Location: http://localhost:8080/projekt/logfal.html');
+		header('Location: http://localhost:8080/projekt/login_main.php?f=1');
 	}else{
 		$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
@@ -34,7 +34,8 @@
 			$_SESSION['mail'] = $mail;
 			header('Location: http://localhost:8080/projekt/app.php');
 		}else {
-			header('Location: http://localhost:8080/projekt/logfal.html');
+			//header('Location: http://localhost:8080/projekt/logfal.html');
+			header('Location: http://localhost:8080/projekt/login_main.php?f=1');
 		}
 	}
 ?>

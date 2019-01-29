@@ -39,7 +39,11 @@
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="customControlInline">
 							</div>
-							<span style="color: red">Please, check your e-mail or password</span>
+							<?php
+								if( isset($_GET['f']) ) {
+									if( $_GET['f'] == 1 ) echo "<span style='color: red'>Please, check your e-mail or password</span>";
+								}
+							?>
 						</div>
 						<div class="d-flex justify-content-center mt-3 login_container">
 							<button type="submit" name="button" class="btn btn-primary">Login</button>
