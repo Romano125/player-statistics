@@ -1,0 +1,26 @@
+
+
+
+.header {
+	background-color: #1da6ff;
+	color: white;
+	font-style: oblique;
+    margin: 0;
+    padding-top: 5%;
+    padding-bottom: 5%;
+	font-weight: 500;
+	align-items: center;
+}
+
+.col-sm-8 h2{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+}
+
+.btn-info {
+    margin-left: 45%;
+    margin-right: 45%;
+    margin: 2.5% 42.5%;
+}
+
