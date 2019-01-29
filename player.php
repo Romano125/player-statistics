@@ -183,7 +183,7 @@
             <div id="page-content-wrapper" style="background-color: white;">
                 
                 <div class="container-fluid switch" id="player">
-                    <div class="row align-items-center">
+                    <div class="row">
 
                         <div class="col-md-8">
 
