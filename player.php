@@ -653,16 +653,57 @@
                                                         while( $r = $res->fetch_assoc() ) {
                                                             if( !strcmp($r['pozicija_id'], "GK") ) $f = 1;
                                                         }
-
+                    
                                                         $q = "SELECT DISTINCT ime_natj FROM igrac_natjecanje WHERE reg_br_igr='" . $id . "'";
 
                                                         $res = $db->query($q);
-                                                        echo "<select style='font-weight:bold; name='natjecanje' class='form-control' required>";    
+                                                        echo "<select id = 'dropDownSelect'style='font-weight:bold; name='natjecanje' class='form-control' required>";    
                                                         while( $r = $res->fetch_assoc() ) {
                                                             echo "<option style='font-weight:bold;' value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                         }
+
                                                             echo "</select>";
-                                                            echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
+
+                                                            
+
+                                                            ?>
+                                                            <div id = "pagination_data">
+
+                                                            </div>
+                                                            <script>
+
+                                                            window.onload =  function() {
+                                                                    var liga = document.getElementById("dropDownSelect").value ;
+                                                                    //console.log(liga);
+                                                                    $.ajax({
+                                                                        url:"edit_match.php",
+                                                                        method:"POST",
+                                                                        data:{liga:liga,
+                                                                               gk:<?php echo $f;?>},
+                                                                        success:function(data){
+                                                                            $('#pagination_data').html(data);
+                                                                        }
+                                                                    })
+                                                                    
+                                                                }; 
+
+
+                                                                document.getElementById("dropDownSelect").onclick =  function() {
+                                                                    var liga = document.getElementById("dropDownSelect").value ;
+                                                                    //console.log(liga);
+                                                                    $.ajax({
+                                                                        url:"edit_match.php",
+                                                                        method:"POST",
+                                                                        data:{liga:liga,
+                                                                               gk:<?php echo $f;?>},
+                                                                        success:function(data){
+                                                                            $('#pagination_data').html(data);
+                                                                        }
+                                                                    })
+                                                                    
+                                                                };    
+                                                            </script>
+                                                           <!--echo "Match: <input type='text' name='h" . $natj . "' placeholder='home'> vs <input type='text' name='aw" . $natj . "' placeholder='away'><br>
                                                                 Goals: <input type='number' name='g" . $natj . "' min='0' value='0'><br>
                                                                 Assists: <input type='number' name='a" . $natj . "' min='0' value='0'><br>";
                                                             if( $f == 1 ) echo "Saves: <input type='number' name='s" . $natj . "' min='0' value='0'><br>";
@@ -670,7 +711,8 @@
                                                                 Red cards: <input type='number' name='r" . $natj . "' min='0' max='1' value='0'><br>
                                                                 Played: <input type='number' name='p" . $natj . "' min='0' max='1' value='0'><br>
                                                                 ";
-                                                    ?>
+                                                               
+                                                    ?> */-->
                                                     <button type='submit' class='btn btn-dark home-btn'>Save</button>
                                                 </form>
                                             </div>
