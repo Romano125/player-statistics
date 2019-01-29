@@ -243,8 +243,6 @@
 		$f = 0;
 
 		while( $r = $res->fetch_assoc() ) {
-			$r['klub_ime'] = explode(' ', $r['klub_ime']);
-			$r['klub_ime'] = implode('+', $r['klub_ime']);
 			if( !strcmp(strtolower($r['klub_ime']), strtolower($_POST['club'])) && strcmp(strtolower($club), strtolower($_POST['club'])) ) {
 				$f = 1;
 				$cid = $r['klub_id'];
@@ -332,7 +330,7 @@
 
 			$db->query($q);
 
-			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " changed and now it's value is " . $_POST['price'] . "";
+			$not = $showDate . "<br>The price of a player " . $name . " " . $last . " changed and now it's value is " . $_POST['price'];
 
 			$q = "SELECT ID FROM users";
 
