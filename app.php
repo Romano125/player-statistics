@@ -117,16 +117,16 @@
                                             $pic = $r['user_photo'];
                                         }
 
-                                        echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar'></a>";
+                                        echo "<a href='users_info.php?id=" . $_SESSION['id'] . "' id='post'><img src=" . $pic . " alt='Avatar' class='avatar useravatar'></a>";
                                 echo '</div>
-                                <div class="col-md-8">';
+                                <div class="col-md-8 sidebar-text">';
 
                                             $q = "SELECT name, last_name, e_mail FROM users WHERE ID=" . $_SESSION['id'];
 
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                                echo "<p><span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span></p>";
+                                                echo "<span class='sidebar-name'>" . $r['name'] . " " . $r['last_name'] . "</span><br>";
                                                 echo "<small class='sidebar-name'>" . $r['e_mail'] . "</small>";
                                             }
 

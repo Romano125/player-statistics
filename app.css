@@ -20,6 +20,18 @@
   background: white;
 }
 
+.useravatar {
+	margin-top: 20px;
+	margin-left: 50px;
+	height: 120px;
+	width: 120px;
+}
+
+.sidebar-text {
+	margin-top: 135px;
+	margin-left: -20px;
+}
+
 .images {
 	height: 225px;
 	background-size: cover;
