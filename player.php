@@ -261,35 +261,6 @@
                                           $res = $db->query($q);
                                           $row = $res->fetch_assoc();
                                           echo "<img src='". $row['pImage'] ."' height='181px' width='138px'><br><br>";
-
-                                          if( isset($_GET['id']) ) $id = $_GET['id'];
-
-                                            $q = "SELECT DISTINCT reg_br_igr FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=" . $_SESSION['id'];
-
-                                            $res = $db->query($q);
-                                                
-                                                    
-                                            echo "<div class='row'>";
-                                            if( $res->num_rows == 0 ) {
-                                                echo "<form action='add_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
-                                                    </form>";
-                                            }else{
-                                                $f = 0;
-                                                while( $r = $res->fetch_assoc() ) {
-                                                    if( $r['reg_br_igr'] == $id ) $f = 1;
-                                                }
-                                                if( $f == 1 ) {
-                                                    echo "<form action='del_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                    <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'> + Favourites</button>
-                                                    </form>";
-                                                }else{
-                                                    echo "<form action='add_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                                    <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
-                                                    </form>";
-                                                }
-                                            }
-                                            echo "</div>";
                                         
                                     ?>   
 
