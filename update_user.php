@@ -15,5 +15,9 @@
 
 	$db->query($q);
 
+	$_SESSION['user'] = $n;
+	$_SESSION['last'] = $l;
+	$_SESSION['mail'] = $e;
+
 	header('Location: settings.php');
 ?>
