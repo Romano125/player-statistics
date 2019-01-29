@@ -85,9 +85,9 @@
                             </div><br><hr>";
         }
         $output .= "<br/><div align 'center'>";
-        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime FROM igrac NATURAL JOIN klub WHERE pozicija_id=?";
+        $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, pImage FROM igrac JOIN users_igrac using(reg_br_igr) JOIN klub using(klub_id) WHERE ID=?";
         $sql_query = $db->prepare($q);
-        $sql_query->bind_param('s', $_POST['pos']);
+        $sql_query->bind_param('s', $_POST['id_usr']);
         $sql_query->execute();
         $page_result = $sql_query->get_result();
         $total_records = mysqli_num_rows($page_result);
