@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$showDate = date("Ymd");
 
 	$db = new mysqli('127.0.0.1', 'root', '', 'player_stats');
 
@@ -19,6 +20,8 @@
 
 	$q = "UPDATE service_table SET val = val + 1 WHERE idService = 7";
 	$db->query($q);
-
+	
+	$q = "INSERT INTO weeks(weekNo, startDate) VALUES ((SELECT val FROM service_table where idService = 7), ".$showDate.")";
+	$db->query($q);
 	header('Location: app.php');
 ?>
