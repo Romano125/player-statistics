@@ -18,6 +18,8 @@
     $upd = "UPDATE service_table SET val = 10 WHERE idService = 1";
     $upd_querry = $db->prepare($upd);
     $upd_querry->execute();
+    
+    $usr = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
@@ -174,7 +176,7 @@
 
                         <script>
                             var id_usr = "<?php echo $usr; ?>";
-                            id_usr = parseInt(id_usr);
+                            id_usr = parseInt(id_usr);                            
                             $(document).ready(function(){
                                 load_data(1);
                                 function load_data(page){
