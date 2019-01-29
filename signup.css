@@ -1,0 +1,33 @@
+.login {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(150, 150, 150, 0.8) 0%, rgba(0,0,0,0.6) 100%);
+  margin-left: 465px;
+  margin-right: 465px;
+ }
+
+ .cont {
+  position: relative;
+  height: 100%;
+  background-image: url('https://images.pexels.com/photos/47354/the-ball-stadion-football-the-pitch-47354.jpeg?cs=srgb&dl=feld-fussball-gras-47354.jpg&fm=jpg');
+  background-size: cover;
+  overflow: auto;
+}
+
+.links {
+	font-size: 15px;
+    color: #ABA8AE;
+    
+    a {
+      color: #fff;
+      cursor: pointer;
+    }
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: white;
+}
