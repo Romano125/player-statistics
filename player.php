@@ -269,7 +269,7 @@
                                             $res = $db->query($q);
                                                 
                                                     
-                                            echo "<div class='row'>";
+                                            /*echo "<div class='row'>";
                                             if( $res->num_rows == 0 ) {
                                                 echo "<form action='add_fav.php?id=" . $id . "' method='POST'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                                     <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
@@ -289,7 +289,7 @@
                                                     </form>";
                                                 }
                                             }
-                                            echo "</div>";
+                                            echo "</div>";*/
                                         
                                     ?>   
 
