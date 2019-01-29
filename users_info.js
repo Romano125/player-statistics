@@ -23,3 +23,5 @@ document.querySelector('.close').addEventListener( 'click', () => {
 	document.querySelector('.bg-modal1').style.display = 'none';
 	document.querySelector('.bg-modal2').style.display = 'none';
 });
+
+document.querySelector('.use').classList.add('active');

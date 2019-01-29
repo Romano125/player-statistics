@@ -135,13 +135,13 @@
                         </div>';
                     ?>
                 </li>
-                <li id="fwd"><a href="forwards.php">Forwards</a></li>
-                <li><a href="midfielders.php" id="mid">Midfielders</a></li>
-                <li><a href="defenders.php" id="def">Defenders</a></li>
-                <li><a href="goalkeepers.php" id="gk">Goalkeepers</a></li>
-                <li><a href="favourites.php" id="fav">Favourites</a></li>
-                <li><a href="settings.php" id="pos">Settings</a></li>
-                <li><a href='users.php' id='pos'>Users</a></li>
+                <li class="fwd"><a href="forwards.php" class="f">Forwards</a></li>
+                <li class="mid"><a href="midfielders.php" class="m">Midfielders</a></li>
+                <li class="def"><a href="defenders.php" class="d">Defenders</a></li>
+                <li class="gk"><a href="goalkeepers.php" class="g">Goalkeepers</a></li>
+                <li class="fav"><a href="favourites.php" class="f">Favourites</a></li>
+                <li class="pos"><a href="settings.php" class="s">Settings</a></li>
+                <li class='use'><a href='users.php' class="u">Users</a></li>
                 <!--<?php
                     if( isset($_SESSION['priv']) ) {
                         if( $_SESSION['priv'] == 1 ) echo "<li><a href='users.php' id='pos'>Users</a></li>";
