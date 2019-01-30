@@ -48,9 +48,9 @@
                     <button type='button' class='btn btn-dark btn-sm'><a href='users_info.php?id=" . $row['ID'] . "' style='text-decoration: none;color: white'>User info</a></button>
                 </div>
                 <div class='col-md-3'>
-                    Name: " . $row['name'] . "<br>
-                    Last name: " . $row['last_name'] . "<br>
-                    E-mail: " . $row['e_mail'] . "<br>
+                    <b>Name:</b> " . $row['name'] . "<br>
+                    <b>Last name:</b> " . $row['last_name'] . "<br>
+                    <b>E-mail:</b> " . $row['e_mail'] . "<br>
                 </div>
             </div><br><hr>";
         }

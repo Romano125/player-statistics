@@ -198,11 +198,11 @@
                                     <button type='button' class='btn btn-outline-dark'><a href='player.php?id=" . $row['reg_br_igr'] . "'><span class='glyphicon glyphicon-search'></span>More info</a></button>
                                 </div>
                                 <div class='col-md-3'>
-                                    Name: " . $row['ime'] . "<br>
-                                    Last name: " . $row['prezime'] . "<br>
-                                    Goals: " . $row['br_gol'] . "<br>
-                                    Asists: " . $row['br_asist'] . "<br>
-                                    Club: " . $row['klub_ime'] . "<br>
+                                    <b>Name:</b> " . $row['ime'] . "<br>
+                                    <b>Last name:</b> " . $row['prezime'] . "<br>
+                                    <b>Goals:</b> " . $row['br_gol'] . "<br>
+                                    <b>Asists:</b> " . $row['br_asist'] . "<br>
+                                    <b>Club:</b> " . $row['klub_ime'] . "<br>
                                 </div>
                             </div><br><hr>";
         }

@@ -247,7 +247,7 @@
                                         }
 
                                         echo "</div>
-                                            </nav>";
+                                            </nav><br>";
 
                                     ?>
 
@@ -311,19 +311,19 @@
                                                     }
                                                     while( $r = $res->fetch_assoc() ) {
                                                         echo "<div class='txt'>
-                                                            Name: " . $r['ime'] . "<br>";
-                                                        echo "Last name: " . $r['prezime'] . "<br>";
-                                                        echo "Club: " . $r['klub_ime'] . "<br>";
-                                                        echo "Jersy number: " . $r['br_dres'] . "<br>";
-                                                        echo "Field position: " . $r['ime_poz'] . "<br>";
-                                                        echo "Total goals: " . $r['br_gol'] . "<br>";
-                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                        if( !strcmp($r['pozicija_id'], "GK") ) echo "Total saves: " . $r['br_obrane'] . "<br>";
-                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Market value: " . $r['price'] . "€<br>";
-                                                        echo "Total votes this week: " . $r['votes'] . "<br>";
-                                                        echo "Total games played: " . $r['br_utakmica'] . "<br> </div>";
+                                                            <b>Name:</b> " . $r['ime'] . "<br>";
+                                                        echo "<b>Last name:</b> " . $r['prezime'] . "<br>";
+                                                        echo "<b>Club:</b> " . $r['klub_ime'] . "<br>";
+                                                        echo "<b>Jersy number:</b> " . $r['br_dres'] . "<br>";
+                                                        echo "<b>Field position:</b> " . $r['ime_poz'] . "<br>";
+                                                        echo "<b>Total goals:</b> " . $r['br_gol'] . "<br>";
+                                                        echo "<b>Total assists:</b> " . $r['br_asist'] . "<br>";
+                                                        if( !strcmp($r['pozicija_id'], "GK") ) echo "<b>Total saves:</b> " . $r['br_obrane'] . "<br>";
+                                                        echo "<b>Total yellow cards:</b> " . $r['br_zkarton'] . "<br>";
+                                                        echo "<b>Total red cards:</b> " . $r['br_ckarton'] . "<br>";
+                                                        echo "<b>Market value:</b> " . $r['price'] . "€<br>";
+                                                        echo "<b>Total votes this week:</b> " . $r['votes'] . "<br>";
+                                                        echo "<b>Total games played:</b> " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -358,12 +358,17 @@
                                                                 echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                                                             }else{
                                                                 while( $r = $res->fetch_assoc() ) {
-                                                                    echo "
-                                                                        <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src=" . $r['user_photo'] . " id='av' alt='Avatar' class='avatar'></a> 
-                                                                        Name: " . $r['name'] . "<br>
-                                                                        Last name: " . $r['last_name'] . "<br>
-                                                                        Voted on: ".$r['voteDate']."<hr width='100%'>
-                                                                        ";
+                                                                    echo "<div class='row'>";
+                                                                        echo "<div class=col-md-6>
+                                                                                <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                            </div>";
+                                                                        echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                            <b>Name:</b> " . $r['name'] . "</br>
+                                                                            <b>Last name:</b> " . $r['last_name'] ."</br>
+                                                                            <b>Voted on:</b> ".$r['voteDate']."
+                                                                        </div>";
+                                                                    echo "</div>";
+                                                                    echo "<hr width='100%'>";
                                                                 }
                                                             }
                                                             
@@ -418,9 +423,9 @@
                                                                                 <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
                                                                             </div>";
                                                                         echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                                            Name: " . $r['name'] . "</br>
-                                                                            Last name:" . $r['last_name'] ."</br>
-                                                                            Voted on: ".$r['voteDate']."
+                                                                            <b>Name:</b> " . $r['name'] . "</br>
+                                                                            <b>Last name:</b> " . $r['last_name'] ."</br>
+                                                                            <b>Voted on:</b> ".$r['voteDate']."
                                                                         </div>";
                                                                     echo "</div>";
                                                                     echo "<hr width='100%'>";
@@ -448,7 +453,7 @@
 
                                                     if( $res->num_rows == 0 ) {
                                                         echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                     }else{
                                                         $f = 0;
@@ -457,11 +462,11 @@
                                                         }
                                                         if( $f == 1 ) {
                                                             echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }else{
                                                             echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }
                                                     }
@@ -491,12 +496,12 @@
 
                                                     while( $r = $res->fetch_assoc() ) {
                                                         echo "<div class='txt'>
-                                                            Total goals: " . $r['br_gol'] . "<br>";
-                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
-                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br> </div>";
+                                                            <b>Total goals:</b> " . $r['br_gol'] . "<br>";
+                                                        echo "<b>Total assists:</b> " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "<b>Total saves:</b> " . $r['br_obrane'] . "<br>";
+                                                        echo "<b>Total yellow cards:</b> " . $r['br_zkarton'] . "<br>";
+                                                        echo "<b>Total red cards:</b> " . $r['br_ckarton'] . "<br>";
+                                                        echo "<b>Games played:</b> " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -515,7 +520,7 @@
 
                                                     if( $res->num_rows == 0 ) {
                                                         echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                     }else{
                                                         $f = 0;
@@ -524,11 +529,11 @@
                                                         }
                                                         if( $f == 1 ) {
                                                             echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }else{
                                                             echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }
                                                     }
@@ -558,13 +563,13 @@
                                                     $res = $db->query($q);
 
                                                     while( $r = $res->fetch_assoc() ) {
-                                                        echo "<div class = 'txt'>
-                                                            Total goals: " . $r['br_gol'] . "<br>";
-                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
-                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
+                                                        echo "<div class='txt'>
+                                                            <b>Total goals:</b> " . $r['br_gol'] . "<br>";
+                                                        echo "<b>Total assists:</b> " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "<b>Total saves:</b> " . $r['br_obrane'] . "<br>";
+                                                        echo "<b>Total yellow cards:</b> " . $r['br_zkarton'] . "<br>";
+                                                        echo "<b>Total red cards:</b> " . $r['br_ckarton'] . "<br>";
+                                                        echo "<b>Games played:</b> " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -583,7 +588,7 @@
 
                                                     if( $res->num_rows == 0 ) {
                                                         echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                     }else{
                                                         $f = 0;
@@ -592,11 +597,11 @@
                                                         }
                                                         if( $f == 1 ) {
                                                             echo "<form action='del_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning paint' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }else{
                                                             echo "<form action='add_fav.php?id=" . $id . "' method='POST'>
-                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'>Favourites</button>
+                                                            <button type='submit' class='btn btn-outline-warning' id='fav-btn' style='float: right;'> + Favourites</button>
                                                             </form>";
                                                         }
                                                     }
@@ -627,12 +632,12 @@
 
                                                     while( $r = $res->fetch_assoc() ) {
                                                         echo "<div class='txt'>
-                                                            Total goals: " . $r['br_gol'] . "<br>";
-                                                        echo "Total assists: " . $r['br_asist'] . "<br>";
-                                                        if( $f == 1 ) echo "Total saves: " . $r['br_obrane'] . "<br>";
-                                                        echo "Total yellow cards: " . $r['br_zkarton'] . "<br>";
-                                                        echo "Total red cards: " . $r['br_ckarton'] . "<br>";
-                                                        echo "Games played: " . $r['br_utakmica'] . "<br></div>";
+                                                            <b>Total goals:</b> " . $r['br_gol'] . "<br>";
+                                                        echo "<b>Total assists:</b> " . $r['br_asist'] . "<br>";
+                                                        if( $f == 1 ) echo "<b>Total saves:</b> " . $r['br_obrane'] . "<br>";
+                                                        echo "<b>Total yellow cards:</b> " . $r['br_zkarton'] . "<br>";
+                                                        echo "<b>Total red cards:</b> " . $r['br_ckarton'] . "<br>";
+                                                        echo "<b>Games played:</b> " . $r['br_utakmica'] . "<br> </div>";
                                                         break;
                                                     }
 
@@ -662,7 +667,7 @@
                                                             echo "<option style='font-weight:bold;' value='" . $r['ime_natj'] . "'>". $r['ime_natj'] . "</option>";
                                                         }
 
-                                                            echo "</select>";
+                                                            echo "</select><br>";
 
                                                             
 

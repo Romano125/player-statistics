@@ -29,9 +29,9 @@
 		           		<a href='player.php?id=" . $row['reg_br_igr'] . "'><img src='".$row['pImage']."'  style='text-align: center;' height='119px' width='91px'></a>
 		           	</div>";
 		           $output .= "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-		           		Name: " . $row['ime'] . "</br>
-		           		Last name:" . $row['prezime'] ."</br>
-		           		Votes: " . $row['votes'] . "
+		           		<b>Name:</b> " . $row['ime'] . "</br>
+		           		<b>Last name:</b> " . $row['prezime'] ."</br>
+		           		<b>Votes:</b> " . $row['votes'] . "
 		           	</div>";
 	           $output .= "</div>";
 	           $output .= "<hr width='100%'>";
