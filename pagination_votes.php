@@ -40,7 +40,7 @@
 
         $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
         $res = $db->query($q);
-        $tot = $res ->num_rows;
+        $tot = $res->num_rows;
         $totPages = ceil($tot / $record_per_page);
         for($i = 1; $i <= $totPages; $i++) {
             $output .= "<span class = 'pagination_link' style = 'cursor:pointer; padding:6px; border:1px solid #ccc' id = '".$i."'>".$i."</span>";

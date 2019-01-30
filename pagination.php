@@ -96,7 +96,7 @@
     }
 
     $start_from = ($page - 1) * $record_per_page;
-
+    
     if ($filterByName) {
         if ($filterByLeague) {
             if ($filterByClub) {
@@ -127,7 +127,7 @@
         if ($filterByName) {
             if ($filterByLeague) {
                 $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, price, pImage FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
-                WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+                WHERE pozicija_id=? AND (ime LIKE '%$filterByName%' OR prezime LIKE '%$filterByName%') AND klub_ime = '$filterByClub' AND ime_natj = '$filterByLeague'
                 ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
             } 
             else {
@@ -138,7 +138,7 @@
         }
         else if ($filterByLeague) {
             $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, price, pImage FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
-            WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+            WHERE pozicija_id=? AND klub_ime = '$filterByClub' AND ime_natj = '$filterByLeague'
             ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
         }
         
@@ -163,7 +163,7 @@
         }
         else if ($filterByClub) {
             $q = "SELECT DISTINCT reg_br_igr, ime, prezime, br_gol, br_asist, klub_ime, price, pImage FROM igrac NATURAL JOIN klub NATURAL JOIN natjecanja_kluba NATURAL JOIN natjecanje 
-            WHERE pozicija_id=? AND klub_ime = '$filterByClub%' AND ime_natj = '$filterByLeague'
+            WHERE pozicija_id=? AND klub_ime = '$filterByClub' AND ime_natj = '$filterByLeague'
             ORDER BY $sort_by $ascdesc LIMIT $start_from, $record_per_page";
         }
         else {
@@ -186,8 +186,13 @@
         $res = $sql_query->get_result();
     }
     else {
-        echo "No results";
-        return;
+        $output = "No Results";
+        goto flag;
+    }
+    $tot = $res->num_rows;
+    if(!$tot) {
+        $output = "No Results";
+        goto flag;
     }
 
         while($row = $res->fetch_assoc()) {
@@ -297,6 +302,7 @@
             $output .= "<span class = 'pagination_link' style = 'cursor:pointer; padding:6px; border:1px solid #ccc' id = '".$i."'>".$i."</span>";
 
         }
+flag:
         echo $output;
           /*mozda za prikz igraca
           <div class='card' style='width: 18rem;'>

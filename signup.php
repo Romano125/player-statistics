@@ -16,8 +16,10 @@
 		$q = "SELECT e_mail FROM users";
 
 		$res = $db->query($q);
-
 		$f = 0;
+		if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+			$f = 1;
+		}
 		while( $r = $res->fetch_assoc() ) {
 			if( !strcmp($r['e_mail'], $mail) ) $f = 1;
 		}
