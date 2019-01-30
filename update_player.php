@@ -42,7 +42,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}
 	    		}
@@ -79,7 +79,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}	
 	    		}
@@ -114,7 +114,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}	
 	    		}
@@ -149,7 +149,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}	
 	    		}
@@ -184,7 +184,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}
 	    		}
@@ -219,7 +219,7 @@
 					$res = $db->query($q);
 
 					while( $r = $res->fetch_assoc() ) {
-						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+						$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 						$db->query($q);
 					}	
 	    		}
@@ -283,7 +283,7 @@
 			$res = $db->query($q);
 
 			while( $r = $res->fetch_assoc() ) {
-				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 				$db->query($q);
 			}
 			
@@ -317,7 +317,7 @@
 			$res = $db->query($q);
 
 			while( $r = $res->fetch_assoc() ) {
-				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 				$db->query($q);
 			}
 		}
@@ -350,7 +350,7 @@
 			$res = $db->query($q);
 
 			while( $r = $res->fetch_assoc() ) {
-				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $_r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
+				$q = "INSERT INTO users_notifications (ID, reg_br_igr, notification, seen, was_fav, recieved) VALUES (" . $r['ID'] . ", '" . $_GET['id'] . "', '" . $not . "', 1, 0, '" . $showDate . "')";
 				$db->query($q);
 			}
 		}
