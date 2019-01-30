@@ -269,7 +269,7 @@
                                                             <td>FOLLOWERS</t> <td>FOLLOWS</td>
                                                         </tr>
                                                         <tr>
-                                                            <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter1'>" . $foll2 . "</t> <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter'>" . $foll1 . "</td>
+                                                            <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter1' id = 'follr'>" . $foll2 . "</t> <td style='cursor: pointer' data-toggle='modal' data-target='#exampleModalCenter' id = 'folls'>" . $foll1 . "</td>
                                                         </tr>
                                                     </table>
 		                                        </div>";
@@ -283,9 +283,72 @@
                                                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                                               <span aria-hidden='true'>&times;</span>
                                                             </button>
+                                                          </div>";
+                                   ?>                       
+                                                          <div class='modal-body'>
+
+                                                                <div id = "pagination_data2">
+      
+                                                                </div>
                                                           </div>
-                                                          <div class='modal-body'>";
-                                                    if( isset($_GET['id']) ) $id = $_GET['id'];                                        
+
+                                                          <script>
+
+                                                                var id_usr = "<?php echo $_GET['id'] ?>";  
+                                                               //console.log(id_usr);
+                                                                $(document).ready(function() {
+                                                                
+                                                                    function load_data(page){
+                                                                            $.ajax({
+                                                                                url: "pagination_followers.php",
+                                                                                method: "POST",
+                                                                                data: {
+                                                                                    page:page,
+                                                                                    id_usr:id_usr
+                                                                                },
+                                                                                success:function(data){
+                                                                                    $('#pagination_data2').html(data);
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    
+                                                                    document.getElementById("follr").onclick = function(){
+                                                                        
+                                                                        
+                                                                        load_data(1);
+                                                                        
+                                                                        function load_data(page){
+                                                                            $.ajax({
+                                                                                url: "pagination_followers.php",
+                                                                                method: "POST",
+                                                                                data: {
+                                                                                    page:page,
+                                                                                    id_usr:id_usr
+                                                                                },
+                                                                                success:function(data){
+                                                                                    $('#pagination_data2').html(data);
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    };
+                                                                        $(document).on('click', '.pagination_link2', function() {
+                                                                            var page = $(this).attr("id");
+                                                                            load_data(page);
+                                                                        })
+                                                                    
+                                                                });
+                                                                
+                                                                
+                                                                </script>
+
+
+
+
+
+
+                                                  
+                                                        
+                                                   <!-- if( isset($_GET['id']) ) $id = $_GET['id'];                                        
                                                     $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT follows FROM users_followers WHERE ID=" . $_GET['id'] . ")";
 
                                                     $res = $db->query($q);
@@ -306,10 +369,12 @@
                                                             echo "</div>";
                                                             echo "<hr width='100%'>";
                                                         }
-                                                    }
+                                                    } -->
                                                     
-                                                    echo "</div>
-                                                        </div>
+                                                    <?php
+
+                                                   
+                                                     echo "</div>  
                                                     </div>
                                                  </div>";
 
@@ -322,8 +387,14 @@
                                                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                                               <span aria-hidden='true'>&times;</span>
                                                             </button>
-                                                          </div>
-                                                          <div class='modal-body'>";
+                                                          </div>";
+                                                    ?>
+                                                      <div class='modal-body'>
+                                                             <div id = "pagination_data3">
+      
+                                                            </div> 
+                                                        </div>
+                                                <!--          
                                                     if( isset($_GET['id']) ) $id = $_GET['id'];                                      
                                                 $q = "SELECT ID, name, last_name, e_mail, user_photo FROM users WHERE ID IN ( SELECT ID FROM users_followers WHERE follows=" . $_GET['id'] . ")";
 
@@ -345,10 +416,62 @@
                                                             echo "</div>";
                                                             echo "<hr width='100%'>";
                                                     }
-                                                }
-                                                    
-                                                echo "</div>
-                                                    </div>
+                                                } -->
+
+                                                <script>
+
+                                                                var id_usr = "<?php echo $_GET['id'] ?>";  
+                                                               //console.log(id_usr);
+                                                                $(document).ready(function() {
+                                                                
+                                                                    function load_data(page){
+                                                                            $.ajax({
+                                                                                url: "pagination_following.php",
+                                                                                method: "POST",
+                                                                                data: {
+                                                                                    page:page,
+                                                                                    id_usr:id_usr
+                                                                                },
+                                                                                success:function(data){
+                                                                                    $('#pagination_data3').html(data);
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    
+                                                                    document.getElementById("folls").onclick = function(){
+                                                                        
+                                                                        
+                                                                        load_data(1);
+                                                                        
+                                                                        function load_data(page){
+                                                                            $.ajax({
+                                                                                url: "pagination_following.php",
+                                                                                method: "POST",
+                                                                                data: {
+                                                                                    page:page,
+                                                                                    id_usr:id_usr
+                                                                                },
+                                                                                success:function(data){
+                                                                                    $('#pagination_data3').html(data);
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    };
+                                                                        $(document).on('click', '.pagination_link3', function() {
+                                                                            var page = $(this).attr("id");
+                                                                            load_data(page);
+                                                                        })
+                                                                    
+                                                                });
+                                                                
+                                                                
+                                                                </script>
+
+
+
+                                        <?php    
+                                                
+                                                    echo "</div>
                                                 </div>
                                              </div>";
 

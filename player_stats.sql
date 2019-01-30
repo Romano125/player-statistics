@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2019 at 02:47 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Jan 30, 2019 at 09:09 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -226,7 +226,7 @@ INSERT INTO `igrac` (`reg_br_igr`, `ime`, `prezime`, `br_dres`, `br_gol`, `br_as
 ('CC005', 'Ivan', 'Rakitic', 4, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '65.00M', 'https://tmssl.akamaized.net//images/portrait/header/32467-1533819327.jpg?lm=1533819348'),
 ('CC006', 'Denis', 'Suarez', 6, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '12.00M', 'https://tmssl.akamaized.net//images/portrait/header/165007-1447239749.jpg?lm=1447239790'),
 ('CC007', 'Andres', 'Iniesta', 8, 0, 0, 0, 0, 0, 0, 0, 'MID', 'BAR', '6.75M', 'https://tmssl.akamaized.net//images/portrait/header/7600-1464872266.jpg?lm=1464872283'),
-('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 0, 'FWD', 'BAR', '160.00M', 'https://tmssl.akamaized.net//images/portrait/header/28003-1510231943.jpg?lm=1510231982'),
+('CC008', 'Lionel ', 'Messi', 10, 5, 1, 1, 0, 0, 0, 1, 'FWD', 'BAR', '160.00M', 'https://tmssl.akamaized.net//images/portrait/header/28003-1510231943.jpg?lm=1510231982'),
 ('CC009', 'Luis', 'Suarez', 9, 0, 0, 0, 0, 0, 0, 0, 'FWD', 'BAR', '60.00M', 'https://tmssl.akamaized.net//images/portrait/header/44352-1453896733.jpg?lm=1453896745'),
 ('CC010', 'Sergio', 'Busquets', 5, 0, 0, 0, 2, 0, 0, 0, 'MID', 'BAR', '75.00M', 'https://tmssl.akamaized.net//images/portrait/header/65230-1453896822.jpg?lm=1453896799'),
 ('DD000', 'Dominik', 'Livakovic', 40, 7, 9, 6, 6, 7, 10, 0, 'GK', 'RM', '1.75M', 'https://tmssl.akamaized.net//images/portrait/header/205927-1525072466.jpg?lm=1525072478'),
@@ -670,7 +670,11 @@ CREATE TABLE `users_followers` (
 
 INSERT INTO `users_followers` (`ID`, `follows`) VALUES
 (6, 5),
-(6, 5);
+(6, 5),
+(5, 6),
+(4, 6),
+(7, 6),
+(8, 6);
 
 -- --------------------------------------------------------
 
@@ -748,7 +752,12 @@ INSERT INTO `users_votes` (`ID`, `reg_br_igr`, `voteDate`, `active`) VALUES
 (6, 'CC002', '2019-01-24', 0),
 (6, 'DD002', '2019-01-24', 0),
 (6, 'CC002', '2019-01-24', 0),
-(6, 'BB000', '2019-01-30', 0);
+(6, 'BB000', '2019-01-30', 0),
+(4, 'CC008', '2019-01-30', 1),
+(5, 'CC008', '2018-12-30', 1),
+(7, 'CC008', '2019-01-30', 1),
+(8, 'CC008', '2019-01-30', 1),
+(8, 'CC008', '2019-01-30', 1);
 
 -- --------------------------------------------------------
 
