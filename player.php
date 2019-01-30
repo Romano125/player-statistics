@@ -337,7 +337,7 @@
                                                         echo "<button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter5'>Vote</button>";
                                                         //echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
                                                         echo "<!-- Button trigger modal -->
-                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter'>Show voters</button>
+                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter' id = 'shwVote'>Show voters</button>
 
                                                             <!-- Modal -->
                                                                     <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true'>
@@ -348,32 +348,88 @@
                                                                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                                                               <span aria-hidden='true'>&times;</span>
                                                                             </button>
-                                                                          </div>
-                                                                          <div class='modal-body'>";
-                                                            $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+                                                                          </div>"; 
+                                                ?>
+                                                                          <div class='modal-body' >
+                                                                            <div id = "pagination_data">
 
-                                                            $res = $db->query($q);
+                                                                            </div>
 
-                                                            if( $res->num_rows == 0 ) {
-                                                                echo "<h3 style='text-align: center;color: grey'>No results</h3>";
-                                                            }else{
-                                                                while( $r = $res->fetch_assoc() ) {
-                                                                    echo "<div class='row'>";
-                                                                        echo "<div class=col-md-6>
-                                                                                <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
-                                                                            </div>";
-                                                                        echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                                            <b>Name:</b> " . $r['name'] . "</br>
-                                                                            <b>Last name:</b> " . $r['last_name'] ."</br>
-                                                                            <b>Voted on:</b> ".$r['voteDate']."
-                                                                        </div>";
-                                                                    echo "</div>";
-                                                                    echo "<hr width='100%'>";
-                                                                }
-                                                            }
-                                                            
-                                                            echo "</div>
-                                                                </div>
+                                                                           </div>        
+                                                                                   <!-- $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+
+                                                                                    $res = $db->query($q);
+
+                                                                                    if( $res->num_rows == 0 ) {
+                                                                                        echo "<h3 style='text-align: center;color: grey'>No results</h3>";
+                                                                                    }else{
+                                                                                        while( $r = $res->fetch_assoc() ) {
+                                                                                            echo "<div class='row'>";
+                                                                                                echo "<div class=col-md-6>
+                                                                                                        <a href='users_info.php?id=" . $r['ID'] . "' id='post'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                                                    </div>";
+                                                                                                echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                                                    <b>Name:</b> " . $r['name'] . "</br>
+                                                                                                    <b>Last name:</b> " . $r['last_name'] ."</br>
+                                                                                                    <b>Voted on:</b> ".$r['voteDate']."
+                                                                                                </div>";
+                                                                                            echo "</div>";
+                                                                                            echo "<hr width='100%'>";
+                                                                                        }
+                                                                                    } -->
+                                                                            
+                                                                            <script>
+
+                                                                                var id_play = "<?php echo $_GET['id'] ?>";  
+                                                                                console.log(id_play); 
+                                                                                //id_play = parseInt(id_play);
+                                                                                $(document).ready(function() {
+                                                                                   
+                                                                                    function load_data(page){
+                                                                                            $.ajax({
+                                                                                                url: "pagination_votes.php",
+                                                                                                method: "POST",
+                                                                                                data: {
+                                                                                                    page:page,
+                                                                                                    id_play:id_play
+                                                                                                },
+                                                                                                success:function(data){
+                                                                                                    $('#pagination_data').html(data);
+                                                                                                }
+                                                                                            })
+                                                                                        }
+                                                                                   
+                                                                                    document.getElementById("shwVote").onclick = function(){
+                                                                                        console.log("hello");
+                                                                                        
+                                                                                        load_data(1);
+                                                                                        
+                                                                                        function load_data(page){
+                                                                                            $.ajax({
+                                                                                                url: "pagination_votes.php",
+                                                                                                method: "POST",
+                                                                                                data: {
+                                                                                                    page:page,
+                                                                                                    id_play:id_play
+                                                                                                },
+                                                                                                success:function(data){
+                                                                                                    $('#pagination_data').html(data);
+                                                                                                }
+                                                                                            })
+                                                                                        }
+                                                                                    };
+                                                                                        $(document).on('click', 'pagination_link', function() {
+                                                                                            var page = $(this).attr("id");
+                                                                                            load_data(page);
+                                                                                        })
+                                                                                      
+                                                                                });
+
+
+                                                                            </script>
+                                                                        
+                                                <?php
+                                                                echo "</div>
                                                             </div>
                                                          </div>";
 
@@ -397,7 +453,7 @@
                                                         echo "<a href='add_vote.php?id=" . $id . "' class='badge badge-info'>Vote</a>  ";
 
                                                         echo "<!-- Button trigger modal -->
-                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter'>Show voters</button>
+                                                                    <button class='badge badge-info' data-toggle='modal' data-target='#exampleModalCenter' id = 'shwVote'>Show voters</button>
 
                                                             <!-- Modal -->
                                                             <div class='modal fade' id='exampleModalCenter' tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true' pre-scrollable>
@@ -408,9 +464,60 @@
                                                                     <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                                                       <span aria-hidden='true'>&times;</span>
                                                                     </button>
+                                                                  </div>";
+                                                ?>                  
+                                                                  <div class='modal-body'>
+
+                                                                  <div id = "pagination_data">
+
                                                                   </div>
-                                                                  <div class='modal-body'>";
-                                                            $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+                                                          
+                                                          
+                                                                  </div>
+
+
+                                                                  <script>
+
+                                                                                var id_play = "<?php echo $_GET['id'] ?>";  
+                                                                                console.log(id_play); 
+                                                                                //id_play = parseInt(id_play);
+                                                                                $(document).ready(function() {
+                                                                                    
+
+                                                                                    document.getElementById("shwVote").onclick = function(){
+                                                                                        console.log("hello");
+                                                                                        load_data(1);
+                                                                                        function load_data(page){
+                                                                                            $.ajax({
+                                                                                                url: "pagination_votes.php",
+                                                                                                method: "POST",
+                                                                                                data: {
+                                                                                                    page:page,
+                                                                                                    id_play:id_play
+                                                                                                },
+                                                                                                success:function(data){
+                                                                                                    $('#pagination_data').html(data);
+                                                                                                }
+                                                                                            })
+                                                                                        }
+                                                                                    };
+                                                                                    $(document).on('click', '.pagination_link',function(){
+                                                                                         var page = $(this).attr("id");
+                                                                                        load_data(page);
+                                                                                    })
+                                                                                      
+                                                                                });
+
+
+                                                                            </script>
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          
+                                                          <!--  $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
 
                                                             $res = $db->query($q);
 
@@ -430,10 +537,12 @@
                                                                     echo "</div>";
                                                                     echo "<hr width='100%'>";
                                                                 }
-                                                            }
+                                                            } -->
                                                             
+                                                            
+                                                            <?php
+
                                                             echo "</div>
-                                                                </div>
                                                             </div>
                                                          </div>";
                                                     }
@@ -673,7 +782,7 @@
 
                                                             ?>
                                                             
-                                                            <div id = "pagination_data">
+                                                            <div id = "pagination_data2">
 
                                                             </div>
                                                             <script>
@@ -687,7 +796,7 @@
                                                                             data:{liga:liga,
                                                                                 gk:"<?php echo $f;?>"},
                                                                             success:function(data){
-                                                                                $('#pagination_data').html(data);
+                                                                                $('#pagination_data2').html(data);
                                                                             }
                                                                         })
                                                                         
@@ -703,7 +812,7 @@
                                                                             data:{liga:liga,
                                                                                 gk:"<?php echo $f;?>"},
                                                                             success:function(data){
-                                                                                $('#pagination_data').html(data);
+                                                                                $('#pagination_data2').html(data);
                                                                             }
                                                                         })
                                                                         
