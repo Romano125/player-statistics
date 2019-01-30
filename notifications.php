@@ -61,7 +61,7 @@
             } 
             else $not = 0;
 
-            $q = "SELECT weekNo, startDate FROM weeks";
+            $q = "SELECT weekNo, startDate FROM weeks ORDER BY weekNo DESC";
             $res = ($db->query($q))->fetch_assoc();
 
             echo "<div class='container-fluid top-menu'>

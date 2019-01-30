@@ -65,7 +65,7 @@
 
             $db->query($q);
 
-            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'] . " ORDER BY seen DESC";
 
             $res = $db->query($q);
 
@@ -74,7 +74,7 @@
             } 
             else $not = 0;
 
-            $q = "SELECT weekNo, startDate FROM weeks";
+            $q = "SELECT weekNo, startDate FROM weeks ORDER BY weekNo DESC";
             $res = ($db->query($q))->fetch_assoc();
 
             echo "<div class='container-fluid top-menu'>
