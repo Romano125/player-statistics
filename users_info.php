@@ -81,9 +81,9 @@
                                         <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
                                     </div>";
                                 echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                        Name: " . $r['name'] . "</br>
-                                        Last name:" . $r['last_name'] ."</br>
-                                        E-mail: " . $r['e_mail'] . "
+                                        <b>Name:</b> " . $r['name'] . "</br>
+                                        <b>Last name:</b> " . $r['last_name'] ."</br>
+                                        <b>E-mail:</b> " . $r['e_mail'] . "
                                     </div>";
                             echo "</div>";
                             echo "<hr width='100%'>";
@@ -299,9 +299,9 @@
                                                                         <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
                                                                     </div>";
                                                                 echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                                        Name: " . $r['name'] . "</br>
-                                                                        Last name:" . $r['last_name'] ."</br>
-                                                                        E-mail: " . $r['e_mail'] . "
+                                                                        <b>Name:</b> " . $r['name'] . "</br>
+                                                                        <b>Last name:</b> " . $r['last_name'] ."</br>
+                                                                        <b>E-mail:</b> " . $r['e_mail'] . "
                                                                     </div>";
                                                             echo "</div>";
                                                             echo "<hr width='100%'>";
@@ -333,15 +333,17 @@
                                                     echo "<h3 style='text-align: center;color: grey'>No results</h3>";
                                                 }else {
                                                     while( $r = $res->fetch_assoc() ) {
-                                                            echo "<div class=col-md-6>
-                                                                    <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
-                                                                </div>";
-                                                            echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
-                                                                    Name: " . $r['name'] . "</br>
-                                                                    Last name:" . $r['last_name'] ."</br>
-                                                                    E-mail: " . $r['e_mail'] . "
-                                                                </div>";
-                                                        echo "<hr width='100%'>";
+                                                            echo "<div class='row'>";
+                                                                echo "<div class=col-md-6>
+                                                                        <a href='users_info.php?id=" . $r['ID'] . "'><img src='" . $r['user_photo'] . "' height='55px' width='55px'></a>
+                                                                    </div>";
+                                                                echo "<div class='col-md-6' style = 'text-decoration-color: aqua '>
+                                                                        <b>Name:</b> " . $r['name'] . "</br>
+                                                                        <b>Last name:</b> " . $r['last_name'] ."</br>
+                                                                        <b>E-mail:</b> " . $r['e_mail'] . "
+                                                                    </div>";
+                                                            echo "</div>";
+                                                            echo "<hr width='100%'>";
                                                     }
                                                 }
                                                     
@@ -384,11 +386,11 @@
                                             $res = $db->query($q);
 
                                             while( $r = $res->fetch_assoc() ) {
-                                             	echo "Name: " . $r['name'] . "<br>";
-                                                echo "Last name: " . $r['last_name'] . "<br>";
-                                                echo "Age: " . $r['age'] . "<br>";
-                                                echo "E-mail: " . $r['e_mail'] . "<br>";
-                                                echo "Gender: " . $r['gender'] . "<br>";
+                                             	echo "<b>Name:</b> " . $r['name'] . "<br>";
+                                                echo "<b>Last name:</b> " . $r['last_name'] . "<br>";
+                                                echo "<b>Age:</b> " . $r['age'] . "<br>";
+                                                echo "<b>E-mail:</b> " . $r['e_mail'] . "<br>";
+                                                echo "<b>Gender:</b> " . $r['gender'] . "<br>";
                                                 if( isset($_SESSION['priv']) ) {
 						                            if( $_SESSION['priv'] == 1 && $_GET['id'] != $_SESSION['id'] ) {
 						                            	echo "<a href='grant_priv.php?id=" . $_GET['id'] . "' class='badge badge-info'>Grant privilage</a>&nbsp";
