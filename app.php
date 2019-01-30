@@ -180,7 +180,7 @@
                     if( isset($_SESSION['priv']) ) {
                         if( $_SESSION['priv'] == 1 ) {
                             echo "<div id='goal'>
-                                    <button type='button' class='btn btn-dark' id='goalBtn' style='margin-left: 350px'>Change link</button>
+                                    <button type='button' class='btn btn-dark' id='goalBtn' style='margin-left: 50%'>Change link</button>
                                     </div>";
                         }
                     }

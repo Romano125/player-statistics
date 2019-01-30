@@ -418,7 +418,7 @@
                                                                                             })
                                                                                         }
                                                                                     };
-                                                                                        $(document).on('click', 'pagination_link', function() {
+                                                                                        $(document).on('click', '.pagination_link', function() {
                                                                                             var page = $(this).attr("id");
                                                                                             load_data(page);
                                                                                         })
