@@ -54,7 +54,7 @@
 				</div>
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="signup.html" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="signup_main.php" class="ml-2">Sign Up</a>
 					</div>
 				</div>
 			</div>

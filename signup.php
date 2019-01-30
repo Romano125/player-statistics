@@ -1,6 +1,6 @@
 <?php
 	if( empty($_POST['name']) || empty($_POST['last']) || empty($_POST['passwd']) || empty($_POST['mail']) || empty($_POST['rpasswd']) || empty($_POST['rmail']) || empty($_POST['gender']) || empty($_POST['age']) ) {
-		header('Location: http://localhost:8080/projekt/failreg.html');	
+		header('Location: http://localhost:8080/projekt/signup_main.php?f=1');		
 	}else{
 		$name = $_POST['name'];
 		$last = $_POST['last'];
@@ -37,7 +37,7 @@
 			header('Location: http://localhost:8080/projekt/sucreg.html');
 		}else{
 			//Nesto je krivo uneseno
-			header('Location: http://localhost:8080/projekt/failreg.html');	
+			header('Location: http://localhost:8080/projekt/signup_main.php?f=1');	
 		}
 	}
 
