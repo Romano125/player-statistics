@@ -52,7 +52,7 @@
 
             $db->query($q);
 
-            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'] . " ORDER BY seen DESC";
+            $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
 
             $res = $db->query($q);
 
@@ -194,7 +194,7 @@
                             }
                         }
 
-                        $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'];
+                        $q = "SELECT notification FROM users_notifications WHERE seen=1 AND ID=" . $_SESSION['id'] . " ORDER BY recieved DESC";
 
                         $res = $db->query($q);
                         if ($res) {
