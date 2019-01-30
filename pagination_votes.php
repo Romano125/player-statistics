@@ -38,7 +38,7 @@
         }
     
 
-    $q = "SELECT DISTINCT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
+    $q = "SELECT ID, user_photo, name, last_name, voteDate  FROM users JOIN users_votes using(ID) WHERE reg_br_igr='" . $id . "' AND active = 1";
     $res = $db->query($q);
     $tot = $res ->num_rows;
     $totPages = ceil($tot / $record_per_page);
